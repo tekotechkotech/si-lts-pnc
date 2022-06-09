@@ -36,66 +36,53 @@
   <div class="container">
     
     <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-12">
-        
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="{{ asset('') }}assets/dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
-                </div>
-
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                <p class="text-muted text-center">NIM 190102024</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="nim">NIM</label>
-                  <input class="form-control" id="nim" value="190102024" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="ipk">IPK</label>
-                  <input class="form-control" id="ipk" value="3.90 // Cumloude" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="tahun_lulus">Tahun Lulus</label>
-                  <input type="text" class="form-control" id="tahun_lulus" value="Tahun Lulus" disabled>
-                </div>
-              </div>
-            </div>
-
-      </div>
-      <div class="col-lg-5 col-md-5 col-sm-12">
+      <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nama Lengkap</label>
-              <input type="text" class="form-control" id="name" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+              @error('name')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="username" class="form-control" id="username" value="Username" disabled>
+              <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
+              @error('username')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="tempat_lahir">Tempat Lahir</label>
-              <input type="text" class="form-control" id="tempat_lahir" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
+              @error('tempat_lahir')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="tanggal_lahir">Tanggal Lahir</label>
-              <input type="date" class="form-control" id="tanggal_lahir" value="Nama Lengkap" disabled>
+              <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+              @error('tanggal_lahir')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="jenis_kelamin">Jenis Kelamin</label>
-              <input type="text" class="form-control" value="Laki-laki" disabled>
+              <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
+              @error('jenis_kelamin')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
               {{-- <select class="form-control" id="jenis_kelamin">
                 <option>Laki-Laki</option>
                 <option>Perempuan</option>
@@ -103,70 +90,28 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" value="Nama Lengkap" disabled>
+              <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+              @error('email')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="no_telp">No. Telp</label>
-              <input type="text" class="form-control" id="no_telp" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="no_telp" name="no_telp" value="{{ old('no_telp') }}">
+              @error('no_telp')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
-            <div class=" d-flex justify-content-end">
+            <div class=" d-flex justify-content-between">
+              <a href=""  class="btn btn-secondary">Kembali</a>
               <a href=""  class="btn btn-primary">Edit Data Diri</a>
             </div>
           </div>   
           
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="provinsi">Provinsi</label>
-              <input class="form-control" id="provinsi" value="Provinsi" disabled>
-            </div>
-            <div class="form-group">
-              <label for="kabupaten">Kabupaten</label>
-              <input class="form-control" id="kabupaten" value="Kabupaten" disabled>
-            </div>
-            <div class="form-group">
-              <label for="kecamatan">Kecamatan</label>
-              <input type="text" class="form-control" id="kecamatan" value="Kecamatan" disabled>
-            </div>
-            <div class="form-group">
-              <label for="desa">Desa</label>
-              <input type="text" class="form-control" id="desa" value="Desa" disabled>
-            </div>
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="rt">RT</label>
-                  <input type="text" class="form-control" id="rt" value="RT" disabled>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label for="rw">RW</label>
-                  <input type="text" class="form-control" id="rw" value="RW" disabled>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="jalan">Jalan</label>
-              <input type="text" class="form-control" id="jalan" value="Jalan" disabled>
-            </div>
-
-            <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Edit Alamat</a>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <div class=" d-flex justify-content-between align-content-center">
-            <label for="">Ganti Password</label>
-              <a href=""  class="btn btn-primary">Ganti</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

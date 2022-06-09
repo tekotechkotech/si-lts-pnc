@@ -73,6 +73,10 @@ Route::get('/alumni-legal-tambah', function () {
     return view('alumni_legal_tambah');
 });
 
+Route::get('/alumni-legal-edit', function () {
+    return view('alumni_legal_edit');
+});
+
 // MIDDLEWARE LOGIN
 Route::middleware(['auth'])->group(function () {
     

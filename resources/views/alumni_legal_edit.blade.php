@@ -16,13 +16,13 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Tambah Legalisasi</h1>
+        <h1 class="m-0">Edit Legalisasi</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Legalisasi</a></li>
-          <li class="breadcrumb-item active">Tambah</li>
+          <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -44,6 +44,7 @@
                 <div class="form-group pt-1">
                   <label for="jenis">Jenis Legalisasi</label>
                   <select name="jenis" class="form-control" id="jenis">
+                    {{-- //TODO yang dipilih --}}
                     <option value="">Legalisasi Ijazah</option>
                     <option value="">Legalisasi Transkip Nilai</option>
                   </select>
@@ -51,7 +52,7 @@
                 <div class="form-group  pt-1">
                   <label for="berkas" >Upload File</label>
                   <div class="custom-file">
-                    <label for="berkas" class="custom-file-label ">Pilih Berkas</label>
+                    <label for="berkas" class="custom-file-label">Pilih Berkas</label>
                     <input type="file" name="berkas" class="custom-file-input" id="berkas">
                   </div>
                 </div>

@@ -17,12 +17,13 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Profil</h1>
+        <h1 class="m-0">Ganti Alamat</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Profil</li>
+          <li class="breadcrumb-item"><a href="#">Profil</a></li>
+          <li class="breadcrumb-item active">Ganti Alamat</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -36,138 +37,97 @@
   <div class="container">
     
     <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-12">
-        
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="{{ asset('') }}assets/dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
-                </div>
-
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                <p class="text-muted text-center">NIM 190102024</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="nim">NIM</label>
-                  <input class="form-control" id="nim" value="190102024" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="ipk">IPK</label>
-                  <input class="form-control" id="ipk" value="3.90 // Cumloude" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="tahun_lulus">Tahun Lulus</label>
-                  <input type="text" class="form-control" id="tahun_lulus" value="Tahun Lulus" disabled>
-                </div>
-              </div>
-            </div>
-
-      </div>
-      <div class="col-lg-5 col-md-5 col-sm-12">
+      <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="form-group">
-              <label for="name">Nama Lengkap</label>
-              <input type="text" class="form-control" id="name" value="Nama Lengkap" disabled>
+              <label for="Provinsi">Provinsi</label>
+              <select name="Provinsi" id="Provinsi" class="form-control @error('Provinsi') is-invalid @enderror">
+                <option value="">Pilih Provinsi</option>
+                @foreach ($provinsi as $prov)
+                  <option value="{{ $prov->id }}">{{ $prov->nama }}</option>
+                @endforeach
+              </select>
+              @error('Provinsi')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="username" class="form-control" id="username" value="Username" disabled>
+              <label for="Kabupaten">Kabupaten</label>
+              <select name="Kabupaten" id="Kabupaten" class="form-control @error('Kabupaten') is-invalid @enderror">
+                <option value="">Pilih Kabupaten</option>
+              </select>
+              @error('Kabupaten')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
-              <label for="tempat_lahir">Tempat Lahir</label>
-              <input type="text" class="form-control" id="tempat_lahir" value="Nama Lengkap" disabled>
+              <label for="Kecamatan">Kecamatan</label>
+              <select name="Kecamatan" id="Kecamatan" class="form-control @error('Kecamatan') is-invalid @enderror">
+                <option value="">Pilih Kecamatan</option>
+              </select>
+              @error('Kecamatan')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="form-group">
-              <label for="tanggal_lahir">Tanggal Lahir</label>
-              <input type="date" class="form-control" id="tanggal_lahir" value="Nama Lengkap" disabled>
-            </div>
-            <div class="form-group">
-              <label for="jenis_kelamin">Jenis Kelamin</label>
-              <input type="text" class="form-control" value="Laki-laki" disabled>
-              {{-- <select class="form-control" id="jenis_kelamin">
-                <option>Laki-Laki</option>
-                <option>Perempuan</option>
-              </select> --}}
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" value="Nama Lengkap" disabled>
-            </div>
-            <div class="form-group">
-              <label for="no_telp">No. Telp</label>
-              <input type="text" class="form-control" id="no_telp" value="Nama Lengkap" disabled>
-            </div>
-            <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Edit Data Diri</a>
-            </div>
-          </div>   
-          
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="provinsi">Provinsi</label>
-              <input class="form-control" id="provinsi" value="Provinsi" disabled>
-            </div>
-            <div class="form-group">
-              <label for="kabupaten">Kabupaten</label>
-              <input class="form-control" id="kabupaten" value="Kabupaten" disabled>
-            </div>
-            <div class="form-group">
-              <label for="kecamatan">Kecamatan</label>
-              <input type="text" class="form-control" id="kecamatan" value="Kecamatan" disabled>
-            </div>
-            <div class="form-group">
-              <label for="desa">Desa</label>
-              <input type="text" class="form-control" id="desa" value="Desa" disabled>
+              <label for="Desa">Desa</label>
+              <select name="Desa" id="Desa" class="form-control @error('Desa') is-invalid @enderror">
+                <option value="">Pilih Desa</option>
+              </select>
+              @error('Desa')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="rt">RT</label>
-                  <input type="text" class="form-control" id="rt" value="RT" disabled>
+                  <label for="RT">RT</label>
+                  <input type="text" class="form-control" id="RT" value="RT"  class="form-control @error('RT') is-invalid @enderror">
+                  @error('RT')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="rw">RW</label>
-                  <input type="text" class="form-control" id="rw" value="RW" disabled>
+                  <label for="RW">RW</label>
+                  <input type="text" class="form-control" id="RW" value="RW"  class="form-control @error('RW') is-invalid @enderror">
+                  @error('RW')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="jalan">Jalan</label>
-              <input type="text" class="form-control" id="jalan" value="Jalan" disabled>
+              <label for="Jalan">Jalan</label>
+              <input type="text" class="form-control" id="Jalan" value="Jalan"  class="form-control @error('Jalan') is-invalid @enderror">
+              @error('Jalan')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
 
             <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Edit Alamat</a>
+              <a href=""  class="btn btn-primary">Simpan Alamat</a>
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-            <div class=" d-flex justify-content-between align-content-center">
-            <label for="">Ganti Password</label>
-              <a href=""  class="btn btn-primary">Ganti</a>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
 <br>
