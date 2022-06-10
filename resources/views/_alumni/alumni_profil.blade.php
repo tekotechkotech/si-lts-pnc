@@ -47,10 +47,16 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{ $all->name }}</h3>
 
-                <p class="text-muted text-center">NIM 190102024</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></a>
+                <p class="text-muted text-center">NIM {{ $all->nim }}</p>
+                <form action="{{ route('alumni.profil.foto.proses') }}" method="post" enctype="multipart/form-data" >
+                  @csrf
+                  @method('PUT')
+                    <input type="hidden" name="username" value="{{ $all->username }}">
+                    <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></label>
+                    <input type="file" onchange="form.submit()" name="foto" id="foto" hidden>
+                </form>
               </div>
               <!-- /.card-body -->
             </div>
@@ -60,15 +66,15 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="nim">NIM</label>
-                  <input class="form-control" id="nim" value="190102024" disabled>
+                  <input class="form-control" id="nim" value="{{ $all->nim }}" disabled>
                 </div>
                 <div class="form-group">
                   <label for="ipk">IPK</label>
-                  <input class="form-control" id="ipk" value="3.90 // Cumloude" disabled>
+                  <input class="form-control" id="ipk" value="{{ $all->ipk }}" disabled>
                 </div>
                 <div class="form-group">
                   <label for="tahun_lulus">Tahun Lulus</label>
-                  <input type="text" class="form-control" id="tahun_lulus" value="Tahun Lulus" disabled>
+                  <input class="form-control" id="tahun_lulus" value="{{ $all->tahun_lulus }}" disabled>
                 </div>
               </div>
             </div>
@@ -79,23 +85,23 @@
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nama Lengkap</label>
-              <input type="text" class="form-control" id="name" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control" id="name" value="{{ $all->name }}" disabled>
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="username" class="form-control" id="username" value="Username" disabled>
+              <input type="username" class="form-control" id="username" value="{{ $all->username }}" disabled>
             </div>
             <div class="form-group">
               <label for="tempat_lahir">Tempat Lahir</label>
-              <input type="text" class="form-control" id="tempat_lahir" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control" id="tempat_lahir" value="{{ $all->tempat_lahir }}" disabled>
             </div>
             <div class="form-group">
               <label for="tanggal_lahir">Tanggal Lahir</label>
-              <input type="date" class="form-control" id="tanggal_lahir" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control" id="tanggal_lahir" value="{{ $all->tanggal_lahir }}" disabled>
             </div>
             <div class="form-group">
               <label for="jenis_kelamin">Jenis Kelamin</label>
-              <input type="text" class="form-control" value="Laki-laki" disabled>
+              <input type="text" class="form-control" value="{{ $all->jenis_kelamin }}" disabled>
               {{-- <select class="form-control" id="jenis_kelamin">
                 <option>Laki-Laki</option>
                 <option>Perempuan</option>
@@ -103,14 +109,14 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" value="Nama Lengkap" disabled>
+              <input type="email" class="form-control" id="email" value="{{ $all->email }}" disabled>
             </div>
             <div class="form-group">
               <label for="no_telp">No. Telp</label>
-              <input type="text" class="form-control" id="no_telp" value="Nama Lengkap" disabled>
+              <input type="text" class="form-control" id="no_telp" value="{{ $all->no_hp }}" disabled>
             </div>
             <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Edit Data Diri</a>
+              <a href="{{ route('alumni.profil.data-diri') }}"  class="btn btn-primary">Edit Data Diri</a>
             </div>
           </div>   
           
@@ -121,42 +127,42 @@
           <div class="card-body">
             <div class="form-group">
               <label for="provinsi">Provinsi</label>
-              <input class="form-control" id="provinsi" value="Provinsi" disabled>
+              <input class="form-control" id="provinsi" value="{{ $all->provinsi }}" disabled>
             </div>
             <div class="form-group">
               <label for="kabupaten">Kabupaten</label>
-              <input class="form-control" id="kabupaten" value="Kabupaten" disabled>
+              <input class="form-control" id="kabupaten" value="{{ $all->kabupaten }}" disabled>
             </div>
             <div class="form-group">
               <label for="kecamatan">Kecamatan</label>
-              <input type="text" class="form-control" id="kecamatan" value="Kecamatan" disabled>
+              <input type="text" class="form-control" id="kecamatan" value="{{ $all->kecamatan }}" disabled>
             </div>
             <div class="form-group">
               <label for="desa">Desa</label>
-              <input type="text" class="form-control" id="desa" value="Desa" disabled>
+              <input type="text" class="form-control" id="desa" value="{{ $all->desa }}" disabled>
             </div>
             <div class="row">
               <div class="col">
                 <div class="form-group">
                   <label for="rt">RT</label>
-                  <input type="text" class="form-control" id="rt" value="RT" disabled>
+                  <input type="text" class="form-control" id="rt" value="{{ $all->rt }}"  disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label for="rw">RW</label>
-                  <input type="text" class="form-control" id="rw" value="RW" disabled>
+                  <input type="text" class="form-control" id="rw" value="{{ $all->rw }}"  disabled>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <label for="jalan">Jalan</label>
-              <input type="text" class="form-control" id="jalan" value="Jalan" disabled>
+              <input type="text" class="form-control" id="jalan" value="{{ $all->jalan }}"  disabled>
             </div>
 
             <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Edit Alamat</a>
+              <a href="{{ route('alumni.profil.alamat') }}"  class="btn btn-primary">Edit Alamat</a>
             </div>
           </div>
         </div>
@@ -164,7 +170,7 @@
           <div class="card-body">
             <div class=" d-flex justify-content-between align-content-center">
             <label for="">Ganti Password</label>
-              <a href=""  class="btn btn-primary">Ganti</a>
+              <a href="{{ route('alumni.profil.password') }}"  class="btn btn-primary">Ganti</a>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0"><small>Selamat Datang</small> Sodara Fulan </h1>
+        <h1 class="m-0"><small>Selamat Datang</small> {{ $all->username }} </h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -46,23 +46,23 @@
                       alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{ $all->name }}</h3>
 
-                <p class="text-muted text-center">NIM 190102024</p>
+                <p class="text-muted text-center">NIM {{ $all->nim }}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>E-mail</b> <a class="float-right">faiz.clcp571@gmail.com</a>
+                    <b>E-mail</b> <a class="float-right">{{ $all->email }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>No HP</b> <a class="float-right">081327192052</a>
+                    <b>No HP</b> <a class="float-right">{{ $all->no_hp }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Tahun Lulus</b> <a class="float-right">2022</a>
+                    <b>Tahun Lulus</b> <a class="float-right">{{ $all->tahun_lulus }}</a>
                   </li>
                 </ul>
 
-                <a href="/alumni-profil" class="btn btn-primary btn-block"><b>Pengaturan Profile</b></a>
+                <a href="{{ route('alumni.profil') }}" class="btn btn-primary btn-block"><b>Pengaturan Profile</b></a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -72,17 +72,38 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="small-box bg-info " style="background-image: linear-gradient(150deg,blue, cyan);">
           <div class="inner p-4">
-            <h3 class="text-wrap">PT. GOLET DIGITAL SOLUSI</h3>
-            <p>Cilacap Utara, Cilacap, jawa Tengah</p>
+            <h3 class="text-wrap">
+              @if ($tracer == null)
+                  TAMBAHKAN TRACER STUDY
+              @else
+                  {{ strtoupper($tracer->nama_tracer) }}
+              @endif</h3>
+            <p>
+              @if ($tracer == null)
+              Untuk bisa melakukan pengajuan legalisasi
+          @else
+              {{ $tracer->nama_tracer }}
+          @endif
+        </p>
           </div>
           <br><br>
           <div class="icon">
             <i class="fas fa-building"></i>
           </div>
-          <p class="text-center">Fullstack Developer</p>
+          <p class="text-center">@if ($tracer!=null)
+              {{ $tracer->nama_tracer }}
+              @else
+              Tambahkan Tracer Study
+          @endif
+        </p>
           <hr>
-          <p class="text-center">2022 - Sekarang</p>
-          <a href="/alumni-tracer" class="small-box-footer">
+          <p class="text-center">@if ($tracer!=null)
+              {{ $tracer->tahun_kerja }}      
+            @else
+               dengan klik tombol dibawah
+            
+        @endif</p>
+          <a href="{{ route('alumni.tracer.index') }}" class="small-box-footer">
             Tracer Study <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>

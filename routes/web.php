@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniUserController;
 use App\Http\Controllers\LegalController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProsesLegalController;
 use App\Http\Controllers\TracerController;
 use Illuminate\Support\Facades\Route;
@@ -21,67 +22,76 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+// LOGIN
+Route::get('/',[LoginController::class, 'cek'])->name('cek');
+Route::get('logins',[LoginController::class, 'index'])->name('logins');
+Route::post('logins',[LoginController::class, 'login_action'])->name('login.action');
+
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// ALUMNI
+    // Route::get('/alumni', function () {
+    //     return view('alumni');
+    // });
 
-Route::get('/alumni', function () {
-    return view('alumni');
-});
-//PROFIL
-Route::get('/alumni-profil', function () {
-    return view('alumni_profil');
-});
+    // //PROFIL
+    // Route::get('/alumni-profil', function () {
+    //     return view('alumni_profil');
+    // });
 
-Route::get('/alumni-profil-datadiri', function () {
-    return view('alumni_profil_datadiri');
-});
+    // Route::get('/alumni-profil-datadiri', function () {
+    //     return view('alumni_profil_datadiri');
+    // });
 
-Route::get('/alumni-profil-alamat', function () {
-    return view('alumni_profil_alamat');
-});
+    // Route::get('/alumni-profil-alamat', function () {
+    //     return view('alumni_profil_alamat');
+    // });
 
-Route::get('/alumni-profil-password', function () {
-    return view('alumni_profil_password');
-});
+    // Route::get('/alumni-profil-password', function () {
+    //     return view('alumni_profil_password');
+    // });
 
-//TRACER
-Route::get('/alumni-tracer', function () {
-    return view('alumni_tracer');
-});
+    // //TRACER
+    // Route::get('/alumni-tracer', function () {
+    //     return view('alumni_tracer');
+    // });
 
-Route::get('/alumni-tracer-tambah', function () {
-    return view('alumni_tracer');
-});
+    // Route::get('/alumni-tracer-tambah', function () {
+    //     return view('alumni_tracer_tambah');
+    // });
 
-Route::get('/alumni-tracer-edit', function () {
-    return view('alumni_tracer');
-});
+    // Route::get('/alumni-tracer-edit', function () {
+    //     return view('alumni_tracer_edit');
+    // });
 
-//LEGALISASI
-Route::get('/alumni-legalisasi', function () {
-    return view('alumni_legal');
-});
+    // //LEGALISASI
+    // Route::get('/alumni-legalisasi', function () {
+    //     return view('alumni_legal');
+    // });
 
-Route::get('/alumni-legal-tambah', function () {
-    return view('alumni_legal_tambah');
-});
+    // Route::get('/alumni-legal-tambah', function () {
+    //     return view('alumni_legal_tambah');
+    // });
 
-Route::get('/alumni-legal-edit', function () {
-    return view('alumni_legal_edit');
-});
+    // Route::get('/alumni-legal-edit', function () {
+    //     return view('alumni_legal_edit');
+    // });
+// alumni
 
 // MIDDLEWARE LOGIN
 Route::middleware(['auth'])->group(function () {
     
     // MIDDLEWARE ADMIN
-    Route::prefix('admin')->middleware(['Admin'])->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware(['Admin'])->group(function () {
 
         Route::get('dashboard',[AdminUserController::class, 'index'])->name('dashboard');
         
@@ -140,6 +150,20 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('dashboard',[AlumniUserController::class, 'index'])->name('dashboard');
 
+        Route::get('profil',[AlumniUserController::class, 'profil'])->name('profil');
+
+    Route::prefix('profil')->name('profil.')->group(function () {
+        Route::get('data-diri',[AlumniUserController::class, 'profil_datadiri'])->name('data-diri');
+        Route::get('alamat',[AlumniUserController::class, 'profil_alamat'])->name('alamat');
+        Route::get('password',[AlumniUserController::class, 'profil_password'])->name('password');
+        
+        Route::put('data-diri',[AlumniUserController::class, 'proses_profil_datadiri'])->name('data-diri.proses');
+        Route::put('alamat',[AlumniUserController::class, 'proses_profil_alamat'])->name('alamat.proses');
+        Route::put('password',[AlumniUserController::class, 'proses_profil_password'])->name('password.proses');
+        
+        Route::put('foto',[AlumniUserController::class, 'proses_profil_foto'])->name('foto.proses');
+    });
+        
         //route data tracer study resource(index, create, store, edit, update, destroy)
         Route::resource('tracer', TracerController::class);
 

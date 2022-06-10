@@ -42,11 +42,11 @@
           <div class="card-body">
             <div class="form-group">
               <label for="Nama">Nama</label>
-              <input class="form-control" id="Nama" value="Nama" disabled>
+              <input class="form-control" id="Nama" value="{{ $all->name }}" disabled>
             </div>
             <div class="form-group">
               <label for="NIM">NIM</label>
-              <input class="form-control" id="NIM" value="NIM" disabled>
+              <input class="form-control" id="NIM" value="{{ $all->nim }}" disabled>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -67,8 +67,9 @@
               @enderror
             </div>
 
-            <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Simpan Password</a>
+            <div class=" d-flex justify-content-between">
+              <a href="{{ route('alumni.profil') }}"  class="btn btn-secondary">Kembali</a>
+              <a href="{{ route('alumni.profil.password.proses') }}"  class="btn btn-primary">Simpan Password</a>
             </div>
           </div>
         </div>

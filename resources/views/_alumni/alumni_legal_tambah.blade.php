@@ -37,7 +37,7 @@
         <div class="card">
           <div class="card-body">
 
-            <form action="" method="post">
+            <form action="{{ route('alumni.legalisir.store') }}" method="post">
               @csrf
             <div class="row">
               <div class="col">
@@ -60,7 +60,7 @@
                   <textarea name="keterangan" id="keterangan" class="form-control" rows="5"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Ajukan Legalisasi</button>
               </div>
             </div>
             </form>

@@ -17,7 +17,7 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0"><small>Selamat Datang</small> Sodara Fulan </h1>
+        <h1 class="m-0">Tracer Study </h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -41,12 +41,30 @@
             <h5 class="text-wrap text-center">Update Selalu data Tracer Study-mu</h5>
             <p class="text-center">dengan klik tombol di bawah</p>
             <div class="p-2">
-              <a href="" class="btn btn-primary btn-block">Tambah Tracer Study</a>
+              <a href="{{ route('alumni.tracer.create') }}" class="btn btn-primary btn-block">Tambah Tracer Study</a>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-8 col-md-8 col-sm-12">
+        
+        @empty($tracer)
+            
+        <div class="card  bg-danger">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center p-2">
+              <div class="">
+                <h4>TRACER STUDY MASIH KOSONG</h4>
+                <span>Harap tambahkan tracer study-mu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        @else
+
         <div class="card  bg-primary">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center p-2">
@@ -62,31 +80,24 @@
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-end">
-              <a href="" class="btn btn-light text-success mx-1">
-                <i class="fas fa-file-alt"></i>
-                <span>Detail</span>
-              </a>
-              
-              <a href="" class="btn btn-light text-danger mx-1">
-                <i class="fas fa-trash-alt"></i>
-                {{-- <br> --}}
-                <span>Hapus</span>
-              </a>
-            </div>
-          </div>
-        </div>
-              
-              {{-- <a href="" class="info-box m-1 "> --}}
-              {{-- </a> --}}
-              {{-- <div class="info-box mb-3">
+                <a href="
+                  {{-- /alumni/tracer/{{ $tracer->id }}/edit --}}
+                  " class="btn btn-light text-success mx-1">
+                  <i class="fas fa-file-alt"></i>
+                  <span>Detail</span>
+                </a>
                 
-                <a class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></a>
-                <!-- /.info-box-content -->
-              </div> --}}
+                <a href="" class="btn btn-light text-danger mx-1">
+                  <i class="fas fa-trash-alt"></i>
+                  {{-- <br> --}}
+                  <span>Hapus</span>
+                </a>
             </div>
           </div>
-          
         </div>
+        
+        @endempty
+        
       </div>
     </div>
   </div><!-- /.container -->

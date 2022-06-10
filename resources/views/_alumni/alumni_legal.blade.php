@@ -32,37 +32,53 @@
 @endsection
 
 @section('main-content')
+
 <div class="content">
   <div class="container">
     <div class="row">
+
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
           <div class="card-body">
             <h5 class="text-wrap text-center">Membutuhkan Berkas Legalisasi?</h5>
             <p class="text-center">silahkan ajukan dengan klik tombol di bawah</p>
             <div class="p-2">
-              <a href="" class="btn btn-primary btn-block">Ajukan Legalisasi</a>
+              <a href="{{ route('alumni.legalisir.create') }}" class="btn btn-primary btn-block">Ajukan Legalisasi</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12">
-        
-        {{-- <div class="card"> --}}
-        <div class="info-box bg-primary d-flex align-items-center">
-          {{-- <span class="info-box-icon"><i class="far fa-bookmark"></i></span> --}}
+        @empty($legal->upload_berkas)
+        <div class="info-box bg-secondary d-flex align-items-center">
           <div class="info-box-content">
-            <span class="info-box-text">Legalisasi Ijazah</span>
-            <span class="info-box-number">Menunggu Verifikasi</span>
+              <span class="info-box-text">Pengajuan Legalisasi kosong</span>
+              <span class="info-box-number">Silahkan ajukan legalisasi</span>
 
-            <div class="progress">
-              <div class="progress-bar" style="width: 70%"></div>
-            </div>
-            <span class="progress-description">
-              30 Mei 2020
-            </span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+              <span class="progress-description">
+                {{ date(now()); }}
+              </span>
           </div>
-            <div class="d-flex justify-content-end">
+          
+        </div>
+        @else 
+        
+        <div class="info-box bg-primary d-flex align-items-center">
+          <div class="info-box-content">
+              <span class="info-box-text">Legalisasi Ijazah</span>
+              <span class="info-box-number">Menunggu Verifikasi</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+              <span class="progress-description">
+                30 Mei 2020
+              </span>
+          </div>
+          <div class="d-flex justify-content-end">
               <a href="" class="btn btn-light text-success m-2">
                 <i class="fas fa-file-alt"></i>
                 <br>
@@ -74,15 +90,16 @@
                 <br>
                 <span>Hapus</span>
               </a>
-            </div>
           </div>
-          
         </div>
+        @endempty
+          
       </div>
     </div>
   </div><!-- /.container -->
 </div>
 <!-- /.content -->
+
 @endsection
 
 @section('js')

@@ -41,7 +41,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nama Lengkap</label>
-              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $all->name) }}">
               @error('name')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
+              <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username', $all->username) }}">
               @error('username')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
               <label for="tempat_lahir">Tempat Lahir</label>
-              <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
+              <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir', $all->tempat_lahir) }}">
               @error('tempat_lahir')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
               <label for="tanggal_lahir">Tanggal Lahir</label>
-              <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+              <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir', $all->tanggal_lahir) }}">
               @error('tanggal_lahir')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -77,7 +77,12 @@
             </div>
             <div class="form-group">
               <label for="jenis_kelamin">Jenis Kelamin</label>
-              <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
+              {{-- <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin', $all->jenis_kelamin) }}"> --}}
+              <select name="jenis_kelamin" class="form-control">
+                <option value="Laki-laki" {{ $all->jenis_kelamin }}>{{ $all->jenis_kelamin }}</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
               @error('jenis_kelamin')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -90,7 +95,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+              <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $all->email) }}">
               @error('email')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -98,17 +103,17 @@
               @enderror
             </div>
             <div class="form-group">
-              <label for="no_telp">No. Telp</label>
-              <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="no_telp" name="no_telp" value="{{ old('no_telp') }}">
-              @error('no_telp')
+              <label for="no_hp">No. Telp</label>
+              <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" name="no_hp" value="{{ old('no_hp', $all->no_hp) }}">
+              @error('no_hp')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
               @enderror
             </div>
             <div class=" d-flex justify-content-between">
-              <a href=""  class="btn btn-secondary">Kembali</a>
-              <a href=""  class="btn btn-primary">Edit Data Diri</a>
+              <a href="{{ route('alumni.profil') }}"  class="btn btn-secondary">Kembali</a>
+              <a href="{{ route('alumni.profil.data-diri.proses') }}"  class="btn btn-primary">Simpan</a>
             </div>
           </div>   
           

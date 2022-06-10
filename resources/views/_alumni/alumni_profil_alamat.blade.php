@@ -44,9 +44,9 @@
               <label for="Provinsi">Provinsi</label>
               <select name="Provinsi" id="Provinsi" class="form-control @error('Provinsi') is-invalid @enderror">
                 <option value="">Pilih Provinsi</option>
-                @foreach ($provinsi as $prov)
-                  <option value="{{ $prov->id }}">{{ $prov->nama }}</option>
-                @endforeach
+                {{-- @foreach ($provinsi as $prov) --}}
+                  {{-- <option value="{{ $prov->id }}">{{ $prov->nama }}</option> --}}
+                {{-- @endforeach --}}
               </select>
               @error('Provinsi')
                 <div class="invalid-feedback">
@@ -91,7 +91,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="RT">RT</label>
-                  <input type="text" class="form-control" id="RT" value="RT"  class="form-control @error('RT') is-invalid @enderror">
+                  <input type="text" class="form-control" id="RT" value="{{ old('RT', $all->rt) }}"  class="form-control @error('RT') is-invalid @enderror">
                   @error('RT')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -102,7 +102,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="RW">RW</label>
-                  <input type="text" class="form-control" id="RW" value="RW"  class="form-control @error('RW') is-invalid @enderror">
+                  <input type="text" class="form-control" id="RW" value="{{ old('RW', $all->rw) }}"  class="form-control @error('RW') is-invalid @enderror">
                   @error('RW')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -114,7 +114,7 @@
 
             <div class="form-group">
               <label for="Jalan">Jalan</label>
-              <input type="text" class="form-control" id="Jalan" value="Jalan"  class="form-control @error('Jalan') is-invalid @enderror">
+              <input type="text" class="form-control" id="Jalan" value="{{ old('Jalan', $all->jalan) }}"  class="form-control @error('Jalan') is-invalid @enderror">
               @error('Jalan')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -122,8 +122,9 @@
               @enderror
             </div>
 
-            <div class=" d-flex justify-content-end">
-              <a href=""  class="btn btn-primary">Simpan Alamat</a>
+            <div class=" d-flex justify-content-between">
+              <a href="{{ route('alumni.profil') }}"  class="btn btn-secondary">Kembali</a>
+              <a href="{{ route('alumni.profil.alamat.proses') }}"  class="btn btn-primary">Simpan</a>
             </div>
           </div>
         </div>

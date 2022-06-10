@@ -15,16 +15,16 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="alumni/dashboard" class="nav-link  @yield('home')">Home</a>
+            <a href="{{ route('alumni.dashboard') }}" class="nav-link  @yield('home')">Home</a>
           </li>
           <li class="nav-item">
-            <a href="alumni/tracer-study" class="nav-link @yield('tracer')">Tracer Study</a>
+            <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')">Tracer Study</a>
           </li>
           <li class="nav-item">
-            <a href="alumni/legalisasi" class="nav-link @yield('legal')">Legalisasi</a>
+            <a href="{{ route('alumni.legalisir.index') }}" class="nav-link @yield('legal')">Legalisasi</a>
           </li>
           <li class="nav-item">
-            <a href="alumni/pengaturan" class="nav-link @yield('profil')">Pengaturan Profil</a>
+            <a href="{{ route('alumni.profil') }}" class="nav-link @yield('profil')">Pengaturan Profil</a>
           </li>
         </ul>
 
@@ -36,7 +36,7 @@
         <li class="nav-item ">
           <a class="nav-link" data-widget="control-sidebar" role="button">
             <img src="{{ asset('') }}assets/dist/img/AdminLTELogo.png" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">Adinda Alumni</span>
+            <span class="brand-text font-weight-light">{{ Auth::user()->username }}</span>
           </a>
         </li>
         <li class="nav-item">
