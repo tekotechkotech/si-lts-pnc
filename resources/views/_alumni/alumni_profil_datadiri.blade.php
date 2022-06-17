@@ -34,7 +34,9 @@
 @section('main-content')
 <div class="content">
   <div class="container">
-    
+      <form  method="post">
+  @csrf
+  @method('PUT')
     <div class="row">
       <div class="col">
         <div class="card">
@@ -79,7 +81,7 @@
               <label for="jenis_kelamin">Jenis Kelamin</label>
               {{-- <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin', $all->jenis_kelamin) }}"> --}}
               <select name="jenis_kelamin" class="form-control">
-                <option value="Laki-laki" {{ $all->jenis_kelamin }}>{{ $all->jenis_kelamin }}</option>
+                <option value="{{ $all->jenis_kelamin }}">{{ $all->jenis_kelamin }}</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
@@ -113,9 +115,10 @@
             </div>
             <div class=" d-flex justify-content-between">
               <a href="{{ route('alumni.profil') }}"  class="btn btn-secondary">Kembali</a>
-              <a href="{{ route('alumni.profil.data-diri.proses') }}"  class="btn btn-primary">Simpan</a>
+              <button type="submit" name="submit" formaction="{{ route('alumni.profil.data-diri.proses') }}"  class="btn btn-primary">Simpan</button>
             </div>
           </div>   
+        </form>
           
         </div>
       </div>

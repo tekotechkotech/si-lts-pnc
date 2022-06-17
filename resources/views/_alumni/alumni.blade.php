@@ -42,7 +42,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                      src="{{ asset('') }}assets/dist/img/user4-128x128.jpg"
+                      src="{{ asset('') }}assets/profile/{{ $all->foto }}"
                       alt="User profile picture">
                 </div>
 
@@ -76,13 +76,13 @@
               @if ($tracer == null)
                   TAMBAHKAN TRACER STUDY
               @else
-                  {{ strtoupper($tracer->nama_tracer) }}
+                  {{ strtoupper($tracer->nama_perusahaan) }}
               @endif</h3>
             <p>
               @if ($tracer == null)
               Untuk bisa melakukan pengajuan legalisasi
           @else
-              {{ $tracer->nama_tracer }}
+              {{ $tracer->desa_perusahaan." - ".$tracer->kecamatan_perusahaan." - ".$tracer->kabupaten_perusahaan." - ".$tracer->provinsi_perusahaan }}
           @endif
         </p>
           </div>
@@ -91,14 +91,14 @@
             <i class="fas fa-building"></i>
           </div>
           <p class="text-center">@if ($tracer!=null)
-              {{ $tracer->nama_tracer }}
+              {{ $tracer->jabatan }}
               @else
               Tambahkan Tracer Study
           @endif
         </p>
           <hr>
           <p class="text-center">@if ($tracer!=null)
-              {{ $tracer->tahun_kerja }}      
+              {{ $tracer->tahun_masuk }}      
             @else
                dengan klik tombol dibawah
             
@@ -129,7 +129,7 @@
             </div>
             {{-- @endforeach --}}
             <!-- /.info-box -->
-            <a href="/alumni-legal" class="btn btn-primary btn-block">Legalisasi</a>
+            <a href="{{ route('alumni.legalisir.index') }}" class="btn btn-primary btn-block">Legalisasi</a>
           
 
 

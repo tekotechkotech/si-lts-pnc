@@ -16,13 +16,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-        <a href="route('logout')"
-        onclick="event.preventDefault();
-        this.closest('form').submit();"
-         class="btn btn-dark text-light nav-link">Logout</a>
-        </form>
+        <a href="{{ route('logout') }}" class="nav-link btn btn-dark text-light">Logout</a>
       </li>
     </ul>
   </nav>

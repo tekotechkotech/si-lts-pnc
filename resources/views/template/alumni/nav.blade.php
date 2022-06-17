@@ -1,7 +1,7 @@
 
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="{{ asset('') }}assets/index3.html" class="navbar-brand">
+      <a href="/" class="navbar-brand">
         <img src="{{ asset('') }}assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">SI-LTS PNC</span>
       </a>
@@ -34,18 +34,20 @@
         {{-- <hr> --}}
         {{-- <div class="d-flex justify-content-between"> --}}
         <li class="nav-item ">
-          <a class="nav-link" data-widget="control-sidebar" role="button">
-            <img src="{{ asset('') }}assets/dist/img/AdminLTELogo.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <a class="nav-link" >
+            <img src="{{ asset('') }}assets/profile/{{ Auth::user()->foto }}" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">{{ Auth::user()->username }}</span>
           </a>
         </li>
         <li class="nav-item">
-            <a href="index3.html" class="nav-link btn btn-dark text-light">Logout</a>
+            <a href="{{ route('logout') }}" class="nav-link btn btn-dark text-light">Logout</a>
           </li>
         {{-- </div> --}}
-
       </ul>
     </div>
+    
+
+
   </nav>
   <!-- /.navbar -->
   

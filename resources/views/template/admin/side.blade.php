@@ -37,7 +37,7 @@
         <li class="nav-header">DATA</li>
 
         <li class="nav-item">
-          <a href="{{ route('data-admin.index') }}" class="nav-link   @yield('admin')">
+          <a href="{{ route('admin.data-admin.index') }}" class="nav-link   @yield('admin')">
             <i class="nav-icon fa fa-users"></i>
             <p>
               Data Admin
@@ -46,7 +46,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('data-alumni.index') }}" class="nav-link   @yield('alumni')">
+          <a href="{{ route('admin.data-alumni.index') }}" class="nav-link   @yield('alumni')">
             <i class="nav-icon fa fa-users"></i>
             <p>
               Data Alumni
@@ -54,7 +54,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('data-tracer') }}" class="nav-link   @yield('tracer')">
+          <a href="{{ route('admin.data-tracer') }}" class="nav-link   @yield('tracer')">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
               Data Tracer Study
@@ -62,17 +62,20 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('data-legal') }}" class="nav-link   @yield('legal')">
+          <a href="/admin/legalisasi/data" class="nav-link   @yield('legal')">
             <i class="nav-icon fas fa-copy"></i>
             <p>
               Data Legalisasi
             </p>
           </a>
         </li>
+
+@if (Auth::user()->admin->jabatan != 'Super Admin')
+    
         <li class="nav-header">PROSES</li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link   @yield('prose-legal')">
+        <li class="nav-item @yield('proses-legal')">
+          <a href="#" class="nav-link   @yield('proses-legal')">
             <i class="nav-icon fas fa-file"></i>
             <p>
               Proses Legalisasi
@@ -80,40 +83,45 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            {{-- @if (Auth::user()->role == 'kb') --}}
+            @if (Auth::user()->admin->jabatan == 'Kepala BAAK')
             <li class="nav-item">
-              <a href="{{ route('verifikasi') }}" class="nav-link   @yield('verifikasi')">
+              <a href="/admin/legalisasi/verifikasi" class="nav-link   @yield('verifikasi')">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Menunggu Verifikasi</p>
               </a>
             </li>
-            {{-- @elseif(Auth::user()->role == 'wd') --}}
+            @elseif(Auth::user()->admin->jabatan == 'Wakil Direktur 1')
             <li class="nav-item">
-              <a href="{{ route('legalisasi') }}" class="nav-link   @yield('legalisasi')">
+              <a href="/admin/legalisasi/legalisasi" class="nav-link   @yield('legalisasi')">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Menunggu Legalisasi</p>
               </a>
             </li>
-            {{-- @else --}}
+            @elseif(Auth::user()->admin->jabatan == 'Pegawai BAAK')
             <li class="nav-item">
-              <a href="{{ route('print') }}" class="nav-link   @yield('cetak')">
+              <a href="/admin/legalisasi/cetak" class="nav-link   @yield('cetak')">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Menunggu Cetak</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a href="{{ route('ambil') }}" class="nav-link   @yield('ambil')">
+              <a href="/admin/legalisasi/ambil" class="nav-link   @yield('ambil')">
                 <i class="far fa-circle nav-icon "></i>
                 <p>Menunggu Diambil</p>
               </a>
             </li>
-            {{-- @endif --}}
+                
+            @else
+                
+            @endif
           </ul>
         </li>
+        @endif
+
         <li class="nav-header">AKUN</li>
 
         <li class="nav-item">
-          <a href="{{ route('pengaturan') }}" class="nav-link   @yield('atur')">
+          <a href="{{ route('admin.pengaturan') }}" class="nav-link   @yield('atur')">
             <i class="nav-icon fas fa-cogs"></i>
             <p>
               Pengaturan

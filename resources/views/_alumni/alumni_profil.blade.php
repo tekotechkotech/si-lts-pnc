@@ -4,12 +4,7 @@
 @section('profil','active')
 
 
-@section('css')
-<style>
-  .gr{
-    background-image: linear-gradient(blue, cyan);
-  }
-  </style>    
+@section('css')  
 @endsection
 
 @section('header-content')
@@ -43,7 +38,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{ asset('') }}assets/dist/img/user4-128x128.jpg"
+                       src="{{ asset('') }}assets/profile/{{ $all->foto }}"
                        alt="User profile picture">
                 </div>
 
@@ -55,7 +50,7 @@
                   @method('PUT')
                     <input type="hidden" name="username" value="{{ $all->username }}">
                     <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></label>
-                    <input type="file" onchange="form.submit()" name="foto" id="foto" hidden>
+                    <input type="file" accept="image/*" onchange="form.submit()" name="foto" id="foto" hidden>
                 </form>
               </div>
               <!-- /.card-body -->

@@ -11,6 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   {{-- CSS --}}
   @include('template.css')
+  @yield('css')
 
 </head>
 <body class="hold-transition layout-top-nav">
@@ -50,6 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 {{-- JS --}}
 @include('template.js')
+@yield('js')
 
 </body>
 </html>

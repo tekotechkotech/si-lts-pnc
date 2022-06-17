@@ -23,7 +23,7 @@
 </section>
 @endsection @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Default box -->
 
         <!-- Small Box (Stat card) -->
@@ -95,7 +95,7 @@
                 {extend: 'excel', text:'Export Excel', className: 'btn btn-success'}, 'colvis',
                 {text: 'Tambah Data', 
                 action: function () {
-                    window.location.href = "{{ route('data-alumni.create') }}";
+                    window.location.href = "{{ route('admin.data-alumni.create') }}";
                 },
                 className: 'btn btn-info'
             }]

@@ -38,6 +38,10 @@
     
     <div class="row">
       <div class="col">
+
+      <form method="post">
+      @csrf
+      @method('PUT')
         <div class="card">
           <div class="card-body">
             <div class="form-group">
@@ -69,11 +73,11 @@
 
             <div class=" d-flex justify-content-between">
               <a href="{{ route('alumni.profil') }}"  class="btn btn-secondary">Kembali</a>
-              <a href="{{ route('alumni.profil.password.proses') }}"  class="btn btn-primary">Simpan Password</a>
+              <button type="submit" name="submit" formaction="{{ route('alumni.profil.password.proses') }}"  class="btn btn-primary">Simpan Password</button>
             </div>
           </div>
         </div>
-        
+      </form>
       </div>
     </div>
 <br>

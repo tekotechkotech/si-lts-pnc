@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12">
-        @empty($legal->upload_berkas)
+        @empty($legal)
         <div class="info-box bg-secondary d-flex align-items-center">
           <div class="info-box-content">
               <span class="info-box-text">Pengajuan Legalisasi kosong</span>
@@ -65,33 +65,62 @@
           
         </div>
         @else 
-        
-        <div class="info-box bg-primary d-flex align-items-center">
-          <div class="info-box-content">
-              <span class="info-box-text">Legalisasi Ijazah</span>
-              <span class="info-box-number">Menunggu Verifikasi</span>
+          @foreach ($legal as $legal)
+          
+            @php
+                if($legal->level_acc == 0){
+                    $status = 'Menunggu Verifikasi';
+                    $percen = '20';
+                }elseif($legal->level_acc == 1){
+                    $status = 'Telah Diverifikasi, Menunggu Legalisasi';
+                    $percen = '40';
+                }elseif($legal->level_acc == 3){
+                    $status = 'Telah Dilegalisasi, Tinggal Cetak';
+                    $percen = '60';
+                }elseif($legal->level_acc == 4){
+                    $status = 'Telah Dicetak, Menunggu Diambil';
+                    $percen = '80';
+                }elseif($legal->level_acc == 5){
+                    $status = 'Telah Diambil, Pengajuan Legalisasi Selesai';
+                    $percen = '100';
+                }else {
+                  $status = 'Ditolak';
+                  $percen = '0';
+                }
+            @endphp
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
+
+            <div class="info-box bg-primary d-flex align-items-center">
+              <div class="info-box-content">
+                <span class="info-box-text">{{ $legal->jenis_berkas }}</span>
+                <span class="info-box-number">{{ $status }}</span>
+                
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{ $percen }}%" ></div>
+                </div>
+                <span class="progress-description">
+                  {{-- {{ print_r($legal->updated_at) }} --}}
+                  {{ date('d-m-Y', strtotime($legal->created_at)) }}
+                  {{-- {{ date($legal->updated_at) }} Hii --}}
+                </span>
               </div>
-              <span class="progress-description">
-                30 Mei 2020
-              </span>
-          </div>
-          <div class="d-flex justify-content-end">
-              <a href="" class="btn btn-light text-success m-2">
-                <i class="fas fa-file-alt"></i>
-                <br>
-                <span>Detail</span>
-              </a>
-              <br>
-              <a href="" class="btn btn-light text-danger m-2">
-                <i class="fas fa-trash-alt"></i>
-                <br>
-                <span>Hapus</span>
-              </a>
-          </div>
-        </div>
+              <div class="d-flex justify-content-end">
+                <a href="/alumni/legalisir/{{ $legal->legal_id }}/edit" class="btn btn-light text-success m-2">
+                  <i class="fas fa-file-alt"></i>
+                  <br>
+                  <span>Detail</span>
+                </a>
+                <form action="/alumni/legalisir/{{ $legal->legal_id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-light text-danger m-2">
+                  <i class="fas fa-trash"></i>
+                  <br>
+                  <span>Hapus</span>
+                </form>
+              </div>
+            </div>
+          @endforeach
         @endempty
           
       </div>

@@ -50,7 +50,6 @@
       <div class="col-lg-8 col-md-8 col-sm-12">
         
         @empty($tracer)
-            
         <div class="card  bg-danger">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center p-2">
@@ -61,40 +60,44 @@
             </div>
           </div>
         </div>
-        
-
         @else
 
+@foreach ($tracer as $tracer)
         <div class="card  bg-primary">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center p-2">
               <div class="">
-                <h4>PT GOLET DIGITAL SOLUSI</h4>
-                <span>Cilacap Utara, Cilacap, jawa Tengah</span>
+                <h4>{{ $tracer->nama_perusahaan }}</h4>
+                <span>
+              {{ $tracer->desa_perusahaan." - ".$tracer->kecamatan_perusahaan." - ".$tracer->kabupaten_perusahaan." - ".$tracer->provinsi_perusahaan }}
+                </span>
               </div>
               <div class="text-right">
-                <span><b>Fullstack Developer</b></span><br><br>
-                <span>2022 - Sekarang</span>
+                <span><b>{{ $tracer->jabatan }}</b></span><br><br>
+                <span>{{ $tracer->tahun_masuk }}</span>
               </div>
             </div>
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-end">
-                <a href="
-                  {{-- /alumni/tracer/{{ $tracer->id }}/edit --}}
-                  " class="btn btn-light text-success mx-1">
-                  <i class="fas fa-file-alt"></i>
-                  <span>Detail</span>
+                <a href="/alumni/tracer/{{ $tracer->tracer_id }}/edit" class="btn btn-light text-success mx-1">
+                  <i class="fas fa-edit"></i>
+                  <span>Edit</span>
                 </a>
-                
-                <a href="" class="btn btn-light text-danger mx-1">
-                  <i class="fas fa-trash-alt"></i>
-                  {{-- <br> --}}
-                  <span>Hapus</span>
+                <form action="/alumni/tracer/{{ $tracer->tracer_id }}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-light text-danger mx-1">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Hapus</span>
+                  </button>
+                </form>
+
                 </a>
             </div>
           </div>
         </div>
+@endforeach
         
         @endempty
         

@@ -23,7 +23,7 @@
 </section>
 @endsection @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Default box -->
 
         <!-- Small Box (Stat card) -->
@@ -50,7 +50,7 @@
                         <td>{{ $u->jabatan }}</td>
                         <td>{{ $u->email }}</td>
                         <td>
-                            <a href="/admin/data-admin/{{ $u->id }}" class="btn btn-sm btn-primary" >Detail</a>
+                            <a href="/admin/data-admin/{{ $u->id }}/detail" class="btn btn-sm btn-primary" >Detail</a>
                             @if (Auth::user()->admin->jabatan == 'Super Admin')
                             <a href="/admin/data-admin/{{ $u->id }}/edit" class="btn btn-sm btn-success">Edit</a>
                             <form action="/admin/data-admin/{{ $u->id }}" method="post">
@@ -95,7 +95,7 @@
                 {extend: 'excel', text:'Export Excel', className: 'btn btn-success'}, 'colvis',
                 {text: 'Tambah Admin', 
                 action: function () {
-                    window.location.href = "{{ route('data-admin.create') }}";
+                    window.location.href = "{{ route('admin.data-admin.create') }}";
                 },
                 className: 'btn btn-info'
             }]

@@ -60,7 +60,6 @@
                   <label for="keterangan">Keterangan</label>
                   <textarea name="keterangan" id="keterangan" class="form-control" rows="5"></textarea>
                 </div>
-
                 <button type="submit" class="btn btn-primary btn-block">Simpan</button>
               </div>
             </div>

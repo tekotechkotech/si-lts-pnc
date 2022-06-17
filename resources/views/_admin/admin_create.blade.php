@@ -29,11 +29,11 @@
 
 @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
     <!-- Default box -->
     <div class="card">
       <div class="card-body">
-        <form action="{{ route('data-admin.store') }}" method="POST">
+        <form action="{{ route('admin.data-admin.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nip_npak">NIP/NPAK</label>

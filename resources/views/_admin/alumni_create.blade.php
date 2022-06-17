@@ -29,11 +29,11 @@
 
 @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
     <!-- Default box -->
     <div class="card">
       <div class="card-body">
-        <form action="{{ route('data-alumni.store') }}" method="POST">
+        <form action="{{ route('admin.data-alumni.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nim">NIM</label>

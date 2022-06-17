@@ -8,6 +8,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProsesLegalController;
 use App\Http\Controllers\TracerController;
+use App\Http\Controllers\WilayahController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,11 +27,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// wilayah
+Route::controller(WilayahController::class)->group(function () {
+    Route::post('/getkabupaten',  'getkabupaten')->name('getkabupaten');
+    Route::post('/getkecamatan',  'getkecamatan')->name('getkecamatan');
+    Route::post('/getdesa',  'getdesa')->name('getdesa');
+});
 
 // LOGIN
 Route::get('/',[LoginController::class, 'cek'])->name('cek');
-Route::get('logins',[LoginController::class, 'index'])->name('logins');
-Route::post('logins',[LoginController::class, 'login_action'])->name('login.action');
+Route::get('login',[LoginController::class, 'index'])->name('login');
+Route::post('login',[LoginController::class, 'login_action'])->name('login.action');
+Route::get('logout',[LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 
 
@@ -99,29 +107,29 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('pengaturan', [AdminUserController::class, 'pengaturan'])->name('pengaturan');
 
+        // Route::resource('data-admin', AdminController::class);
         Route::get('data-admin', [AdminController::class, 'index'])->name('data-admin.index');
-        Route::get('data-alumni', [AlumniController::class, 'index'])->name('data-alumni.index');
+        // Route::get('data-admin/{data-admin}/detail', [AdminController::class, 'show'])->name('data-admin.show'); //TODO BUAT DETAIL ADMIN
+        Route::get('data-admin/create', [AdminController::class, 'create'])->name('data-admin.create');
+        Route::post('data-admin', [AdminController::class, 'store'])->name('data-admin.store');
+        Route::get('data-admin/{data_admin}/edit', [AdminController::class, 'edit'])->name('data-admin.edit');
+        Route::put('data-admin/{data_admin}', [AdminController::class, 'update'])->name('data-admin.update');
+        Route::delete('data-admin/{data_admin}', [AdminController::class, 'destroy'])->name('data-admin.destroy');
         
-        Route::middleware(['SuperAdmin'])->group(function () {
-            // Route::resource('data-admin', AdminController::class);
-            Route::get('data-admin/create', [AdminController::class, 'create'])->name('data-admin.create');
-            Route::post('data-admin', [AdminController::class, 'store'])->name('data-admin.store');
-            Route::get('data-admin/{data_admin}/edit', [AdminController::class, 'edit'])->name('data-admin.edit');
-            Route::put('data-admin/{data_admin}', [AdminController::class, 'update'])->name('data-admin.update');
-            Route::delete('data-admin/{data_admin}', [AdminController::class, 'destroy'])->name('data-admin.destroy');
-            
-            // Route::resource('data-alumni', AlumniController::class);
-            Route::get('data-alumni/create', [AlumniController::class, 'create'])->name('data-alumni.create');
-            Route::post('data-alumni', [AlumniController::class, 'store'])->name('data-alumni.store');
-            Route::get('data-alumni/{data_alumni}/edit', [AlumniController::class, 'edit'])->name('data-alumni.edit');
-            Route::put('data-alumni/{data_alumni}', [AlumniController::class, 'update'])->name('data-alumni.update');
-            Route::delete('data-alumni/{data_alumni}', [AlumniController::class, 'destroy'])->name('data-alumni.destroy');
-        });
+        // Route::resource('data-alumni', AlumniController::class);
+        Route::get('data-alumni', [AlumniController::class, 'index'])->name('data-alumni.index');
+        Route::get('data-alumni/create', [AlumniController::class, 'create'])->name('data-alumni.create');
+        Route::post('data-alumni', [AlumniController::class, 'store'])->name('data-alumni.store');
+        Route::get('data-alumni/{data_alumni}/edit', [AlumniController::class, 'edit'])->name('data-alumni.edit');
+        Route::put('data-alumni/{data_alumni}', [AlumniController::class, 'update'])->name('data-alumni.update');
+        Route::delete('data-alumni/{data_alumni}', [AlumniController::class, 'destroy'])->name('data-alumni.destroy');
+        
 
 
 
         // lihat pengajuan legalisir
-        Route::get('legalisasi',[ProsesLegalController::class, 'index'])->name('data-legal');
+        Route::get('legalisasi/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
+        
         // level acc 1
         Route::put('verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
         // level acc 2
@@ -177,4 +185,3 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';

@@ -27,7 +27,7 @@
 
 @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
     <!-- Default box -->
     
         <!-- Small Box (Stat card) -->

@@ -44,7 +44,7 @@ class AlumniController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => 'required|string|max:255',
+            'nim' => 'required|string|max:255| unique:alumnis',
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|max:255',
@@ -54,7 +54,7 @@ class AlumniController extends Controller
         ]);
         // dd($request);
         $user = User::create([
-            'name' => $request->nama,
+            'name' => $request->name,
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -71,7 +71,7 @@ class AlumniController extends Controller
         ]);
         }
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('admin.data-alumni.index');
     }
 
     /**

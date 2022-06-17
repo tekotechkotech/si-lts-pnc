@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('legals', function (Blueprint $table) {
-            $table->id();
+            $table->increments('legal_id');
 
             $table->unsignedBigInteger('alumni_id');
-            $table->foreign('alumni_id')->references('id')->on('alumnis');
+            $table->foreign('alumni_id')->references('alumni_id')->on('alumnis');
 
-            $table->string('upload_berkas');
+            $table->string('upload_berkas')->nullable();
             $table->string('jenis_berkas');
             $table->string('level_acc')->default('0');
             $table->string('keterangan')->nullable();

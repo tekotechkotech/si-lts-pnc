@@ -56,7 +56,7 @@ class AdminController extends Controller
         ]);
         }
 
-    return redirect()->route('data-admin.index');
+    return redirect()->route('admin.data-admin.index');
     }
 
     public function show($id)
@@ -66,6 +66,8 @@ class AdminController extends Controller
         ->where('role', 'admin')
         ->where('users.id', $id)
         ->first();
+
+        dd($u);
 
         return view('_admin.admin', compact('u'));
     }
@@ -107,14 +109,17 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $u = DB::table('admins')
-        ->join('users', 'admins.user_id', '=', 'users.id')
+        $u = DB::table('users')
+        // ->join('users', 'admins.user_id', '=', 'users.id')
         ->where('role', 'admin')
-        ->where('admins.user_id', $id)
+        ->where('id', $id)
         ->first();
 
-        Admin::destroy($u->id);
-        User::destroy($u->user_id);
+        // dd($u);
+
+        Admin::where('user_id', $u->id)->delete();
+        // destroy($u->admin_id);
+        User::where('id', $u->id)->delete();
 
         return redirect()->back();
     }
