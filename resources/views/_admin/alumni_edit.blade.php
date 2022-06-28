@@ -1,8 +1,8 @@
 
 @extends('template.admin.main')
 
-@section('tittle','Tambah Admin')
-@section('admin','active')
+@section('tittle','Edit Alumni')
+@section('alumni','active')
 
 @section('css')
     
@@ -13,11 +13,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Tambah Admin</h1>
+          <h1>Edit Alumni</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Admin</a></li>
             <li class="breadcrumb-item active">Tambah</li>
           </ol>
@@ -29,7 +29,7 @@
 
 @section('main-content')
 <section class="content">
-    <div class="container">
+    <div class="container-fluid">
     <!-- Default box -->
     <div class="card">
       <div class="card-body">

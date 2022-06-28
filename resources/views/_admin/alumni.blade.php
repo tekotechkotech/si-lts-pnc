@@ -9,11 +9,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Alumni</h1>
+                <h1>Data Alumni</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active">Alumni</li>
                 </ol>
             </div>
@@ -50,15 +50,17 @@
                         <td>{{ $u->prodi }}</td>
                         <td>{{ $u->email }}</td>
                         <td>
-                            <a href="/admin/data-alumni/{{ $u->user_id }}" class="btn btn-sm btn-primary" >Detail</a>
+                            <div class="d-flex justify-content-center">
+                            <a href="/admin/data-alumni/{{ $u->user_id }}" class="btn btn-sm btn-primary m-1">Detail</a>
                             @if (Auth::user()->admin->jabatan == 'Super Admin')
-                            <a href="/admin/data-alumni/{{ $u->user_id }}/edit" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/admin/data-alumni/{{ $u->user_id }}/edit" class="btn btn-sm btn-success m-1">Edit</a>
                             <form action="/admin/data-alumni/{{ $u->user_id }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                <button type="submit" class="btn btn-sm btn-danger m-1">Hapus</button>
                             </form>
                             @endif
+                            </div>
                         </td>
                     </tr>
                     @endforeach

@@ -1,5 +1,5 @@
 @extends('template.admin.main') 
-@section('tittle','Legalisasi') 
+@section('tittle','legalisir') 
 
 
 @section($proses,'active menu-open') 
@@ -18,12 +18,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Admin</h1>
+                <h1>legalisir</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Admin</li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">legalisir</li>
                 </ol>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     <tr>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Jenis Legalisasi</th>
+                        <th>Jenis legalisir</th>
                         <th>Keterangan</th>
                         @if ($apa == "legal")
                         <th>Proses</th>
@@ -54,13 +54,22 @@
                 </thead>
                 <tbody>
                     @foreach ($legal as $legal)
+                    @php
+                    if($legal->jenis_berkas == 'legalisir Ijazah'){
+                        $folder = 'ijazah';
+                    }
+                    if($legal->jenis_berkas == 'legalisir Transkip Nilai'){
+                        $folder = 'transkip';
+                    }
+                    @endphp
+                    
                     @if ($legal->level_acc == "0")
                     @php
                         $level="Menunggu Verifikasi Ketua BAAK";
                     @endphp
                     @elseif ($legal->level_acc == "1")
                     @php
-                        $level="Menunggu Legalisasi Wakil Direktur 1";
+                        $level="Menunggu legalisir Wakil Direktur 1";
                     @endphp
                     @elseif ($legal->level_acc == "2")
                     @php
@@ -70,7 +79,14 @@
                     @php
                         $level="Menunggu Diambil Alumni";
                     @endphp
+                    @elseif ($legal->level_acc == "4")
+                    @php
+                        $level="legalisir Telah Selesai";
+                    @endphp
                     @else
+                    @php
+                        $level="legalisir Ditolak";
+                    @endphp
                     @endif
 
                     <tr>
@@ -82,17 +98,78 @@
                         <td>{{ $level }}</td>
                         @endif
                         <td>
-                            <a href="/admin/data-admin/{{ $legal->legal_id }}" class="btn btn-sm btn-primary" >Detail</a>
-                            @if (Auth::user()->admin->jabatan == 'Super Admin')
-                            <a href="/admin/data-admin/{{ $legal->legal_id }}/edit" class="btn btn-sm btn-success">Edit</a>
-                            <form action="/admin/data-admin/{{ $legal->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                            </form>
-                            @endif
+                            {{-- <a href="/admin/legalisir/{{ $legal->legal_id }}/detail" class="btn btn-sm btn-primary" >Detail</a> --}}
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalDetail{{ $legal->legal_id }}">
+                                Detail
+                            </button>
                         </td>
                     </tr>
+
+                    
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalDetail{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detail legalisir</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group ">
+                                            <label>Nama Alumni Pengaju legalisir</label>
+                                            <input type="text" class="form-control" value="{{ $legal->name }}" disabled><div class="form-group ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="nim">NIM</label>
+                                            <input type="text" class="form-control" value="{{ $legal->nim }}" disabled><div class="form-group ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="jenis">Jenis legalisir</label>
+                                            <input type="text" class="form-control" value="{{ $legal->jenis_berkas }}" disabled><div class="form-group ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="jenis">Proses legalisir</label>
+                                            <input type="text" class="form-control" value="{{ $level }}" disabled>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="keterangan">Keterangan</label>
+                                            <textarea name="keterangan" id="keterangan" class="form-control" disabled rows="3">{{ $legal->keterangan }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{-- </div>
+                        <div class="modal"> --}}
+                            <a href="{{ asset('assets/legal/'.$folder.'/'.$legal->upload_berkas) }}" class="btn btn-primary btn-sm btn-block" target="_blank">Lihat Berkas</a>
+                            @if ($apa!="legal")
+                            <div class="row pt-2">
+                                <div class="col">
+                                        @if ($apa == "verifikasi")
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-sm btn-success btn-block" >Verifikasi</a>
+                                        @elseif ($apa == "legalisir")
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-sm btn-success btn-block" >legalisir</a>
+                                        @elseif ($apa == "cetak")
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/print" class="btn btn-sm btn-success btn-block" >Cetak</a>
+                                        @elseif ($apa == "ambil")
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/ambil" class="btn btn-sm btn-success btn-block" >Konfirmasi Diambil</a>
+                                        @else
+                                        @endif
+                                    </div>
+                                    <div class="col">
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/tolak" class="btn btn-sm btn-danger btn-block" >Tolak</a>
+                                    </div>
+                                </div>
+                            @endif
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
                     @endforeach
                 </tbody>
             </table>
@@ -121,16 +198,16 @@
 <script>
     $(document).ready(function() {
         var table = $('#example').DataTable({
-            lengthChange: false,
+            lengthChange: true,
             responsive: true,
-            buttons: [ 
-                {extend: 'excel', text:'Export Excel', className: 'btn btn-success'}, 'colvis',
-                {text: 'Tambah Admin', 
-                action: function () {
-                    window.location.href = "{{ route('admin.data-admin.create') }}";
-                },
-                className: 'btn btn-info'
-            }]
+            // buttons: [ 
+            //     {extend: 'excel', text:'Export Excel', className: 'btn btn-success'}, 'colvis',
+            //     {text: 'Tambah Admin', 
+            //     action: function () {
+            //         window.location.href = "{{ route('admin.data-admin.create') }}";
+            //     },
+            //     className: 'btn btn-info'
+            // }]
         });
 
         table.buttons().container()

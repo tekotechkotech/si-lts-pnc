@@ -81,8 +81,8 @@ Route::get('/dashboard', function () {
     //     return view('alumni_tracer_edit');
     // });
 
-    // //LEGALISASI
-    // Route::get('/alumni-legalisasi', function () {
+    // //legalisir
+    // Route::get('/alumni-legalisir', function () {
     //     return view('alumni_legal');
     // });
 
@@ -105,11 +105,18 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('tracer-study', [AdminUserController::class, 'tracer'])->name('data-tracer');
         
-        Route::get('pengaturan', [AdminUserController::class, 'pengaturan'])->name('pengaturan');
+        // PROFIL
+        Route::get('profil', [AdminUserController::class, 'profil'])->name('profil');
+        Route::get('profil_alamat', [AdminUserController::class, 'profil_alamat'])->name('alamats');
+        Route::put('data-diri', [AdminUserController::class, 'proses_profil_datadiri'])->name('data-diri');
+        Route::put('alamat', [AdminUserController::class, 'proses_profil_alamat'])->name('alamat');
+        Route::put('password', [AdminUserController::class, 'proses_profil_password'])->name('password');
+        Route::put('foto',[AdminUserController::class, 'proses_profil_foto'])->name('foto');
+
 
         // Route::resource('data-admin', AdminController::class);
         Route::get('data-admin', [AdminController::class, 'index'])->name('data-admin.index');
-        // Route::get('data-admin/{data-admin}/detail', [AdminController::class, 'show'])->name('data-admin.show'); //TODO BUAT DETAIL ADMIN
+        Route::get('data-admin/{data_admin}/detail', [AdminController::class, 'show'])->name('data-admin.show');
         Route::get('data-admin/create', [AdminController::class, 'create'])->name('data-admin.create');
         Route::post('data-admin', [AdminController::class, 'store'])->name('data-admin.store');
         Route::get('data-admin/{data_admin}/edit', [AdminController::class, 'edit'])->name('data-admin.edit');
@@ -124,22 +131,21 @@ Route::middleware(['auth'])->group(function () {
         Route::put('data-alumni/{data_alumni}', [AlumniController::class, 'update'])->name('data-alumni.update');
         Route::delete('data-alumni/{data_alumni}', [AlumniController::class, 'destroy'])->name('data-alumni.destroy');
         
-
-
-
-        // lihat pengajuan legalisir
-        Route::get('legalisasi/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
+        // lihat pengajuan legalisirs
+        Route::get('legalisir/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
+        
+        Route::get('legalisir/{id}/detail',[ProsesLegalController::class, 'detail'])->name('data-legal-detail');
         
         // level acc 1
-        Route::put('verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
+        Route::get('legalisir/{id}/verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
         // level acc 2
-        Route::put('legalisasi',[ProsesLegalController::class, 'legalisasi'])->name('legalisasi');
+        Route::get('legalisir/{id}/legalisirs',[ProsesLegalController::class, 'legalisir'])->name('legalisir');
         // level acc 3
-        Route::put('print',[ProsesLegalController::class, 'print'])->name('print');
+        Route::get('legalisir/{id}/print',[ProsesLegalController::class, 'cetak'])->name('cetak');
         // level acc 4
-        Route::put('ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
+        Route::get('legalisir/{id}/ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
         // level acc 5
-        Route::put('tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
+        Route::get('legalisir/{id}/tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
 
 
         
@@ -175,8 +181,8 @@ Route::middleware(['auth'])->group(function () {
         //route data tracer study resource(index, create, store, edit, update, destroy)
         Route::resource('tracer', TracerController::class);
 
-        //route data legalisir resource(index, create, store, edit, update, destroy)
-        Route::resource('legalisir', LegalController::class);
+        //route data legalisirs resource(index, create, store, edit, update, destroy)
+        Route::resource('legalisirs', LegalController::class);
 
         // Route::get('/wkw', function () {
         //     return view('_alumni.dashboard');

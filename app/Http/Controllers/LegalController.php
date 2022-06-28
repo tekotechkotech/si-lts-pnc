@@ -17,7 +17,6 @@ class LegalController extends Controller
         ->where('users.id', Auth::user()->id)
         ->get();
 
-        // dd($legal);
         return view('_alumni.alumni_legal', compact('legal'));
     }
 
@@ -37,7 +36,7 @@ class LegalController extends Controller
         // dd($request->all());
         $request->validate([
             'jenis' => 'required',
-            'berkas' => 'required | file | mimes:pdf',
+            'berkas' => 'required | image | mimes:jpeg,png,jpg | max:2048',
             'keterangan' => 'required',
         ]);
 
@@ -53,24 +52,24 @@ class LegalController extends Controller
             $berkas = $validated['berkas'] = $request->file('berkas');
             
             
-            if ($request->jenis == 'Legalisasi Ijazah') {
+            if ($request->jenis == 'legalisir Ijazah') {
             
                 // isi dengan nama berkas
-                $nama_berkas = "Ijazah_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".pdf";
+                $nama_berkas = "Ijazah_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
                 $tempat ="assets/legal/ijazah";
                 $berkas->move($tempat,$nama_berkas);
 
-            }elseif ($request->jenis == 'Legalisasi Transkip Nilai') {
+            }elseif ($request->jenis == 'legalisir Transkip Nilai') {
 
                 // isi dengan nama berkas
-                $nama_berkas = "Transkip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".pdf";
+                $nama_berkas = "Transkip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
                 $tempat ="assets/legal/transkip";
                 $berkas->move($tempat,$nama_berkas);
 
             }else {
-                return redirect()->back()->with('error', 'Jenis Legalisasi tidak ditemukan');
+                return redirect()->back()->with('error', 'Jenis legalisir tidak ditemukan');
             }
 
             Legal::create([
@@ -89,21 +88,21 @@ class LegalController extends Controller
 
 
 
-        return redirect()->route('alumni.legalisir.index');
+        return redirect()->route('alumni.legalisirs.index');
     }
 
     public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
     {
         $legal = DB::table('legals')
         ->where('legal_id', $id)
         ->first();
 
-        return view('_alumni.alumni_legal_edit', compact('legal'));
+        return view('_alumni.alumni_legal_detail', compact('legal'));
+    }
+
+    public function edit($id)
+    {
+
     }
 
     public function update(Request $request, $id)
@@ -117,7 +116,7 @@ class LegalController extends Controller
         // Legal::where('legal_id', $id)->destroy();
         Legal::where('legal_id', $id)->delete();
 
-        // dd('Data Legalisasi berhasil dihapus');
+        // dd('Data legalisir berhasil dihapus');
         return redirect()->back();
     }
 }

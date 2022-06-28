@@ -61,15 +61,16 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $u = DB::table('users')
+        // dd('hmsh');
+        $all = DB::table('users')
         ->join('admins', 'users.id', '=', 'admins.user_id')
         ->where('role', 'admin')
         ->where('users.id', $id)
         ->first();
 
-        dd($u);
+        // dd($u);
 
-        return view('_admin.admin', compact('u'));
+        return view('_admin.admin_detail', compact('all'));
     }
 
     public function edit($id)
@@ -92,7 +93,7 @@ class AdminController extends Controller
         ->first();
 
         $request->validate([
-            'password' => 'required|string|max:255',
+            'password' => 'nullable|string|max:255',
             'jabatan' => 'required|string|max:255',
         ]);
 
@@ -104,7 +105,7 @@ class AdminController extends Controller
             'jabatan' => $request->jabatan,
         ]);
 
-        return redirect()->route('data-admin.index');
+        return redirect()->route('admin.data-admin.index');
     }
 
     public function destroy($id)

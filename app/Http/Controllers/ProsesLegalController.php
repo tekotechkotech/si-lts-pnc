@@ -35,7 +35,7 @@ class ProsesLegalController extends Controller
             $proses="proses-legal";
             $apa="verifikasi";
 
-        }elseif ($id == 'legalisasi') {
+        }elseif ($id == 'legalisir') {
             $legal = DB::table('legals')
             ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
             ->join('users', 'alumnis.user_id', '=', 'users.id')
@@ -43,7 +43,7 @@ class ProsesLegalController extends Controller
             ->get();
 
             $proses="proses-legal";
-            $apa="legalisasi";
+            $apa="legalisir";
 
         }elseif ($id == 'cetak') {
             $legal = DB::table('legals')
@@ -77,6 +77,17 @@ class ProsesLegalController extends Controller
         return view('_admin.legal', compact('legal', 'proses', 'apa'));
     }
 
+    public function detail($id)
+    {
+        $legal = DB::table('legals')
+        ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('legal_id', $id)
+        ->first();
+
+        return view('_alumni.alumni_legal_detail', compact('legal'));
+    }
+
 
     public function verifikasi($id)
     {
@@ -88,7 +99,7 @@ class ProsesLegalController extends Controller
         return redirect()->back();
     }
     
-    public function legalisasi($id)
+    public function legalisir($id)
     {
         Legal::where('legal_id', $id)
         ->update([
@@ -113,6 +124,16 @@ class ProsesLegalController extends Controller
         Legal::where('legal_id', $id)
         ->update([
             'level_acc' => '4'
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function tolak($id)
+    {
+        Legal::where('legal_id', $id)
+        ->update([
+            'level_acc' => '5'
         ]);
 
         return redirect()->back();

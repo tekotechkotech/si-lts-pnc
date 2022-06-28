@@ -17,12 +17,12 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Legalisasi</h1>
+        <h1 class="m-0">legalisir</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Legalisasi</li>
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">legalisir</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -40,10 +40,10 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="text-wrap text-center">Membutuhkan Berkas Legalisasi?</h5>
+            <h5 class="text-wrap text-center">Membutuhkan Berkas legalisir?</h5>
             <p class="text-center">silahkan ajukan dengan klik tombol di bawah</p>
             <div class="p-2">
-              <a href="{{ route('alumni.legalisir.create') }}" class="btn btn-primary btn-block">Ajukan Legalisasi</a>
+              <a href="{{ route('alumni.legalisirs.create') }}" class="btn btn-primary btn-block">Ajukan legalisir</a>
             </div>
           </div>
         </div>
@@ -52,8 +52,8 @@
         @empty($legal)
         <div class="info-box bg-secondary d-flex align-items-center">
           <div class="info-box-content">
-              <span class="info-box-text">Pengajuan Legalisasi kosong</span>
-              <span class="info-box-number">Silahkan ajukan legalisasi</span>
+              <span class="info-box-text">Pengajuan legalisir kosong</span>
+              <span class="info-box-number">Silahkan ajukan legalisir</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 100%"></div>
@@ -72,16 +72,16 @@
                     $status = 'Menunggu Verifikasi';
                     $percen = '20';
                 }elseif($legal->level_acc == 1){
-                    $status = 'Telah Diverifikasi, Menunggu Legalisasi';
+                    $status = 'Telah Diverifikasi, Menunggu legalisir';
                     $percen = '40';
                 }elseif($legal->level_acc == 3){
-                    $status = 'Telah Dilegalisasi, Tinggal Cetak';
+                    $status = 'Telah Dilegalisir, Tinggal Cetak';
                     $percen = '60';
                 }elseif($legal->level_acc == 4){
                     $status = 'Telah Dicetak, Menunggu Diambil';
                     $percen = '80';
                 }elseif($legal->level_acc == 5){
-                    $status = 'Telah Diambil, Pengajuan Legalisasi Selesai';
+                    $status = 'Telah Diambil, Pengajuan legalisir Selesai';
                     $percen = '100';
                 }else {
                   $status = 'Ditolak';
@@ -105,12 +105,12 @@
                 </span>
               </div>
               <div class="d-flex justify-content-end">
-                <a href="/alumni/legalisir/{{ $legal->legal_id }}/edit" class="btn btn-light text-success m-2">
+                <a href="/alumni/legalisirs/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
                   <i class="fas fa-file-alt"></i>
                   <br>
                   <span>Detail</span>
                 </a>
-                <form action="/alumni/legalisir/{{ $legal->legal_id }}" method="post">
+                <form action="/alumni/legalisirs/{{ $legal->legal_id }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-light text-danger m-2">
