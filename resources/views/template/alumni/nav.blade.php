@@ -21,7 +21,7 @@
             <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')">Tracer Study</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('alumni.legalisir.index') }}" class="nav-link @yield('legal')">Legalisasi</a>
+            <a href="{{ route('alumni.legalisir.index') }}" class="nav-link @yield('legal')">legalisir</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.profil') }}" class="nav-link @yield('profil')">Pengaturan Profil</a>

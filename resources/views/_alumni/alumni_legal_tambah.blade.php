@@ -16,12 +16,12 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Ajukan Legalisasi</h1>
+        <h1 class="m-0">Ajukan legalisir</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Legalisasi</a></li>
+          <li class="breadcrumb-item"><a href="#">legalisir</a></li>
           <li class="breadcrumb-item active">Pengajuan</li>
         </ol>
       </div><!-- /.col -->
@@ -52,10 +52,10 @@
                   <input type="hidden" name="nim" value="{{ old('nim', $all->nim) }}">
                 </div>
                 <div class="form-group pt-1">
-                  <label for="jenis">Jenis Legalisasi</label>
+                  <label for="jenis">Jenis legalisir</label>
                   <select name="jenis" class="form-control" id="jenis">
-                    <option value="Legalisasi Ijazah">Legalisasi Ijazah</option>
-                    <option value="Legalisasi Transkip Nilai">Legalisasi Transkip Nilai</option>
+                    <option value="legalisir Ijazah">legalisir Ijazah</option>
+                    <option value="legalisir Transkip Nilai">legalisir Transkip Nilai</option>
                   </select>
                 </div>
                 <div class="form-group  pt-1">
@@ -70,7 +70,7 @@
                   <textarea name="keterangan" id="keterangan" class="form-control" rows="5"></textarea>
                 </div>
                 {{-- <input type="hidden" name="id" value="alumni_id"> --}}
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Ajukan Legalisasi</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Ajukan legalisir</button>
               </div>
             </div>
             </form>

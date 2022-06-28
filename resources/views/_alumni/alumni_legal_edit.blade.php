@@ -16,12 +16,12 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Edit Legalisasi</h1>
+        <h1 class="m-0">Edit legalisir</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Legalisasi</a></li>
+          <li class="breadcrumb-item"><a href="#">legalisir</a></li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div><!-- /.col -->
@@ -42,11 +42,11 @@
             <div class="row">
               <div class="col">
                 <div class="form-group pt-1">
-                  <label for="jenis">Jenis Legalisasi</label>
+                  <label for="jenis">Jenis legalisir</label>
                   <select name="jenis" class="form-control" id="jenis">
                     {{-- //TODO yang dipilih --}}
-                    <option value="">Legalisasi Ijazah</option>
-                    <option value="">Legalisasi Transkip Nilai</option>
+                    <option value="">legalisir Ijazah</option>
+                    <option value="">legalisir Transkip Nilai</option>
                   </select>
                 </div>
                 <div class="form-group  pt-1">

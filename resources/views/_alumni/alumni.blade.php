@@ -80,7 +80,7 @@
               @endif</h3>
             <p>
               @if ($tracer == null)
-              Untuk bisa melakukan pengajuan legalisasi
+              Untuk bisa melakukan pengajuan legalisir
           @else
               {{ $tracer->desa_perusahaan." - ".$tracer->kecamatan_perusahaan." - ".$tracer->kabupaten_perusahaan." - ".$tracer->provinsi_perusahaan }}
           @endif
@@ -115,7 +115,7 @@
               <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Legalisasi Ijazah</span>
+                <span class="info-box-text">legalisir Ijazah</span>
                 <span class="info-box-number">Menunggu Verifikasi</span>
 
                 <div class="progress">
@@ -129,7 +129,7 @@
             </div>
             {{-- @endforeach --}}
             <!-- /.info-box -->
-            <a href="{{ route('alumni.legalisir.index') }}" class="btn btn-primary btn-block">Legalisasi</a>
+            <a href="{{ route('alumni.legalisir.index') }}" class="btn btn-primary btn-block">legalisir</a>
           
 
 

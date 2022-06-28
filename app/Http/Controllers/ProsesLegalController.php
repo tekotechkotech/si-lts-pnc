@@ -35,7 +35,7 @@ class ProsesLegalController extends Controller
             $proses="proses-legal";
             $apa="verifikasi";
 
-        }elseif ($id == 'legalisasi') {
+        }elseif ($id == 'legalisir') {
             $legal = DB::table('legals')
             ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
             ->join('users', 'alumnis.user_id', '=', 'users.id')
@@ -43,27 +43,7 @@ class ProsesLegalController extends Controller
             ->get();
 
             $proses="proses-legal";
-            $apa="legalisasi";
-
-        }elseif ($id == 'cetak') {
-            $legal = DB::table('legals')
-            ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
-            ->join('users', 'alumnis.user_id', '=', 'users.id')
-            ->where('legals.level_acc', 2)
-            ->get();
-
-            $proses="proses-legal";
-            $apa="cetak";
-
-        }elseif ($id == 'ambil') {
-            $legal = DB::table('legals')
-            ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
-            ->join('users', 'alumnis.user_id', '=', 'users.id')
-            ->where('legals.level_acc',3)
-            ->get();
-
-            $proses="proses-legal";
-            $apa="ambil";
+            $apa="legalisir";
 
         }else {
             // $legal = DB::table('legals')
@@ -88,7 +68,7 @@ class ProsesLegalController extends Controller
         return redirect()->back();
     }
     
-    public function legalisasi($id)
+    public function legalisir($id)
     {
         Legal::where('legal_id', $id)
         ->update([
@@ -97,22 +77,12 @@ class ProsesLegalController extends Controller
 
         return redirect()->back();
     }
-    
-    public function cetak($id)
+
+    public function tolak($id)
     {
         Legal::where('legal_id', $id)
         ->update([
             'level_acc' => '3'
-        ]);
-
-        return redirect()->back();
-    }
-    
-    public function ambil($id)
-    {
-        Legal::where('legal_id', $id)
-        ->update([
-            'level_acc' => '4'
         ]);
 
         return redirect()->back();

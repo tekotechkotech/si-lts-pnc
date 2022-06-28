@@ -81,8 +81,8 @@ Route::get('/dashboard', function () {
     //     return view('alumni_tracer_edit');
     // });
 
-    // //LEGALISASI
-    // Route::get('/alumni-legalisasi', function () {
+    // //legalisir
+    // Route::get('/alumni-legalisir', function () {
     //     return view('alumni_legal');
     // });
 
@@ -128,17 +128,13 @@ Route::middleware(['auth'])->group(function () {
 
 
         // lihat pengajuan legalisir
-        Route::get('legalisasi/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
+        Route::get('legalisir/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
         
         // level acc 1
         Route::put('verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
         // level acc 2
-        Route::put('legalisasi',[ProsesLegalController::class, 'legalisasi'])->name('legalisasi');
+        Route::put('legalisir',[ProsesLegalController::class, 'legalisir'])->name('legalisir');
         // level acc 3
-        Route::put('print',[ProsesLegalController::class, 'print'])->name('print');
-        // level acc 4
-        Route::put('ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
-        // level acc 5
         Route::put('tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
 
 

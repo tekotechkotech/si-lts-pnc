@@ -1,5 +1,5 @@
 @extends('template.admin.main') 
-@section('tittle','Legalisasi') 
+@section('tittle','legalisir') 
 
 
 @section($proses,'active menu-open') 
@@ -43,7 +43,7 @@
                     <tr>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>Jenis Legalisasi</th>
+                        <th>Jenis legalisir</th>
                         <th>Keterangan</th>
                         @if ($apa == "legal")
                         <th>Proses</th>
@@ -60,7 +60,7 @@
                     @endphp
                     @elseif ($legal->level_acc == "1")
                     @php
-                        $level="Menunggu Legalisasi Wakil Direktur 1";
+                        $level="Menunggu legalisir Wakil Direktur 1";
                     @endphp
                     @elseif ($legal->level_acc == "2")
                     @php
