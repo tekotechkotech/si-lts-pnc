@@ -62,7 +62,6 @@
                 {{ date(now()); }}
               </span>
           </div>
-          
         </div>
         @else 
           @foreach ($legal as $legal)
@@ -105,7 +104,7 @@
                 </span>
               </div>
               <div class="d-flex justify-content-end">
-                <a href="/alumni/legalisir/{{ $legal->legal_id }}/edit" class="btn btn-light text-success m-2">
+                <a href="/alumni/legalisir/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
                   <i class="fas fa-file-alt"></i>
                   <br>
                   <span>Detail</span>

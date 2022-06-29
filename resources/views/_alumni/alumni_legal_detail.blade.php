@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Edit legalisir</h1>
+        <h1 class="m-0">Detail legalisir</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -35,35 +35,31 @@
 <div class="content">
   <div class="container">
         <div class="card">
+          {{-- @if ($legal->jenis_berkas == "legalisir Ijazah") --}}
+          <img src="{{ public_path('assets/legal/ijazah/'.$legal->upload_berkas) }}" class="card-img-top" >
+          {{-- @endif --}}
           <div class="card-body">
 
-            <form action="" method="post">
-              @csrf
             <div class="row">
               <div class="col">
                 <div class="form-group pt-1">
-                  <label for="jenis">Jenis legalisir</label>
-                  <select name="jenis" class="form-control" id="jenis">
-                    {{-- //TODO yang dipilih --}}
-                    <option value="">legalisir Ijazah</option>
-                    <option value="">legalisir Transkip Nilai</option>
-                  </select>
+                  <label for="nama">nama legalisir</label>
+                  <input type="text" name="nama" class="form-control" value="{{ $legal->name }}" disabled>
                 </div>
-                <div class="form-group  pt-1">
-                  <label for="berkas" >Upload File</label>
-                  <div class="custom-file">
-                    <label for="berkas" class="custom-file-label">Pilih Berkas</label>
-                    <input type="file" name="berkas" class="custom-file-input" id="berkas">
-                  </div>
+                <div class="form-group pt-1">
+                  <label for="nim">NIM</label>
+                  <input type="text" name="nim" class="form-control" value="{{ $legal->nim }}" disabled>
+                </div>
+                <div class="form-group pt-1">
+                  <label for="jenis">Jenis legalisir</label>
+                  <input type="text" name="jenis" class="form-control" value="{{ $legal->jenis_berkas }}" disabled>
                 </div>
                 <div class="form-group pt-1">
                   <label for="keterangan">Keterangan</label>
-                  <textarea name="keterangan" id="keterangan" class="form-control" rows="5"></textarea>
+                  <textarea name="keterangan" id="keterangan" class="form-control" rows="5" disabled>{{ $legal->keterangan }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Simpan</button>
               </div>
             </div>
-            </form>
 
           </div>
         </div>
