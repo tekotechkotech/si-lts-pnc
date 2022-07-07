@@ -96,7 +96,7 @@
                   @enderror
                 </div>
                 {{-- <input type="hidden" name="id" value="alumni_id"> --}}
-                <button formaction="{{ route('alumni.legalisir.store') }}" type="submit" name="submit" class="btn btn-primary btn-block">Ajukan legalisir</button>
+                <button formaction="{{ route('alumni.legalisirs.store') }}" type="submit" name="submit" class="btn btn-primary btn-block">Ajukan legalisir</button>
               </div>
             </div>
           </form>

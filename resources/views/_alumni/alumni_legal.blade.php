@@ -43,7 +43,7 @@
             <h5 class="text-wrap text-center">Membutuhkan Berkas legalisir?</h5>
             <p class="text-center">silahkan ajukan dengan klik tombol di bawah</p>
             <div class="p-2">
-              <a href="{{ route('alumni.legalisir.create') }}" class="btn btn-primary btn-block">Ajukan legalisir</a>
+              <a href="{{ route('alumni.legalisirs.create') }}" class="btn btn-primary btn-block">Ajukan legalisir</a>
             </div>
           </div>
         </div>
@@ -104,12 +104,12 @@
                 </span>
               </div>
               <div class="d-flex justify-content-end">
-                <a href="/alumni/legalisir/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
+                <a href="/alumni/legalisirs/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
                   <i class="fas fa-file-alt"></i>
                   <br>
                   <span>Detail</span>
                 </a>
-                <form action="/alumni/legalisir/{{ $legal->legal_id }}" method="post">
+                <form action="/alumni/legalisirs/{{ $legal->legal_id }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-light text-danger m-2">

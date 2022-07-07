@@ -1,4 +1,4 @@
- @extends('template.admin.main') @section('tittle','Tambah Admin') @section('admin','active') @section('css')
+@extends('template.admin.main') @section('tittle','Tambah Admin') @section('admin','active') @section('css')
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/r-2.3.0/datatables.min.css" /> 
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -9,11 +9,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Admin</h1>
+                <h1>Data Admin</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active">Admin</li>
                 </ol>
             </div>
@@ -50,15 +50,18 @@
                         <td>{{ $u->jabatan }}</td>
                         <td>{{ $u->email }}</td>
                         <td>
-                            <a href="/admin/data-admin/{{ $u->id }}/detail" class="btn btn-sm btn-primary" >Detail</a>
-                            @if (Auth::user()->admin->jabatan == 'Super Admin')
-                            <a href="/admin/data-admin/{{ $u->id }}/edit" class="btn btn-sm btn-success">Edit</a>
-                            <form action="/admin/data-admin/{{ $u->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                            </form>
-                            @endif
+                            <div class="d-flex justify-content-center">
+
+                                <a href="/admin/data-admin/{{ $u->id }}/detail" class="btn btn-sm btn-primary m-1" >Detail</a>
+                                @if (Auth::user()->admin->jabatan == 'Super Admin')
+                                <a href="/admin/data-admin/{{ $u->id }}/edit" class="btn btn-sm btn-success m-1">Edit</a>
+                                <form action="/admin/data-admin/{{ $u->id }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger m-1">Hapus</button>
+                                </form>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                     @endforeach

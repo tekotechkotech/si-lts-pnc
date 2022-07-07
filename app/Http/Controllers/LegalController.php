@@ -17,7 +17,6 @@ class LegalController extends Controller
         ->where('users.id', Auth::user()->id)
         ->get();
 
-        // dd($legal);
         return view('_alumni.alumni_legal', compact('legal'));
     }
 
@@ -37,7 +36,7 @@ class LegalController extends Controller
         // dd($request->all());
         $request->validate([
             'jenis' => 'required',
-            'berkas' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'berkas' => 'required | image | mimes:jpeg,png,jpg | max:2048',
             'keterangan' => 'required',
         ]);
 
@@ -58,15 +57,15 @@ class LegalController extends Controller
                 // isi dengan nama berkas
                 $nama_berkas = "Ijazah_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
-                $tempat ="assets/legal/ijazah";
+                $tempat ="assets/berkas/ijazah";
                 $berkas->move($tempat,$nama_berkas);
 
-            }elseif ($request->jenis == 'legalisir Transkrip Nilai') {
+            }elseif ($request->jenis == 'legalisir Transkip Nilai') {
 
                 // isi dengan nama berkas
-                $nama_berkas = "Transkrip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
+                $nama_berkas = "Transkip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
-                $tempat ="assets/legal/transkrip";
+                $tempat ="assets/berkas/transkip";
                 $berkas->move($tempat,$nama_berkas);
 
             }else {
@@ -89,7 +88,7 @@ class LegalController extends Controller
 
 
 
-        return redirect()->route('alumni.legalisir.index');
+        return redirect()->route('alumni.legalisirs.index');
     }
 
     public function show($id)
@@ -99,14 +98,14 @@ class LegalController extends Controller
         ->join('users', 'alumnis.user_id', '=', 'users.id')
         ->where('legal_id', $id)
         ->first();
-
-
+        // dd($legal);
 
         return view('_alumni.alumni_legal_detail', compact('legal'));
     }
 
     public function edit($id)
     {
+
     }
 
     public function update(Request $request, $id)

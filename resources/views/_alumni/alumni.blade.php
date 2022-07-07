@@ -129,7 +129,7 @@
             </div>
             {{-- @endforeach --}}
             <!-- /.info-box -->
-            <a href="{{ route('alumni.legalisir.index') }}" class="btn btn-primary btn-block">legalisir</a>
+            <a href="{{ route('alumni.legalisirs.index') }}" class="btn btn-primary btn-block">legalisir</a>
           
 
 
