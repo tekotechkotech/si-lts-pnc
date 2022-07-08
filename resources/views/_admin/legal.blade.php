@@ -120,6 +120,7 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col">
+                                        <img src="{{ asset('assets/berkas/'.$legal->upload_berkas) }}">
                                         <div class="form-group ">
                                             <label>Nama Alumni Pengaju legalisir</label>
                                             <input type="text" class="form-control" value="{{ $legal->name }}" disabled><div class="form-group ">

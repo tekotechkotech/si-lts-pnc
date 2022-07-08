@@ -58,10 +58,12 @@
                             <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus" >Hapus</a>
                             @endif
 
+                        </div>
+                    </td>
                             {{-- MODAL START --}}
 <!-- ModalDetail -->
 <div class="modal fade" id="Detail" tabindex="-1" aria-labelledby="DetailLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog ">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="DetailLabel">Detail Data</h5>
@@ -129,7 +131,7 @@
     
     <!-- ModalEdit -->
     <div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="EditLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog ">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="EditLabel">Edit Alumni</h5>
@@ -201,7 +203,7 @@
 
     <!-- ModalHapus -->
     <div class="modal fade" id="Hapus" tabindex="-1" aria-labelledby="HapusLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog ">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="HapusLabel">Hapus Data</h5>
@@ -247,8 +249,6 @@
 
         {{-- MODAL END --}}
 
-                        </div>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

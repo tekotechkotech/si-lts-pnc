@@ -39,7 +39,7 @@
 
           <div class="row">
             <div class="col col-lg-8 col-md-8 col-sm-12">
-              <img src="{{ asset('assets/berkas/ijazah/'.$legal->upload_berkas) }}" class="card-img-top" >
+              <img src="{{ asset('assets/berkas//'.$legal->upload_berkas) }}" class="card-img-top" >
             </div>
             <div class="col  col-lg-4 col-md-4 col-sm-12">
 

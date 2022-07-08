@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="page"> 
-            <img src="{{ public_path('assets/berkas/ijazah/'.$legal->upload_berkas) }}" class="berkas">
+            <img src="{{ public_path('assets/berkas//'.$legal->upload_berkas) }}" class="berkas">
         {{-- <h1>BISMILLAH</h1> --}}
         <div class="box1">
             <span> MENGESAHKAN <br></span>

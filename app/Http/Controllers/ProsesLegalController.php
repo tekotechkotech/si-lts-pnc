@@ -120,7 +120,7 @@ class ProsesLegalController extends Controller
             $pdf = PDF::loadView('template.legallisirIjazah', compact('legal'));
             $pdf->setPaper('A4', 'landscape');
 
-            // $path = public_path('assets/legal/ijazah');
+            // $path = public_path('assets/legal/');
             // $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
             // $pdf->save($path . '/' . $fileName);
 

@@ -57,7 +57,7 @@ class LegalController extends Controller
                 // isi dengan nama berkas
                 $nama_berkas = "Ijazah_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
-                $tempat ="assets/berkas/ijazah";
+                $tempat ="assets/berkas/";
                 $berkas->move($tempat,$nama_berkas);
 
             }elseif ($request->jenis == 'legalisir Transkip Nilai') {
