@@ -15,14 +15,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->uuid('admin_id')->default(DB::raw('(UUID())'));
+            $table->uuid('admin_id')->primary()->default(DB::raw('(UUID())'));
 
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
+            $table->foreignUuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('nip_npak');
             $table->string('jabatan');
-            $table->string('ttd');
+            $table->string('ttd')->nullable();
             $table->timestamps();
         });
     }

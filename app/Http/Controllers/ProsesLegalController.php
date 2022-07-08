@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Admin;
 use App\Models\Legal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -108,7 +109,7 @@ class ProsesLegalController extends Controller
         //     'level_acc' => '2'
         // ]);
 
-        Admin::where()
+        // Admin::where();
 
         $legal = Legal::where('legal_id', $id)
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')

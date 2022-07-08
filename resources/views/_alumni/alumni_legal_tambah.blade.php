@@ -35,19 +35,18 @@
 <div class="content">
   <div class="container">
     <div class="row">
-        <div class="col col-lg-3 col-md-4 col-sm-12">
-          <div class="card">
-            <div class="card-body">
-              <label>Ketentuan Upload File</label>
-
-          <br> <span>1. File yang akan diunggah dalam format file jpg/jpeg/png dengan kualitas baik</span>
-          <br> <span>2. Ukuran file tidak melebihi 2 megabyte dan disarankan menggunakan mesin scan.</span>
-          <br> <span>3. Jika Pengajuan legalisisr ijazah, file ijazah di scan dalam bentuk landscape, posisi logo ada diatas.</span>
-          <br> <span>4. Jika Pengajuan legalisir transkrip nilai, file transkrip nilai di scan dalam bentuk potrait, posisi logo ada diatas. Jika lebih dari 1 lembar lakukan pengajuan berulang, maksimal pengajuan transkrip nilai sebanyak 3 kali pengajuan</span>
-            </div>
+      <div class="col-lg-3 col-md-4 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <label>Ketentuan Upload File</label>
+            <br> <span>1. File yang akan diunggah dalam format file jpg/jpeg/png dengan kualitas baik</span>
+            <br> <span>2. Ukuran file tidak melebihi 2 megabyte dan disarankan menggunakan mesin scan.</span>
+            <br> <span>3. Jika Pengajuan legalisisr ijazah, file ijazah di scan dalam bentuk landscape, posisi logo ada diatas.</span>
+            <br> <span>4. Jika Pengajuan legalisir transkrip nilai, file transkrip nilai di scan dalam bentuk potrait, posisi logo ada diatas. Jika lebih dari 1 lembar lakukan pengajuan berulang, maksimal pengajuan transkrip nilai sebanyak 3 kali pengajuan</span>
           </div>
+        </div>
       </div>
-      <div class="col col-lg-9 col-md-8 col-sm-12">
+      <div class="col-lg-9 col-md-8 col-sm-12">
 
         <div class="card">
           <div class="card-body">

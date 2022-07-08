@@ -113,7 +113,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('password', [AdminUserController::class, 'proses_profil_password'])->name('password');
         Route::put('foto',[AdminUserController::class, 'proses_profil_foto'])->name('foto');
 
-
         // Route::resource('data-admin', AdminController::class);
         Route::get('data-admin', [AdminController::class, 'index'])->name('data-admin.index');
         Route::get('data-admin/{data_admin}/detail', [AdminController::class, 'show'])->name('data-admin.show');

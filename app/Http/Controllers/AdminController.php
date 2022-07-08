@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -38,7 +39,9 @@ class AdminController extends Controller
             'no_hp' => 'required|string|max:255|unique:users',
         ]);
 
+        $id = Str::uuid()->toString();
         $user = User::create([
+            'id'=> $id,
             'name' => $request->name,
             'username' => $request->username,
             'password' => bcrypt($request->password),
@@ -47,14 +50,16 @@ class AdminController extends Controller
             'email' => $request->email,
             'role' => 'admin',
         ]);
-
+        // dd($user);
+        
         if ($user) {
             Admin::create([
-                'user_id' => $user->id,
+                'user_id' => $id,
                 'nip_npak' => $request->nip_npak,
                 'jabatan' => $request->jabatan,
         ]);
         }
+// dd($user);
 
     return redirect()->route('admin.data-admin.index');
     }

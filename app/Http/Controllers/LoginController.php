@@ -16,6 +16,7 @@ class LoginController extends Controller
 
     public function login_action(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'Username' => 'required',
             'Password' => 'required',
@@ -33,9 +34,10 @@ class LoginController extends Controller
                     'password' => 'Wrong Username or Password',
                 ]);
             }
-
+            
         }
-
+        
+        dd("anda tidak punya akses");
         return back()->withErrors([
             'password' => 'Wrong Username or Password',
         ]);

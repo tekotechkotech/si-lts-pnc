@@ -15,9 +15,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('alumnis', function (Blueprint $table) {
-            $table->uuid('alumni_id')->default(DB::raw('(UUID())'));
+            $table->uuid('alumni_id')->primary()->default(DB::raw('(UUID())'));
 
-            $table->unsignedBigInteger('user_id');
+            $table->foreignUuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('nim')->nullable()->unique();

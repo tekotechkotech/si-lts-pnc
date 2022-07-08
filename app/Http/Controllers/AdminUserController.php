@@ -102,11 +102,12 @@ class AdminUserController extends Controller
             'Jalan' => 'required',
         ]);
 
+        $id = Auth::user()->id;
         $prov = DB::table('wilayah')
         ->where('id_wilayah',$request->provinsi)
         ->first();
-
-        $id = Auth::user()->id;
+        
+        // dd($prov->nama_wilayah);
 
         if (isset($prov)) {
             User::where('id', $id)->
@@ -139,11 +140,12 @@ class AdminUserController extends Controller
         }
 
         User::where('id', Auth::user()->id)->update([
-            'rt' => $request->RT,
-            'rw' => $request->RW,
+            'rt' => $request->rt,
+            'rw' => $request->rw,
             'jalan' => $request->Jalan,
         ]);
             
+
         return redirect()->route('admin.profil');
     }
 

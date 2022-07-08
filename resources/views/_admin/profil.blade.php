@@ -242,7 +242,7 @@
                         ->where('nama_wilayah', $prov)
                         ->first();
                     @endphp
-                    @if(Auth::User()->kecamatan="Belum dilengkapi")
+                    @if(Auth::User()->kecamatan==null)
                         <option>Pilih kecamatan</option>
                     @else
                         <option value='{{ $id_prov->id_wilayah }}'>{{ old('kecamatan', auth::user()->kecamatan) }}</option>
@@ -282,9 +282,9 @@
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="RT">RT</label>
-                    <input type="text" class="form-control" id="RT" name="RT" value="{{ old('RT', $all->rt) }}"  class="form-control @error('RT') is-invalid @enderror">
-                    @error('RT')
+                    <label for="rt">RT</label>
+                    <input type="text" class="form-control" id="rt" name="rt" value="{{ old('rt', $all->rt) }}"  class="form-control @error('rt') is-invalid @enderror">
+                    @error('rt')
                       <div class="invalid-feedback">
                         {{ $message }}
                       </div>
@@ -293,9 +293,9 @@
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="RW">RW</label>
-                    <input type="text" class="form-control" id="RW" name="RW" value="{{ old('RW', $all->rw) }}"  class="form-control @error('RW') is-invalid @enderror">
-                    @error('RW')
+                    <label for="rw">RW</label>
+                    <input type="text" class="form-control" id="rw" name="rw" value="{{ old('rw', $all->rw) }}"  class="form-control @error('rw') is-invalid @enderror">
+                    @error('rw')
                       <div class="invalid-feedback">
                         {{ $message }}
                       </div>
@@ -320,7 +320,7 @@
                 
                 
                 <div class=" d-flex justify-content-end">
-              <button href="{{ route('alumni.profil.alamat.proses') }}"  class="btn btn-primary">Simpan</button>
+              <button formaction="{{ route('admin.alamat') }}" type="submit" name="submit"  class="btn btn-primary">Simpan</button>
             {{-- </div> --}}
           </form>
               {{-- <a href="{{ route('admin.profil.alamat') }}"  class="btn btn-primary">Edit Alamat</a> --}}
@@ -434,22 +434,22 @@
 
 @section('js')
 
-@if ($errors->has('no_hp','email','tempat_lahir','tanggal_lahir','jenis_kelamin'))
+{{-- @if ($errors->has('no_hp','email','tempat_lahir','tanggal_lahir','jenis_kelamin'))
 <script>
     $(function() {
         $('#ModalDataDiri').modal('show');
     });
 </script>
-@endif
+@endif --}}
 
 
-@if ($errors->has('rt','rw','Jalan','provinsi','kabupaten','kecamatan','desa'))
+{{-- @if ($errors->has('rt','rw','Jalan','provinsi','kabupaten','kecamatan','desa'))
 <script>
 $(function() {
     $('#ModalAlamat').modal('show');
 });
 </script>
-@endif
+@endif --}}
 
 
 @if ($errors->has('password','password_confirmation'))

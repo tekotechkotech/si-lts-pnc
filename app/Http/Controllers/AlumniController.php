@@ -6,6 +6,7 @@ use App\Models\Alumni;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AlumniController extends Controller
 {
@@ -53,7 +54,10 @@ class AlumniController extends Controller
             'no_hp' => 'required|string|max:255|unique:users',
         ]);
         // dd($request);
+        
+        $id = Str::uuid()->toString();
         $user = User::create([
+            'id'=> $id,
             'name' => $request->name,
             'username' => $request->username,
             'password' => bcrypt($request->password),
@@ -65,7 +69,7 @@ class AlumniController extends Controller
         
         if ($user) {
             Alumni::create([
-                'user_id' => $user->id,
+                'user_id' => $id,
                 'prodi' => $request->prodi,
                 'nim' => $request->nim,
         ]);

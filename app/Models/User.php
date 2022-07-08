@@ -23,7 +23,9 @@ class User extends Authenticatable
     //     'password',
     // ];
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
+
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,6 +44,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'id' => 'string',
     ];
 
     public function admin()
