@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('legals', function (Blueprint $table) {
-            $table->string('legal_id')->primary()->default(uniqid());
+            $table->string('legal_id')->primary();
 
             $table->foreignUuid('alumni_id');
             $table->foreign('alumni_id')->references('alumni_id')->on('alumnis');

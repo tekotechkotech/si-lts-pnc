@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tracers', function (Blueprint $table) {
-            $table->string('tracer_id')->primary()->default(uniqid());
+            $table->string('tracer_id')->primary();
             
             // $table->unsignedBigInteger('alumni_id');
             $table->foreignUuid('alumni_id');

@@ -33,20 +33,17 @@ class LegalController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'jenis' => 'required',
             'berkas' => 'required | image | mimes:jpeg,png,jpg | max:2048',
             'keterangan' => 'required',
         ]);
 
-        // dd($request);
 
         $alumni = DB::table('alumnis')
         ->where('nim', $request->nim)
         ->first();
 
-        // dd($alumni);
 
         if ($request->file('berkas')) {
             $berkas = $validated['berkas'] = $request->file('berkas');
@@ -72,21 +69,16 @@ class LegalController extends Controller
                 return redirect()->back()->with('error', 'Jenis legalisir tidak ditemukan');
             }
 
+            $id = uniqid();
+
             Legal::create([
+                'legal_id' => $id,
                 'jenis_berkas' => $request->jenis,
                 'alumni_id' => $alumni->alumni_id,
                 'upload_berkas' => $nama_berkas,
                 'keterangan' => $request->keterangan,
             ]);
-
-
-            // Legal::where('legal_id', $legal->legal_id)->update([
-            //     'upload_berkas' => $nama_berkas,
-            // ]);
-
         }
-
-
 
         return redirect()->route('alumni.legalisirs.index');
     }
@@ -98,7 +90,6 @@ class LegalController extends Controller
         ->join('users', 'alumnis.user_id', '=', 'users.id')
         ->where('legal_id', $id)
         ->first();
-        // dd($legal);
 
         return view('_alumni.alumni_legal_detail', compact('legal'));
     }

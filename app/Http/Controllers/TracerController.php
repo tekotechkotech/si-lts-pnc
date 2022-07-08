@@ -16,8 +16,10 @@ class TracerController extends Controller
         $tracer = DB::table('tracers')
         ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
         ->join('users', 'alumnis.user_id', '=', 'users.id')
-        ->where('alumnis.alumni_id', Auth::user()->id)
+        ->where('users.id', Auth::user()->id)
         ->get();
+
+        // dd($tracer);
 
         return view('_alumni.alumni_tracer', compact('tracer'));
     }
@@ -34,8 +36,6 @@ class TracerController extends Controller
 
     public function store(Request $request)
     {
-
-
         $request->validate([
             'name' => 'required',
             
@@ -43,11 +43,11 @@ class TracerController extends Controller
             'kabupaten' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',
-
+            
             'rt' => 'required',
             'rw' => 'required',
             'jalan' => 'required',
-
+            
             'tahun_masuk' => 'required',
             'jabatan' => 'required',
             'gaji_awal' => 'required',
@@ -56,12 +56,16 @@ class TracerController extends Controller
             'kursus' => 'required',
             'saran' => 'required',
         ]);
-
+        
         $alu = DB::table('alumnis')
         ->where('user_id', Auth::user()->id)
         ->first();
 
+        $id = uniqid();
+        // dd($id);
+
         $ids = Tracer::create([
+            'tracer_id' => $id,
             'nama_perusahaan' => $request->name,
 
             'rt_perusahaan' => $request->rt,
@@ -83,7 +87,7 @@ class TracerController extends Controller
         // $ids = Auth::user()->id;
 
         if (isset($prov)) {
-            Tracer::where('tracer_id', $ids->id)->
+            Tracer::where('tracer_id', $ids->tracer_id)->
             update(['provinsi_perusahaan' => $prov->nama_wilayah]);
         }
 
@@ -91,7 +95,7 @@ class TracerController extends Controller
         ->where('id_wilayah',$request->kabupaten)
         ->first();
 
-        if (isset($kab)) {Tracer::where('tracer_id', $ids->id)->
+        if (isset($kab)) {Tracer::where('tracer_id', $ids->tracer_id)->
             update(['kabupaten_perusahaan' => $kab->nama_wilayah]);
         }
 
@@ -99,7 +103,7 @@ class TracerController extends Controller
         ->where('id_wilayah',$request->kecamatan)
         ->first();
 
-        if (isset($kec)) {Tracer::where('tracer_id', $ids->id)->
+        if (isset($kec)) {Tracer::where('tracer_id', $ids->tracer_id)->
             update(['kecamatan_perusahaan' => $kec->nama_wilayah]);
         }
 
@@ -107,7 +111,7 @@ class TracerController extends Controller
         ->where('id_wilayah',$request->desa)
         ->first();
 
-        if (isset($desa)) {Tracer::where('tracer_id', $ids->id)->
+        if (isset($desa)) {Tracer::where('tracer_id', $ids->tracer_id)->
             update(['desa_perusahaan' => $desa->nama_wilayah,
             'id_wilayah_perusahaan' => $request->desa]);
         }
