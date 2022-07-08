@@ -22,21 +22,35 @@
         @csrf
         <div class="input-group mb-3">
           <input type="Username" class="form-control" placeholder="Username" name="Username" value="{{ old('Username') }}" required autofocus>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-at"></span>
-            </div>
-          </div>
+          
         </div>
-        <div class="input-group mb-3">
-          <input type="Password" class="form-control" placeholder="Password" name="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
+        
+      <div class="input-group mb-3">
+        <input type="password" class="form-control"  id="password" name="Password" placeholder="Password" required="">
+        <div class="input-group-append">
+        <span class="input-group-text" id="eye">
+            <i class="fa fa-eye" onclick="myFunction()">
+            </i></span></div>
+    </div>
+
+<!-- SHOW HIDE PASSWORD -->
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        $('#eye i').addClass( "fa-eye-slash" );
+        $('#eye i').removeClass( "fa-eye" );
+        } else {
+            x.type = "password";
+        $('#eye i').removeClass( "fa-eye-slash" );
+        $('#eye i').addClass( "fa-eye" );
+        }
+        
+    }
+</script>
+
+      <div class="row">
           
           <!-- /.col -->
           <div class="col text-center"><hr>
