@@ -1,7 +1,7 @@
 
 @extends('template.admin.main')
 
-@section('tittle','Edit Admin')
+@section('tittle','Edit Alumni')
 @section('admin','active')
 
 @section('css')
@@ -13,12 +13,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Edit Admin</h1>
+          <h1>Edit Alumni</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+            <li class="breadcrumb-item"><a href="#">Alumni</a></li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
@@ -37,9 +37,9 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label for="nip_npak">NIP/NPAK</label>
-                <input type="text" disabled class="form-control @error('nip_npak') is-invalid @enderror" id="nip_npak" name="nip_npak" placeholder="NIP/NPAK" value="{{ old('nip_npak', $u->nip_npak) }}">
-                @error('nip_npak')
+                <label for="nim">NIM</label>
+                <input type="text" disabled class="form-control @error('nim') is-invalid @enderror" id="nim" name="nim" placeholder="NIP/NPAK" value="{{ old('nim', $u->nim) }}">
+                @error('nim')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -83,10 +83,10 @@
                 </div>
                 <div class="col-md-5 col-sm-12">
                     <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
-                        <select class="form-control" id="jabatan" name="jabatan">
-                            <option>{{ $u->jabatan }}</option>
-                            <option>Super Admin</option>
+                        <label for="prodi">Program Study</label>
+                        <select class="form-control" id="prodi" name="prodi">
+                            <option>{{ $u->prodi }}</option>
+                            <option>Super Alumni</option>
                             <option>Wakil Direktur 1</option>
                             <option>Kepala BAAK</option>
                             <option>Pegawai BAAK</option>
@@ -95,7 +95,7 @@
                     
                 </div>
             </div>
-            <button type="submit" formaction="/admin/data-admin/{{ $u->id }}" class="btn btn-primary">Simpan</button>
+            <button type="submit" formaction="/admin/data-alumni/{{ $u->id }}" class="btn btn-primary">Simpan</button>
         </form>
       </div>
     </div>

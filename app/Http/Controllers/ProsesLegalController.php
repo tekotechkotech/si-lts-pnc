@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\Admin;
 use App\Models\Legal;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,7 @@ class ProsesLegalController extends Controller
         // ->where('users.id', Auth::user()->id)
         // ->get();
 
-        if ($id == 'data') {
+        if ($id == 'legal') {
             $legal = DB::table('legals')
             ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
             ->join('users', 'alumnis.user_id', '=', 'users.id')
@@ -48,27 +49,29 @@ class ProsesLegalController extends Controller
             $proses="proses-legal";
             $apa="legalisir";
 
-        }elseif ($id == 'cetak') {
-            $legal = DB::table('legals')
-            ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
-            ->join('users', 'alumnis.user_id', '=', 'users.id')
-            ->where('legals.level_acc', 2)
-            ->get();
+        }
+        // elseif ($id == 'cetak') {
+        //     $legal = DB::table('legals')
+        //     ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+        //     ->join('users', 'alumnis.user_id', '=', 'users.id')
+        //     ->where('legals.level_acc', 2)
+        //     ->get();
 
-            $proses="proses-legal";
-            $apa="cetak";
+        //     $proses="proses-legal";
+        //     $apa="cetak";
 
-        }elseif ($id == 'ambil') {
-            $legal = DB::table('legals')
-            ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
-            ->join('users', 'alumnis.user_id', '=', 'users.id')
-            ->where('legals.level_acc',3)
-            ->get();
+        // }elseif ($id == 'ambil') {
+        //     $legal = DB::table('legals')
+        //     ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+        //     ->join('users', 'alumnis.user_id', '=', 'users.id')
+        //     ->where('legals.level_acc',3)
+        //     ->get();
 
-            $proses="proses-legal";
-            $apa="ambil";
+        //     $proses="proses-legal";
+        //     $apa="ambil";
 
-        }else {
+        // }
+        else {
             // $legal = DB::table('legals')
             // ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
             // ->join('users', 'alumnis.user_id', '=', 'users.id')
@@ -80,7 +83,7 @@ class ProsesLegalController extends Controller
         return view('_admin.legal', compact('legal', 'proses', 'apa'));
     }
 
-    public function detail($id)
+    public function detail($id,$apa)
     {
         $legal = DB::table('legals')
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
@@ -88,7 +91,50 @@ class ProsesLegalController extends Controller
         ->where('legal_id', $id)
         ->first();
 
-        return view('_alumni.alumni_legal_detail', compact('legal'));
+        if ($apa == 'legal') {
+            $proses="";
+            $apa="legal";
+
+        }elseif ($apa == 'verifikasi') {
+            $proses="proses-legal";
+            $apa="verifikasi";
+
+        }elseif ($apa == 'legalisir') {
+            $proses="proses-legal";
+            $apa="legalisir";
+
+        }
+        // elseif ($id == 'cetak') {
+        //     $legal = DB::table('legals')
+        //     ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+        //     ->join('users', 'alumnis.user_id', '=', 'users.id')
+        //     ->where('legals.level_acc', 2)
+        //     ->get();
+
+        //     $proses="proses-legal";
+        //     $apa="cetak";
+
+        // }elseif ($id == 'ambil') {
+        //     $legal = DB::table('legals')
+        //     ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+        //     ->join('users', 'alumnis.user_id', '=', 'users.id')
+        //     ->where('legals.level_acc',3)
+        //     ->get();
+
+        //     $proses="proses-legal";
+        //     $apa="ambil";
+
+        // }
+        else {
+            // $legal = DB::table('legals')
+            // ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
+            // ->join('users', 'alumnis.user_id', '=', 'users.id')
+            // ->where('legals.level_acc', '=', '0')
+            // ->get();
+
+        }
+
+        return view('_admin.legal_detail', compact('legal', 'proses', 'apa'));
     }
 
 
@@ -99,7 +145,7 @@ class ProsesLegalController extends Controller
             'level_acc' => '1'
         ]);
 
-        return redirect()->back();
+        return redirect('/legalisir/verifikasi');
     }
     
     public function legalisir($id)
@@ -127,8 +173,7 @@ class ProsesLegalController extends Controller
             return $pdf->download('legalisirIjazah.pdf');
         }
 
-
-        return redirect()->back();
+        return redirect('/legalisir/legalisir');
     }
     
     

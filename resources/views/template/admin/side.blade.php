@@ -62,7 +62,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/legalisir/data" class="nav-link   @yield('legal')">
+          <a href="/admin/legalisir/legal" class="nav-link   @yield('legal')">
             <i class="nav-icon fas fa-copy"></i>
             <p>
               Data legalisir

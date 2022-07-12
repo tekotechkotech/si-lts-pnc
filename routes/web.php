@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniUserController;
+use App\Http\Controllers\CekQRController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProsesLegalController;
@@ -39,6 +40,9 @@ Route::get('/',[LoginController::class, 'cek'])->name('cek');
 Route::get('login',[LoginController::class, 'index'])->name('login');
 Route::post('login',[LoginController::class, 'login_action'])->name('login.action');
 Route::get('logout',[LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+// CEK QR CODE
+Route::get('/legalisir//{id}',[CekQRController::class, 'cek'])->name('cek_qrcode');
 
 
 
@@ -101,7 +105,7 @@ Route::middleware(['auth'])->group(function () {
     // MIDDLEWARE ADMIN
     Route::prefix('admin')->name('admin.')->middleware(['Admin'])->group(function () {
 
-        Route::get('dashboard',[AdminUserController::class, 'index'])->name('dashboard');
+        Route::get('dashboard', [AdminUserController::class, 'index'])->name('dashboard');
         
         Route::get('tracer-study', [AdminUserController::class, 'tracer'])->name('data-tracer');
         
@@ -111,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('data-diri', [AdminUserController::class, 'proses_profil_datadiri'])->name('data-diri');
         Route::put('alamat', [AdminUserController::class, 'proses_profil_alamat'])->name('alamat');
         Route::put('password', [AdminUserController::class, 'proses_profil_password'])->name('password');
-        Route::put('foto',[AdminUserController::class, 'proses_profil_foto'])->name('foto');
+        Route::put('foto', [AdminUserController::class, 'proses_profil_foto'])->name('foto');
 
         // Route::resource('data-admin', AdminController::class);
         Route::get('data-admin', [AdminController::class, 'index'])->name('data-admin.index');
@@ -133,17 +137,19 @@ Route::middleware(['auth'])->group(function () {
         // lihat pengajuan legalisirs
         Route::get('legalisir/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
         
-        Route::get('legalisir/{id}/detail',[ProsesLegalController::class, 'detail'])->name('data-legal-detail');
+        Route::get('legalisir/{id}/{apa}/detail',[ProsesLegalController::class, 'detail'])->name('data-legal-detail');
         
         // level acc 1
         Route::get('legalisir/{id}/verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
         // level acc 2
         Route::get('legalisir/{id}/legalisirs',[ProsesLegalController::class, 'legalisir'])->name('legalisir');
+
+            // level acc 3
+            // Route::get('legalisir/{id}/print',[ProsesLegalController::class, 'cetak'])->name('cetak');
+            // level acc 4
+            // Route::get('legalisir/{id}/ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
+        
         // level acc 3
-        Route::get('legalisir/{id}/print',[ProsesLegalController::class, 'cetak'])->name('cetak');
-        // level acc 4
-        Route::get('legalisir/{id}/ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
-        // level acc 5
         Route::get('legalisir/{id}/tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
 
 

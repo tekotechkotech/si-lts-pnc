@@ -21,7 +21,7 @@
       <form action="{{ route('login.action') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="Username" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
+          <input type="Username" class="form-control" name="Username" value="{{ old('username') }}" placeholder="Username" required autocomplete="username" autofocus>
         </div>
         
       <div class="input-group mb-3">
@@ -48,7 +48,11 @@
         
     }
 </script>
-
+  @error('password')
+    <div class="alert alert-danger text-center">
+        {{ $message }}
+    </div>
+  @enderror
       <div class="row">
           
           <!-- /.col -->

@@ -51,10 +51,10 @@
                         <td>{{ $u->email }}</td>
                         <td><div class="d-flex justify-content-center">
 
-                            <a  class="btn btn-sm btn-primary m-1" data-toggle="modal" data-target="#Detail" >Detail</a>
+                            <a href="/admin/data-alumni/{{ $u->id }}/detail" class="btn btn-sm btn-primary m-1" >Detail</a>
 
                             @if (Auth::user()->admin->jabatan == 'Super Admin')
-                            <a  class="btn btn-sm btn-success m-1" data-toggle="modal" data-target="#Edit" >Edit</a>
+                            <a href="/admin/data-alumni/{{ $u->id }}/edit" class="btn btn-sm btn-success m-1" >Edit</a>
                             <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus" >Hapus</a>
                             @endif
 

@@ -21,6 +21,8 @@ class LoginController extends Controller
             'Username' => 'required',
             'Password' => 'required',
         ]);
+        // dd("Alumni");
+
         if (Auth::attempt(['username' => $request->Username, 'password' => $request->Password])) {
             $request->session()->regenerate();
 
@@ -31,13 +33,13 @@ class LoginController extends Controller
                 return redirect(route('admin.dashboard'));
             } else {
                 return back()->withErrors([
-                    'password' => 'Wrong Username or Password',
+                    'password' => 'Username atau Password salah',
                 ]);
             }
             
         }
         
-        dd("anda tidak punya akses");
+        // dd("anda tidak punya akses");
         return back()->withErrors([
             'password' => 'Wrong Username or Password',
         ]);

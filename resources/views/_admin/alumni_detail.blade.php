@@ -15,12 +15,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Detail Data Admin</h1>
+        <h1 class="m-0">Detail Data Alumni</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Admin</a></li>
+          <li class="breadcrumb-item"><a href="#">Alumni</a></li>
           <li class="breadcrumb-item active">Detail</li>
         </ol>
       </div><!-- /.col -->
@@ -37,7 +37,7 @@
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-12">
         
-            <!-- Detail Data Admine Image -->
+            <!-- Detail Data Alumnie Image -->
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
@@ -48,12 +48,12 @@
 
                 <h3 class="profile-username text-center">{{ $all->name }}</h3>
 
-                <p class="text-muted text-center">NIP/NPAK {{ $all->nip_npak }}</p>
+                <p class="text-muted text-center">NIM {{ $all->nim }}</p>
                 {{-- <form action="{{ route('admin.foto') }}" method="post" enctype="multipart/form-data" >
                   @csrf
                   @method('PUT')
                     <input type="hidden" name="username" value="{{ $all->username }}">
-                    <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Detail Data Admin</b></label>
+                    <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Detail Data Alumni</b></label>
                     <input type="file" accept="image/*" onchange="form.submit()" name="foto" id="foto" hidden>
                 </form> --}}
               </div>
@@ -64,8 +64,8 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="NIP_NPAK">NIP/NPAK</label>
-                  <input class="form-control" id="NIP_NPAK" value="{{ $all->nip_npak }}" disabled>
+                  <label for="nim">NIM</label>
+                  <input class="form-control" id="nim" value="{{ $all->nim }}" disabled>
                 </div>
                 <div class="form-group">
                   <label for="ipk">Jabatan</label>
@@ -154,16 +154,12 @@
           </div>
 
         </div>
-        @if (Auth::user()->admin->jabatan == 'Super Admin')
+        @if (Auth::user()->admin->jabatan == 'Super Alumni')
         <div class="card">
           <div class="card-body">
             <div class=" d-flex justify-content-between align-content-center">
             <label for="">Ganti Password</label>
-            <a href="/admin/data-alumni/{{ $all->id }}/edit"  class="btn btn-primary">Ganti</a>
-            <!-- Button trigger modal -->
-            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGanti">
-                Ganti
-              </button> --}}
+            <a href="/admin/data-admin/{{ $all->id }}/edit"  class="btn btn-primary">Ganti</a>
             </div>
           </div>
         </div>

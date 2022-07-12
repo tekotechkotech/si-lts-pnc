@@ -63,15 +63,16 @@
             <span> DIREKTUR POLITEKNIK NEGERI CILACAP <br><br></span>
             <span> WAKIL DIREKTUR 1 <br></span>
 
-            <img src="{{ public_path('img/qrcode.jpg') }}" alt="" class="esign">
+        
+        <img src="{{ public_path('ttd/'.Auth::user()->admin->nip_npak) }}" class="esign">
             <br>
             {{-- <p>{{ $wd1 }}</p> --}}
             {{-- <p> NIP/NPAK {{$nip_npak}}</p> --}}
-            <span> MOHAMMAD JOSHUA, S.Kom., M.Sc. <br></span>
-            <span> NIP/NPAK 123456789<br></span>
+            <span> {{ Auth::user()->name }} <br></span>
+            <span> NIP/NPAK {{ Auth::user()->admin->nip_npak }}<br></span>
         </div>
             @php
-            $url =  url('/legalisir//'.$legal->id.'/ijazah');
+            $url =  url('/legalisir//'.$legal->legal_id);
             @endphp
 
         <div class="box2">
