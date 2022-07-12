@@ -145,7 +145,7 @@ class ProsesLegalController extends Controller
             'level_acc' => '1'
         ]);
 
-        return redirect('/legalisir/verifikasi');
+        return redirect('/admin/legalisir/verifikasi');
     }
     
     public function legalisir($id)

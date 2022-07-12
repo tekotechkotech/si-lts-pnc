@@ -14,7 +14,7 @@ class CekQRController extends Controller
         ->join('users', 'alumnis.user_id', '=', 'users.id')
         ->where('legals.legal_id', $id)
         ->first();
-        
+
         // dd($legal);
         return view('cek', compact('legal'));
     }

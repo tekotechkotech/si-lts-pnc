@@ -2,7 +2,7 @@
 @extends('template.admin.main')
 
 @section('tittle','Edit Alumni')
-@section('admin','active')
+@section('alumni','active')
 
 @section('css')
     

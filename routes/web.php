@@ -128,6 +128,7 @@ Route::middleware(['auth'])->group(function () {
         
         // Route::resource('data-alumni', AlumniController::class);
         Route::get('data-alumni', [AlumniController::class, 'index'])->name('data-alumni.index');
+        Route::get('data-alumni/{data_alumni}/detail', [AlumniController::class, 'show'])->name('data-alumni.show');
         Route::get('data-alumni/create', [AlumniController::class, 'create'])->name('data-alumni.create');
         Route::post('data-alumni', [AlumniController::class, 'store'])->name('data-alumni.store');
         Route::get('data-alumni/{data_alumni}/edit', [AlumniController::class, 'edit'])->name('data-alumni.edit');

@@ -66,7 +66,6 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        // dd('hmsh');
         $all = DB::table('users')
         ->join('admins', 'users.id', '=', 'admins.user_id')
         ->where('role', 'admin')

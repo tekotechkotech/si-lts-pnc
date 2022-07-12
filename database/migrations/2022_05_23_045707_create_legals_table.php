@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('jenis_berkas');
             $table->string('level_acc')->default('0');
             $table->string('file_legal')->nullable();
-            $table->string('berlaku_sampai')->nullable();
+            $table->date('berlaku_sampai')->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

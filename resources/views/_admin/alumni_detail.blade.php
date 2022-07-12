@@ -2,7 +2,7 @@
 @extends('template.admin.main')
 
 @section('tittle','Alumni')
-@section('admin','active')
+@section('alumni','active')
 
 
 @section('css')  
@@ -68,8 +68,8 @@
                   <input class="form-control" id="nim" value="{{ $all->nim }}" disabled>
                 </div>
                 <div class="form-group">
-                  <label for="ipk">Jabatan</label>
-                  <input class="form-control" id="ipk" value="{{ $all->jabatan }}" disabled>
+                  <label for="ipk">IPK</label>
+                  <input class="form-control" id="ipk" value="{{ $all->ipk }}" disabled>
                 </div>
                 {{-- <div class="form-group"> --}}
                   {{-- <label for="tahun_lulus">Tahun Lulus</label> --}}
@@ -84,7 +84,8 @@
           <div class="card-body">
             <div class="form-group">
               <label for="name">Nama Lengkap</label>
-              <input type="text" class="form-control" id="name" value="{{ $all->name }}" disabled>
+              <input type="text" class="form-control" id="name" value="{{ 
+              $all->name }}" disabled>
             </div>
             <div class="form-group">
               <label for="username">Username</label>

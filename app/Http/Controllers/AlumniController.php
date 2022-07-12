@@ -86,13 +86,14 @@ class AlumniController extends Controller
      */
     public function show($id)
     {
-        $u = DB::table('users')
+        $all = DB::table('users')
         ->join('alumnis', 'users.id', '=', 'alumnis.user_id')
         ->where('role', 'alumni')
         ->where('users.id', $id)
         ->first();
 
-        return view('_admin.alumni', compact('u'));
+
+        return view('_admin.alumni_detail', compact('all'));
     }
 
     /**
