@@ -69,20 +69,22 @@
             @php
                 if($legal->level_acc == 0){
                     $status = 'Menunggu Verifikasi';
-                    $percen = '20';
+                    $percen = '30';
                 }elseif($legal->level_acc == 1){
                     $status = 'Telah Diverifikasi, Menunggu legalisir';
-                    $percen = '40';
-                }elseif($legal->level_acc == 3){
-                    $status = 'Telah Dilegalisir, Tinggal Cetak';
                     $percen = '60';
-                }elseif($legal->level_acc == 4){
-                    $status = 'Telah Dicetak, Menunggu Diambil';
-                    $percen = '80';
-                }elseif($legal->level_acc == 5){
-                    $status = 'Telah Diambil, Pengajuan legalisir Selesai';
+                }elseif($legal->level_acc == 2){
+                    $status = 'Selesai Dilegalisir';
                     $percen = '100';
-                }else {
+                }
+                // elseif($legal->level_acc == 4){
+                //     $status = 'Telah Dicetak, Menunggu Diambil';
+                //     $percen = '80';
+                // }elseif($legal->level_acc == 5){
+                //     $status = 'Telah Diambil, Pengajuan legalisir Selesai';
+                //     $percen = '100';
+                // }
+                else {
                   $status = 'Ditolak';
                   $percen = '0';
                 }
@@ -104,11 +106,20 @@
                 </span>
               </div>
               <div class="d-flex justify-content-end">
-                <a href="/alumni/legalisirs/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
-                  <i class="fas fa-file-alt"></i>
-                  <br>
-                  <span>Detail</span>
-                </a>
+                @if ($legal->level_acc == 2)
+                  <a href="{{ asset('assets/legal/'.$legal->file_legal) }}" class="btn btn-light text-success m-2" target="_blank">
+                    <i class="fa fa-file-pdf"></i>
+                    <br>
+                    <span>PDF</span>
+                  </a>
+                @else
+                  <a href="/alumni/legalisirs/{{ $legal->legal_id }}" class="btn btn-light text-success m-2">
+                    <i class="fas fa-file-alt"></i>
+                    <br>
+                    <span>Detail</span>
+                  </a>
+                @endif
+
                 <form action="/alumni/legalisirs/{{ $legal->legal_id }}" method="post">
                 @csrf
                 @method('DELETE')

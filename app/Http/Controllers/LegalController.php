@@ -27,7 +27,6 @@ class LegalController extends Controller
         ->where('users.id', Auth::user()->id)
         ->first();
 
-
         return view('_alumni.alumni_legal_tambah', compact('all'));
     }
 
@@ -39,16 +38,13 @@ class LegalController extends Controller
             'keterangan' => 'required',
         ]);
 
-
         $alumni = DB::table('alumnis')
         ->where('nim', $request->nim)
         ->first();
 
-
         if ($request->file('berkas')) {
             $berkas = $validated['berkas'] = $request->file('berkas');
-            
-            
+                        
             if ($request->jenis == 'legalisir Ijazah') {
             
                 // isi dengan nama berkas

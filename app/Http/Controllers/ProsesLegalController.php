@@ -150,13 +150,6 @@ class ProsesLegalController extends Controller
     
     public function legalisir($id)
     {
-        // Legal::where('legal_id', $id)
-        // ->update([
-        //     'level_acc' => '2'
-        // ]);
-
-        // Admin::where();
-
         $legal = Legal::where('legal_id', $id)
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
         ->join('users', 'alumnis.user_id', '=', 'users.id')
@@ -166,14 +159,23 @@ class ProsesLegalController extends Controller
             $pdf = PDF::loadView('template.legallisirIjazah', compact('legal'));
             $pdf->setPaper('A4', 'landscape');
 
-            // $path = public_path('assets/legal/');
-            // $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
-            // $pdf->save($path . '/' . $fileName);
-
-            return $pdf->download('legalisirIjazah.pdf');
+            $path = public_path('assets/legal');
+            $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
+            $pdf->save($path . '/' . $fileName);
+            
         }
 
-        return redirect('/legalisir/legalisir');
+            $date = date('Y-m-d', strtotime('+2 month'));
+
+        Legal::where('legal_id', $id)
+        ->update([
+            'file_legal'=> $fileName,
+            'berlaku_sampai'=> $date,
+            'level_acc' => '2',
+        ]);
+
+
+        return redirect('admin/legalisir/legalisir');
     }
     
     
