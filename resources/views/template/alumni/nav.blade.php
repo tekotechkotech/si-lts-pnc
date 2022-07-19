@@ -35,7 +35,9 @@
         {{-- <div class="d-flex justify-content-between"> --}}
         <li class="nav-item ">
           <a class="nav-link" >
-            <img src="{{ asset('') }}assets/profile/{{ Auth::user()->foto }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{ asset('') }}assets/profile/{{ Auth::user()->foto }}" class="brand-image img-circle elevation-3" style="width: 35px;
+            height: 35px;
+            object-fit: cover;">
             <span class="brand-text font-weight-light">{{ Auth::user()->username }}</span>
           </a>
         </li>

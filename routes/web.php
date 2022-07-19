@@ -24,10 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // wilayah
 Route::controller(WilayahController::class)->group(function () {
     Route::post('/getkabupaten',  'getkabupaten')->name('getkabupaten');
@@ -43,8 +39,7 @@ Route::get('logout',[LoginController::class, 'logout'])->middleware('auth')->nam
 
 // CEK QR CODE
 Route::get('/legalisir//{id}',[CekQRController::class, 'cek'])->name('cek_qrcode');
-
-
+// 62c8337938318
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -108,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('dashboard', [AdminUserController::class, 'index'])->name('dashboard');
         
         Route::get('tracer-study', [AdminUserController::class, 'tracer'])->name('data-tracer');
+        Route::get('tracer-study/{id}', [AdminUserController::class, 'detail_tracer'])->name('data-tracer.detail');
         
         // PROFIL
         Route::get('profil', [AdminUserController::class, 'profil'])->name('profil');

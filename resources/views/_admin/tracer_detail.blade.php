@@ -24,52 +24,133 @@
     <!-- /.container-fluid -->
 </section>
 @endsection @section('main-content')
-<section class="content">
+<div class="content">
     <div class="container-fluid">
-        <!-- Default box -->
+          <div class="card">
+            <div class="card-body">
+  
+            <div class="row">
+              <div class="col">
+                <div class="form-group pt-1">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" value="{{ $tracer->name }}" disabled>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                      <label>NIM</label>
+                      <input type="text" class="form-control" value="{{ $tracer->nim }}" disabled>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                      <label>Program Studi</label>
+                      <input type="text" class="form-control" value="{{ $tracer->prodi }}" disabled>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                      <label>Tahun Lulus</label>
+                      <input type="text" class="form-control" value="{{ $tracer->tahun_lulus }}" disabled>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <hr>
+              <div class="row">
+                
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                      <div class="form-group pt-1">
+                        <label for="name">Nama Perusahaan</label>
+                        <input type="text" class="form-control" value="{{ $tracer->nama_perusahaan }}" disabled>
+                  </div>
+  
+                  <div class="form-group pt-1">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-sm-12">
+                          <label for="provinsi">Provinsi</label>
+                          <input type="text" class="form-control" value="{{ $tracer->provinsi }}" disabled>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label for="kabupaten">kabupaten</label>
+                        <input type="text" class="form-control" value="{{ $tracer->kabupaten }}" disabled>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label for="kecamatan">kecamatan</label>
+                        <input type="text" class="form-control" value="{{ $tracer->kecamatan }}" disabled>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label for="desa">desa</label>
+                        <input type="text" class="form-control" value="{{ $tracer->desa }}" disabled>
+                      </div>
+                    </div>
+                  </div>
 
-        <!-- Small Box (Stat card) -->
-        {{-- <div class="row"> --}}
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                {{-- <a href="" class="btn btn-success d-flex inline">Tambah Tracer Study</a> --}}
-                <thead>
-                    <tr>
-                        <th>NIM</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>No HP</th>
-                        <th>Nama Perusahaan</th>
-                        <th>Jabatan</th>
-                        <th>Tahun Masuk</th>
-                        <th>Gaji Awal</th>
-                        <th>Gaji Sekarang</th>
-                        <th></th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tracer as $tracer)
-                    <tr>
-                        <td>{{ $tracer->nim }}</td>
-                        <td>{{ $tracer->name }}</td>
-                        <td>{{ $tracer->email }}</td>
-                        <td>{{ $tracer->no_hp }}</td>
-                        <td>{{ $tracer->nama_perusahaan }}</td>
-                        <td>{{ $tracer->jabatan }}</td>
-                        <td>{{ $tracer->tahun_masuk }}</td>
-                        <td>{{ $tracer->gaji_awal }}</td>
-                        <td>{{ $tracer->gaji_sekarang }}</td>
-                        <td>
-                            <a href="/admin/data-admin/{{ $tracer->tracer_id }}" class="btn btn-sm btn-primary" >Detail</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        {{-- </div> --}}
-    </div>
-</section>
-<!-- /.content -->
+                  <div class="form-group pt-1">
+                      <div class="row">
+                        <div class="col">
+                          <label for="rt">RT</label>
+                          <input type="text" class="form-control" value="{{ $tracer->rt }}" disabled>
+                        </div>
+                        <div class="col">
+                          <label for="rw">RW</label>
+                          <input type="text" class="form-control" value="{{ $tracer->rw }}" disabled>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group pt-1">
+                      <label for="jalan">Jalan</label>
+                      <input type="text" class="form-control" value="{{ $tracer->jalan }}" disabled>
+
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group pt-1">
+                        <label for="tahun_masuk">Tahun Awal Kerja</label>
+                        <input type="text" class="form-control" value="{{ $tracer->tahun_masuk }}" disabled>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group pt-1">
+                        <label for="jabatan">Jabatan</label>
+                        <input type="text" class="form-control" value="{{ $tracer->jabatan }}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group pt-1">
+                        <label for="gaji_awal">Gaji Awal</label>
+                        <input type="text" class="form-control" value="{{ $tracer->gaji_awal }}" disabled>
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group pt-1">
+                        <label for="gaji_awal">Gaji Sekarang</label>
+                        <input type="text" class="form-control" value="{{ $tracer->gaji_sekarang }}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="form-group pt-1">
+                    <label for="relevansi_kuliah">Apakah materi di perkuliahan relevan dengan yang ada di pekerjaan?</label>
+                    <input type="text" class="form-control" value="{{ $tracer->relevansi_kuliah }}" disabled>
+                  </div>
+                  <div class="form-group pt-1">
+                    <label for="kursus">Apakah setelah lulus mengikuti kursus?</label>
+                    <textarea name="kursus" id="kursus" class="form-control" rows="6" disabled>{{ $tracer->kursus_setelah_lulus }}</textarea>
+                  </div>
+                  <div class="form-group pt-1">
+                    <label for="saran">Saran kedepan untuk kampus</label> 
+                    <textarea name="saran" id="saran" class="form-control" rows="6" disabled>{{ $tracer->saran_untuk_kampus }}</textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+    </div><!-- /.container -->
+  </div>
+  <!-- /.content -->
 @endsection @section('js')
 
 {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

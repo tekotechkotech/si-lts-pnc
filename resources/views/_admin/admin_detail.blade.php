@@ -43,7 +43,11 @@
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
                     src="{{ asset('') }}assets/profile/{{ $all->foto }}"
-                    alt="User profile picture">
+                    alt="User profile picture"
+                    style="width: 100px;
+                        height: 100px;
+                        object-fit: cover;"
+                        >
                 </div>
 
                 <h3 class="profile-username text-center">{{ $all->name }}</h3>

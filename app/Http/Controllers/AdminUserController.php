@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Legal;
 use App\Models\Tracer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,9 +17,95 @@ class AdminUserController extends Controller
         ->where('users.id', Auth::user()->id)
         ->get();
 
-        // dd($users);
+        $alumni = DB::table('alumnis')->count();
+        $tracer = DB::table('tracers')->count();
+        $legal = DB::table('legals')->count();
+        $prolegal = DB::table('legals')
+        ->where('level_acc','!=',2)
+        ->count();
+        $acclegal = DB::table('legals')
+        ->where('level_acc',2)
+        ->count();
 
-        return view('_admin.dashboard', compact('users'));
+        $tahun = DB::table('tracers')->select(DB::raw('tahun_masuk as tahun'))
+        ->groupby('tahun_masuk')
+        ->get();
+        
+        // CHART TRACER BUKA
+        $cowo = DB::table('tracers')
+        ->select(DB::raw('count(id) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('jenis_kelamin','Laki-Laki')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        $cewe = DB::table('tracers')
+        ->select(DB::raw('count(id) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('jenis_kelamin','Perempuan')
+        ->groupby('tracers.created_at')
+        ->get();
+        // CHART TRACER TUTUP
+
+        // CHART RELEVANSI BUKA
+        $relevancowo = DB::table('tracers')
+        ->select(DB::raw('count(relevansi_kuliah) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('jenis_kelamin','Laki-Laki')
+        ->where('relevansi_kuliah','Relevan')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        $relevancewe = DB::table('tracers')
+        ->select(DB::raw('count(relevansi_kuliah) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('jenis_kelamin','Perempuan')
+        ->where('relevansi_kuliah','Relevan')
+        ->groupby('tracers.created_at')
+        ->get();
+        // CHART RELEVANSI TUTUP
+
+        // CHART GAJI BUKA
+        $gaji3 = DB::table('tracers')
+        ->select(DB::raw('count(gaji_sekarang) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('gaji_sekarang','Dibawah 3.000.000')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        $gaji35 = DB::table('tracers')
+        ->select(DB::raw('count(gaji_sekarang) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('gaji_sekarang','3.000.000 - 5.000.000')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        $gaji57 = DB::table('tracers')
+        ->select(DB::raw('count(gaji_sekarang) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('gaji_sekarang','5.000.000 - 7.000.000')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        $gaji7 = DB::table('tracers')
+        ->select(DB::raw('count(gaji_sekarang) as hitung'))
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('gaji_sekarang','Diatas 7.000.000')
+        ->groupby('tracers.created_at')
+        ->get();
+
+        // CHART GAJI TUTUP
+
+
+        return view('_admin.dashboard', compact('users', 'alumni', 'tracer', 'legal', 'prolegal', 'acclegal', 'tahun', 'cowo', 'cewe', 'relevancowo', 'relevancewe', 'gaji3', 'gaji35', 'gaji57', 'gaji7'));
     }
 
 
@@ -33,6 +120,19 @@ class AdminUserController extends Controller
         // dd($tracer);
         // dd($users);
         return view('_admin.tracer', compact('tracer'));
+    }
+    
+    public function detail_tracer($id)
+    {
+        $tracer = DB::table('tracers')
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('tracers.tracer_id', $id)
+        ->first();
+
+        // dd($tracer);
+
+        return view('_admin.tracer_detail', compact('tracer'));
     }
 
     public function profil()

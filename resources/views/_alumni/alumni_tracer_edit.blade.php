@@ -56,8 +56,19 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <label for="provinsi">Provinsi</label>
                         <select name="provinsi" id="provinsi" class="form-control @error('provinsi') is-invalid @enderror">
-                          <option></option>
-                          
+                          @php
+                              $prov = old('provinsi', $tracer->provinsi_perusahaan);
+
+                              $id_prov = DB::table('wilayah')
+                              ->where('nama_wilayah', $prov)
+                              ->first();
+                          @endphp
+                          @empty(Auth::User()->provinsi)
+                            <option value="">Pilih Provinsi</option>
+                          @else
+                              <option value='{{ $id_prov->id_wilayah }}'>{{ $prov }}</option>
+                          @endempty
+
                           @foreach ($provi as $prv)
                               <option value="{{ $prv->id_wilayah }}">{{ $prv->nama_wilayah }}</option>
                           @endforeach
@@ -72,21 +83,20 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                       <label for="kabupaten">kabupaten</label>
                       <select name="kabupaten" id="kabupaten" class="form-control @error('kabupaten') is-invalid @enderror">
-                        <option></option>
                         
-                        {{-- @php
-                            $prov = old('kabupaten', Auth::user()->kabupaten);
-
+                        @php
+                            $prov = old('kabupaten', $tracer->kabupaten_perusahaan);
+                            
                             $id_prov = DB::table('wilayah')
                             ->where('nama_wilayah', $prov)
                             ->first();
                         @endphp
 
-                        @empty(Auth::User()->kabupaten)
-                            <option></option>
+                        @empty($tracer->kabupaten_perusahaan)
+                        <option value="">Pilih Kabupaten</option>
                         @else
-                            <option value='{{ $id_prov->id_wilayah }}'>{{ old('kabupaten', auth::user()->kabupaten) }}</option>
-                        @endempty --}}
+                            <option value='{{ $id_prov->id_wilayah }}'>{{ old('kabupaten', $tracer->kabupaten_perusahaan) }}</option>
+                        @endempty
 
                       </select>
                       @error('kabupaten')
@@ -99,19 +109,19 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                       <label for="kecamatan">kecamatan</label>
                       <select name="kecamatan" id="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror">
-                        <option></option>
-                          {{-- @php
-                            $prov = old('kecamatan', auth::user()->kecamatan);
+                        
+                          @php
+                            $prov = old('kecamatan', $tracer->kecamatan_perusahaan);
 
                               $id_prov = DB::table('wilayah')
                               ->where('nama_wilayah', $prov)
                               ->first();
                           @endphp
-                          @if(Auth::User()->kecamatan="Belum dilengkapi")
-                              <option></option>
+                          @empty($tracer->kecamatan_perusahaan)
+                          <option value="">Pilih Kecamatan</option>
                           @else
-                              <option value='{{ $id_prov->id_wilayah }}'>{{ old('kecamatan', auth::user()->kecamatan) }}</option>
-                          @endif --}}
+                              <option value='{{ $id_prov->id_wilayah }}'>{{ old('kecamatan', $tracer->kecamatan_perusahaan) }}</option>
+                          @endempty
 
                       </select>
                       @error('kecamatan')
@@ -123,20 +133,20 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                       <label for="desa">desa</label>
                       <select name="desa" id="desa" class="form-control @error('desa') is-invalid @enderror">
-                        <option></option>
                         
-                        {{-- @php
-                            $prov = old('desa', auth::user()->desa);
+                        
+                        @php
+                            $prov = old('desa', $tracer->desa_perusahaan);
 
                             $id_prov = DB::table('wilayah')
                             ->where('nama_wilayah', $prov)
                             ->first();
                         @endphp
-                        @empty(Auth::User()->desa)
-                            <option></option>
+                        @empty($tracer->desa_perusahaan)
+                        <option value="">Pilih Desa</option>
                         @else
-                            <option value='{{ $id_prov->id_wilayah }}'>{{ old('desa', auth::user()->desa) }}</option>
-                        @endempty --}}
+                            <option value='{{ $id_prov->id_wilayah }}'>{{ old('desa', $tracer->desa_perusahaan) }}</option>
+                        @endempty
 
                       </select>
                       @error('desa')
@@ -151,7 +161,7 @@
                     <div class="row">
                       <div class="col">
                         <label for="rt">RT</label>
-                        <input type="text" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt') }}">
+                        <input type="text" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt',$tracer->rt_perusahaan) }}">
                         @error('rt')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -160,7 +170,7 @@
                       </div>
                       <div class="col">
                         <label for="rw">RW</label>
-                        <input type="text" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw') }}">
+                        <input type="text" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw',$tracer->rw_perusahaan) }}">
                         @error('rw')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -171,13 +181,13 @@
                 </div>
                 <div class="form-group pt-1">
                     <label for="jalan">Jalan</label>
-                    <input type="text" name="jalan" class="form-control" >
+                    <input type="text" name="jalan" class="form-control" placeholder="Jalan" value="{{ old('jalan',$tracer->jalan_perusahaan) }}" >
                 </div>
                 <div class="row">
                   <div class="col">
                     <div class="form-group pt-1">
                       <label for="tahun_masuk">Tahun Awal Kerja</label>
-                      <input type="text" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk') }}">
+                      <input type="text" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk',$tracer->tahun_masuk) }}">
                       @error('tahun_masuk')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -188,7 +198,7 @@
                   <div class="col">
                     <div class="form-group pt-1">
                       <label for="jabatan">Jabatan</label>
-                      <input type="text" name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" placeholder="Jabatan" value="{{ old('jabatan') }}">
+                      <input type="text" name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" placeholder="Jabatan" value="{{ old('jabatan',$tracer->jabatan) }}">
                       @error('jabatan')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -228,17 +238,18 @@
                 <div class="form-group pt-1">
                   <label for="relevansi_kuliah">Apakah materi di perkuliahan relevan dengan yang ada di pekerjaan?</label>
                   <select name="relevansi_kuliah" class="form-control" id="relevansi_kuliah">
+                    <option value="{{ $tracer->relevansi_kuliah }}">{{ $tracer->relevansi_kuliah }}</option>
                     <option value="Relevan">Relevan</option>
                     <option value="Tidak Relevan">Tidak Relevan</option>
                   </select>
                 </div>
                 <div class="form-group pt-1">
                   <label for="kursus">Apakah setelah lulus mengikuti kursus?</label>
-                  <textarea name="kursus" id="kursus" class="form-control" rows="5"></textarea>
+                  <textarea name="kursus" id="kursus" class="form-control" rows="5">{{ old('kursus',$tracer->kursus_setelah_lulus) }}</textarea>
                 </div>
                 <div class="form-group pt-1">
                   <label for="saran">Saran kedepan untuk kampus</label>
-                  <textarea name="saran" id="saran" class="form-control @error('saran') is-invalid @enderror" rows="5"></textarea>
+                  <textarea name="saran" id="saran" class="form-control @error('saran') is-invalid @enderror" rows="5">{{ old('saran',$tracer->saran_untuk_kampus) }}</textarea>
                   @error('saran')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>

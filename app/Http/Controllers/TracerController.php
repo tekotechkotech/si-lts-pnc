@@ -141,9 +141,9 @@ class TracerController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
+        // dd($request);   
         
-
         $request->validate([
             'name' => 'required',
             
@@ -164,6 +164,8 @@ class TracerController extends Controller
             'kursus' => 'required',
             'saran' => 'required',
         ]);
+
+        // dd($request);  
 
         $alu = DB::table('alumnis')
         ->where('user_id', Auth::user()->id)
