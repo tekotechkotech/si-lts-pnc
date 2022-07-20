@@ -147,7 +147,7 @@ Route::middleware(['auth'])->group(function () {
             // Route::get('legalisir/{id}/ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
         
         // level acc 3
-        Route::get('legalisir/{id}/tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
+        Route::put('legalisir/{id}/tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
 
 
         

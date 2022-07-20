@@ -92,7 +92,7 @@
                                         @endif
                                     </div>
                                     <div class="col">
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/tolak" class="btn btn-danger btn-block" >Tolak</a>
+                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak">Tolak</a>
                                     </div>
                                 </div>
                             @endif
@@ -103,6 +103,37 @@
     </div><!-- /.container -->
   </div>
   <!-- /.content -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Tolak" tabindex="-1" aria-labelledby="TolakLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TolakLabel">Yakin Tolak Pengajuan Legalisir?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form method="post">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <button formaction="/admin/legalisir/{{ $legal->legal_id }}/tolak" type="submit" class="btn btn-danger btn-block">Tolak</button>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 @endsection @section('js')
 
 

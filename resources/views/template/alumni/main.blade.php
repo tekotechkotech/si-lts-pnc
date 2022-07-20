@@ -7,7 +7,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | @yield('tittle')</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/pnc-logo.png') }}">
+  <title>SI-LTS PNS |   @yield('tittle')</title>
 
   {{-- CSS --}}
   @include('template.css')

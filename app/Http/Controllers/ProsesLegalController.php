@@ -171,8 +171,6 @@ class ProsesLegalController extends Controller
             $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
             $pdf->save($path . '/' . $fileName);
         }
-
-
             $date = date('Y-m-d', strtotime('+2 month'));
 
         Legal::where('legal_id', $id)
@@ -188,14 +186,19 @@ class ProsesLegalController extends Controller
     
     
 
-    public function tolak($id)
+    public function tolak(Request $request,$id)
     {
+        $request->validate([
+            'keterangan' => 'required',
+        ]);
+        
         Legal::where('legal_id', $id)
         ->update([
-            'level_acc' => '3'
+            'level_acc' => '3',
+            'keterangan' => $request->keterangan,
         ]);
 
-        return redirect()->back();
+        return redirect('/admin/legalisir/verifikasi');
     }
     
 }
