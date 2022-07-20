@@ -6,21 +6,22 @@
     <style>
         html { margin: 0px}
         .berkas{
-            width: 100%;
+            height: 100%;
+            width: 100%
             page-break-inside: avoid;
         }
 
 
         .box1{
             position: absolute;
-            bottom: 520px;
-            left: 25px;
-            font-size: 10pt;
+            bottom: 20px;
+            right: 350px;
+            font-size: 9pt;
             font-family: Arial, Helvetica, sans-serif;
             text-align: center;
             font-weight: bold;
-            width: 280px;
-            padding: 10px;
+            width: 240px;
+            padding: 0px;
             border: 3px solid black;
             margin: 0;
         }
@@ -33,9 +34,9 @@
 
         .box2{
             position: absolute;
-            bottom: 520px;
-            right: 130px;
-            font-size: 10pt;
+            bottom: 20px;
+            left: 20px;
+            font-size: 9pt;
             font-family: Arial, Helvetica, sans-serif;
             text-align: center;
             font-weight: bold;
@@ -45,7 +46,7 @@
         }
 
         .box2 img{
-            width: 100px;
+            width: 30px;
             top: 50%;
             left: 50%;
         }

@@ -99,6 +99,7 @@
                 <p>Menunggu legalisir</p>
               </a>
             </li>
+            
             @elseif(Auth::user()->admin->jabatan == 'Pegawai BAAK')
             <li class="nav-item">
               <a href="/admin/legalisir/cetak" class="nav-link   @yield('cetak')">
@@ -112,7 +113,6 @@
                 <p>Menunggu Diambil</p>
               </a>
             </li>
-                
             @else
                 
             @endif

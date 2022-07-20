@@ -163,7 +163,15 @@ class ProsesLegalController extends Controller
             $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
             $pdf->save($path . '/' . $fileName);
             
+        }elseif ($legal->jenis_berkas =="legalisir Transkrip Nilai") {
+            $pdf = PDF::loadView('template.legallisirTranskrip', compact('legal'));
+            $pdf->setPaper('A4', 'potrait');
+
+            $path = public_path('assets/legal');
+            $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
+            $pdf->save($path . '/' . $fileName);
         }
+
 
             $date = date('Y-m-d', strtotime('+2 month'));
 

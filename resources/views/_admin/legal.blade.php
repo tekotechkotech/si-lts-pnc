@@ -52,14 +52,7 @@
                 </thead>
                 <tbody>
                     @foreach ($legal as $legal)
-                    @php
-                    if($legal->jenis_berkas == 'legalisir Ijazah'){
-                        $folder = 'ijazah';
-                    }
-                    if($legal->jenis_berkas == 'legalisir Transkip Nilai'){
-                        $folder = 'transkip';
-                    }
-                    @endphp
+                    
                     
                     @if ($legal->level_acc == "0")
                     @php
@@ -144,7 +137,7 @@
                             </div>
                         {{-- </div>
                         <div class="modal"> --}}
-                            <a href="{{ asset('assets/legal/'.$folder.'/'.$legal->upload_berkas) }}" class="btn btn-primary btn-sm btn-block" target="_blank">Lihat Berkas</a>
+                            <a href="{{ asset('assets/berkas/'.$legal->upload_berkas) }}" class="btn btn-primary btn-sm btn-block" target="_blank">Lihat Berkas</a>
                             @if ($apa!="legal")
                             <div class="row pt-2">
                                 <div class="col">
