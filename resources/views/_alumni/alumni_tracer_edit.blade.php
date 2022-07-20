@@ -161,7 +161,7 @@
                     <div class="row">
                       <div class="col">
                         <label for="rt">RT</label>
-                        <input type="text" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt',$tracer->rt_perusahaan) }}">
+                        <input type="number" min="1" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt',$tracer->rt_perusahaan) }}">
                         @error('rt')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -170,7 +170,7 @@
                       </div>
                       <div class="col">
                         <label for="rw">RW</label>
-                        <input type="text" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw',$tracer->rw_perusahaan) }}">
+                        <input type="number" min="1" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw',$tracer->rw_perusahaan) }}">
                         @error('rw')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -187,7 +187,7 @@
                   <div class="col">
                     <div class="form-group pt-1">
                       <label for="tahun_masuk">Tahun Awal Kerja</label>
-                      <input type="text" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk',$tracer->tahun_masuk) }}">
+                      <input type="number" min="2000" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk',$tracer->tahun_masuk) }}">
                       @error('tahun_masuk')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -212,6 +212,9 @@
                     <div class="form-group pt-1">
                       <label for="gaji_awal">Gaji Awal</label>
                       <select name="gaji_awal" class="form-control" id="gaji_awal">
+                        @if ($tracer->gaji_awal!=null)
+                          <option value="{{ $tracer->gaji_awal }}">{{ $tracer->gaji_awal }}</option>
+                        @endif
                         <option value="Dibawah 3.000.000">Dibawah 3.000.000</option>
                         <option value="3.000.000 - 5.000.000">3.000.000 - 5.000.000</option>
                         <option value="5.000.000 - 7.000.000">5.000.000 - 7.000.000</option>
@@ -223,6 +226,9 @@
                     <div class="form-group pt-1">
                       <label for="gaji_sekarang">Gaji Sekarang</label>
                       <select name="gaji_sekarang" class="form-control" id="gaji_sekarang">
+                        @if ($tracer->gaji_sekarang!=null)
+                          <option value="{{ $tracer->gaji_sekarang }}">{{ $tracer->gaji_sekarang }}</option>
+                        @endif
                         <option value="Dibawah 3.000.000">Dibawah 3.000.000</option>
                         <option value="3.000.000 - 5.000.000">3.000.000 - 5.000.000</option>
                         <option value="5.000.000 - 7.000.000">5.000.000 - 7.000.000</option>

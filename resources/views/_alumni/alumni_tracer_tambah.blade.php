@@ -150,7 +150,7 @@
                     <div class="row">
                       <div class="col">
                         <label for="rt">RT</label>
-                        <input type="text" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt') }}">
+                        <input type="number" min="1" name="rt" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="RT" value="{{ old('rt') }}">
                         @error('rt')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -159,7 +159,7 @@
                       </div>
                       <div class="col">
                         <label for="rw">RW</label>
-                        <input type="text" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw') }}">
+                        <input type="number" min="1" name="rw" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="RW" value="{{ old('rw') }}">
                         @error('rw')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -176,7 +176,7 @@
                   <div class="col">
                     <div class="form-group pt-1">
                       <label for="tahun_masuk">Tahun Awal Kerja</label>
-                      <input type="text" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk') }}">
+                      <input type="number" min="2000" name="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" id="tahun_masuk" placeholder="Tahun Awal Kerja" value="{{ old('tahun_masuk') }}">
                       @error('tahun_masuk')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>

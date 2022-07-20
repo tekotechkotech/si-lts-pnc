@@ -49,7 +49,7 @@
 
       <div class="col-lg-8 col-md-8 col-sm-12">
         
-        @empty($tracer)
+        @if ($tracer==null)
         <div class="card  bg-danger">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center p-2">
@@ -61,7 +61,7 @@
           </div>
         </div>
         @else
-
+        
 @foreach ($tracer as $tracer)
         <div class="card  bg-primary">
           <div class="card-body">
@@ -102,8 +102,8 @@
           </div>
         </div>
 @endforeach
+@endif
         
-        @endempty
         
       </div>
     </div>

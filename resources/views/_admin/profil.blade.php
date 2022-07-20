@@ -287,7 +287,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="rt">RT</label>
-                    <input type="text" class="form-control" id="rt" name="rt" value="{{ old('rt', $all->rt) }}"  class="form-control @error('rt') is-invalid @enderror">
+                    <input type="number" class="form-control" id="rt" name="rt" value="{{ old('rt', $all->rt) }}"  class="form-control @error('rt') is-invalid @enderror">
                     @error('rt')
                       <div class="invalid-feedback">
                         {{ $message }}
@@ -298,7 +298,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="rw">RW</label>
-                    <input type="text" class="form-control" id="rw" name="rw" value="{{ old('rw', $all->rw) }}"  class="form-control @error('rw') is-invalid @enderror">
+                    <input type="number" class="form-control" id="rw" name="rw" value="{{ old('rw', $all->rw) }}"  class="form-control @error('rw') is-invalid @enderror">
                     @error('rw')
                       <div class="invalid-feedback">
                         {{ $message }}

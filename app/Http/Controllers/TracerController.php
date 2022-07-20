@@ -181,6 +181,9 @@ class TracerController extends Controller
             'jabatan' => $request->jabatan,
             'gaji_awal' => $request->gaji_awal,
             'gaji_sekarang' => $request->gaji_sekarang,
+            'relevansi_kuliah' => $request->relevansi_kuliah,
+            'kursus_setelah_lulus' => $request->kursus,
+            'saran_untuk_kampus' => $request->saran,
 
             'alumni_id' => $alu->alumni_id,
         ]);

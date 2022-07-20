@@ -13,11 +13,23 @@ class AlumniUserController extends Controller
     {
         $all = DB::table('users')
         ->join('alumnis', 'users.id', '=', 'alumnis.user_id')
-        // ->join('tracers', 'alumnis.alumni_id', '=', 'tracers.alumni_id')
-        // ->join('legals', 'alumnis.alumni_id', '=', 'legals.alumni_id')
         ->where('users.id', Auth::user()->id)
         ->first();
 
+        if ($all->email == "" ||
+        $all->tempat_lahir == "" ||
+        $all->tanggal_lahir == "" ||
+        $all->no_hp == "" || 
+            $all->desa == "" || 
+            $all->rt == "" ||
+            $all->rw == "" ||
+            $all->jalan == "") {
+            $cek="belum";
+        }else {
+            $cek="sudah";
+        }
+        
+// dd($cek);
         // dd($all);
 
         $tracer = DB::table('tracers')
@@ -26,13 +38,12 @@ class AlumniUserController extends Controller
         // ->max('id')
         ->first();
 
-
         $legal = DB::table('legals')
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
         ->where('alumnis.alumni_id', $all->id)
         ->first();
 
-        return view('_alumni.alumni', compact('all', 'tracer', 'legal'));
+        return view('_alumni.alumni', compact('all', 'tracer', 'legal', 'cek'));
     }
 
     public function profil()
@@ -107,16 +118,13 @@ class AlumniUserController extends Controller
 
     public function proses_profil_alamat(Request $request)
     {       
+        // dd($request);
         $request->validate([
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-            'kecamatan' => 'required',
-            'desa' => 'required',
-            'RT' => 'required',
-            'RW' => 'required',
-            'Jalan' => 'required',
+            
+            'RT' => 'nullable|numeric',
+            'RW' => 'nullable|numeric',
+            // 'Jalan' => 'required',
         ]);
-
         $prov = DB::table('wilayah')
         ->where('id_wilayah',$request->provinsi)
         ->first();

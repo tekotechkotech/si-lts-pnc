@@ -71,20 +71,20 @@
                     @endphp
                     @elseif ($legal->level_acc == "2")
                     @php
-                        $level="Menunggu Print oleh Pegawai BAAK";
+                        $level="Legalisir Selesai";
                     @endphp
-                    @elseif ($legal->level_acc == "3")
-                    @php
-                        $level="Menunggu Diambil Alumni";
-                    @endphp
-                    @elseif ($legal->level_acc == "4")
-                    @php
-                        $level="legalisir Telah Selesai";
-                    @endphp
-                    @else
-                    @php
-                        $level="legalisir Ditolak";
-                    @endphp
+                        {{-- @elseif ($legal->level_acc == "3")
+                        @php
+                            $level="Menunggu Diambil Alumni";
+                        @endphp
+                        @elseif ($legal->level_acc == "4")
+                        @php
+                            $level="legalisir Telah Selesai";
+                        @endphp
+                        @else
+                        @php
+                            $level="legalisir Ditolak";
+                        @endphp --}}
                     @endif
 
                     <tr>

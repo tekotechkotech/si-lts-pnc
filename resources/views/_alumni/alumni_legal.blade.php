@@ -100,9 +100,7 @@
                   <div class="progress-bar" style="width: {{ $percen }}%" ></div>
                 </div>
                 <span class="progress-description">
-                  {{-- {{ print_r($legal->updated_at) }} --}}
-                  {{ date('d-m-Y', strtotime($legal->created_at)) }}
-                  {{-- {{ date($legal->updated_at) }} Hii --}}
+                  {{ Carbon\Carbon::parse($legal->created_at)->isoFormat('dddd, D MMMM Y') }}
                 </span>
               </div>
               <div class="d-flex justify-content-end">

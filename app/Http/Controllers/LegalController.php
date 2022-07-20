@@ -14,8 +14,11 @@ class LegalController extends Controller
         $legal = DB::table('legals')
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
         ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->select('legals.*', 'alumnis.*', 'users.*', 'legals.created_at')
         ->where('users.id', Auth::user()->id)
         ->get();
+
+        // dd($legal);
 
         return view('_alumni.alumni_legal', compact('legal'));
     }
@@ -53,12 +56,12 @@ class LegalController extends Controller
                 $tempat ="assets/berkas/";
                 $berkas->move($tempat,$nama_berkas);
 
-            }elseif ($request->jenis == 'legalisir Transkip Nilai') {
+            }elseif ($request->jenis == 'legalisir Transkrip Nilai') {
 
                 // isi dengan nama berkas
-                $nama_berkas = "Transkip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
+                $nama_berkas = "Transkrip_". Auth::user()->name . "_" .$request->nim. "_" . uniqid() . ".jpg";
                 // isi dengan nama folder tempat kemana file diupload
-                $tempat ="assets/berkas/transkip";
+                $tempat ="assets/berkas/";
                 $berkas->move($tempat,$nama_berkas);
 
             }else {

@@ -84,7 +84,7 @@
                   <option>Super Admin</option>
                   <option>Wakil Direktur 1</option>
                   <option>Kepala BAAK</option>
-                  <option>Pegawai BAAK</option>
+                  {{-- <option>Pegawai BAAK</option> --}}
                 </select>
             </div>
             <div class="form-group">

@@ -1,12 +1,12 @@
 @extends('template.alumni.main')
 
-@section('tittle','Alumni')
+@section('tittle'&'Alumni')
 
 
 @section('css')
 <style>
   .gr{
-    background-image: linear-gradient(blue, cyan);
+    background-image: linear-gradient(blue& cyan);
   }
   </style>    
 @endsection
@@ -74,7 +74,7 @@
 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="small-box bg-info " style="background-image: linear-gradient(150deg,blue, cyan);">
+        <div class="small-box bg-info " style="background-image: linear-gradient(150deg&blue& cyan);">
           <div class="inner p-4">
             <h3 class="text-wrap">
               @if ($tracer == null)
@@ -104,10 +104,11 @@
           <p class="text-center">@if ($tracer!=null)
               {{ $tracer->tahun_masuk }}      
             @else
-               dengan klik tombol dibawah
-            
+              dengan klik tombol dibawah
         @endif</p>
-          <a href="{{ route('alumni.tracer.index') }}" class="small-box-footer">
+          <a href="{{ route('alumni.tracer.index') }}" class="small-box-footer" @if ($cek == "belum")
+              data-toggle="modal" data-target="#Alert"
+          @endif>
             Tracer Study <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -133,7 +134,11 @@
             </div>
             {{-- @endforeach --}}
             <!-- /.info-box -->
-            <a href="{{ route('alumni.legalisirs.index') }}" class="btn btn-primary btn-block">legalisir</a>
+            <a href="{{ route('alumni.legalisirs.index') }}" class="btn btn-primary btn-block"
+            @if ($tracer == null)
+                data-toggle="modal" data-target="#Alert"
+            @endif
+            >legalisir</a>
           
 
 
@@ -143,6 +148,51 @@
   </div><!-- /.container -->
 </div>
 <!-- /.content -->
+
+{{-- MODAL START--}}
+<!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Alert">
+  Launch demo modal
+</button> --}}
+
+<div class="modal fade" id="Alert" tabindex="-1" aria-labelledby="AlertLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AlertLabel">PERHATIAN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        @if ($cek == "belum")
+            <center>
+              <b>Belum bisa menambahkan Tracer Study dan Melakukan Pengajuan Legalisir</b>
+              <p>Untuk bisa mengisi Tracer Study dan pengajuan legalisir, anda harus melengkapi data diri terlebih dahulu</p>
+            </center>
+            @elseif ($tracer == null)
+            <center>
+            <b>Belum bisa Melakukan Pengajuan Legalisir</b>
+            <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
+          </center>
+
+        @endif
+
+        {{-- @if ($tracer == null)
+            <b>Belum bisa Melakukan Pengajuan Legalisir</b>
+            <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
+        @endif --}}
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- MODAL END --}}
 @endsection
 
 @section('js')

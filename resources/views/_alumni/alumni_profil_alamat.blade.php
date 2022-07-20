@@ -53,7 +53,7 @@
                     ->first();
                 @endphp
                 @empty(Auth::User()->provinsi)
-                    <option>Pilih Provinsi</option>
+                    <option>Pilih Provinsi </option>
                 @else
                     <option value='{{ $id_prov->id_wilayah }}'>{{ $prov }}</option>
                 @endempty
@@ -83,7 +83,7 @@
                 @empty(Auth::User()->kabupaten)
                     <option>Pilih kabupaten/Kota</option>
                 @else
-                    <option value='{{ $id_prov->id_wilayah }}'>{{ old('kabupaten', auth::user()->kabupaten) }}</option>
+                    <option value='{{ $id_prov->id_wilayah  }}'>{{ old('kabupaten', auth::user()->kabupaten) }}</option>
                 @endempty
 
               </select>
@@ -105,11 +105,11 @@
                       ->where('nama_wilayah', $prov)
                       ->first();
                   @endphp
-                  @if(Auth::User()->kecamatan="Belum dilengkapi")
-                      <option>Pilih kecamatan</option>
-                  @else
-                      <option value='{{ $id_prov->id_wilayah }}'>{{ old('kecamatan', auth::user()->kecamatan) }}</option>
-                  @endif
+                  @empty(Auth::User()->kecamatan)
+                  <option>Pilih Kecamatan</option>
+              @else
+                  <option value='{{ $id_prov->id_wilayah  }}'>{{ old('kecamatan', auth::user()->kecamatan) }}</option>
+              @endempty
 
               </select>
               @error('kecamatan')
@@ -132,7 +132,7 @@
                 @empty(Auth::User()->desa)
                     <option>Pilih desa</option>
                 @else
-                    <option value='{{ $id_prov->id_wilayah }}'>{{ old('desa', auth::user()->desa) }}</option>
+                    <option value='{{ $id_prov->id_wilayah  }}'>{{ old('desa', auth::user()->desa) }}</option>
                 @endempty
 
               </select>
@@ -146,7 +146,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="RT">RT</label>
-                  <input type="text" class="form-control" id="RT" name="RT" value="{{ old('RT', $all->rt) }}"  class="form-control @error('RT') is-invalid @enderror">
+                  <input type="number" class="form-control" id="RT" name="RT" value="{{ old('RT', $all->rt) }}"  class="form-control @error('RT') is-invalid @enderror">
                   @error('RT')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -157,7 +157,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="RW">RW</label>
-                  <input type="text" class="form-control" id="RW" name="RW" value="{{ old('RW', $all->rw) }}"  class="form-control @error('RW') is-invalid @enderror">
+                  <input type="number" class="form-control" id="RW" name="RW" value="{{ old('RW', $all->rw) }}"  class="form-control @error('RW') is-invalid @enderror">
                   @error('RW')
                     <div class="invalid-feedback">
                       {{ $message }}
