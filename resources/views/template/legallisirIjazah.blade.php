@@ -64,7 +64,7 @@
             <span> WAKIL DIREKTUR 1 <br></span>
 
         
-        <img src="{{ public_path('img/'.Auth::user()->admin->ttd) }}" class="esign">
+        <img src="{{ public_path('assets/img/'.Auth::user()->admin->ttd) }}" class="esign">
             <br>
             {{-- <p>{{ $wd1 }}</p> --}}
             {{-- <p> NIP/NPAK {{$nip_npak}}</p> --}}

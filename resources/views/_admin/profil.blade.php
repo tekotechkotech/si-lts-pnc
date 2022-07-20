@@ -66,6 +66,35 @@
             </div>
             <!-- /.card -->
 
+          @if ($all->jabatan=="Wakil Direktur 1")
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class=""
+                       src="{{ asset('') }}assets/img/{{ $all->ttd }}"
+                       style="width: 100px;
+                        height: 100px;
+                        object-fit: cover;"
+                        >
+                </div>
+                <br>
+                <form action="{{ route('admin.foto') }}" method="post" enctype="multipart/form-data" >
+                  @csrf
+                  @method('PUT')
+                    <input type="hidden" name="username" value="{{ $all->username }}">
+                    <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></label>
+                    <input type="file" accept="image/*" onchange="form.submit()" name="foto" id="foto" hidden>
+                    @error('foto')
+                      <div class="alert alert-danger"><center>{{ $message }}</center></div>
+                    @enderror
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          @endif
+
+
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
