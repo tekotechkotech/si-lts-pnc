@@ -41,19 +41,21 @@
                 @php
                     if($legal->level_acc == 0){
                         $status = 'Menunggu Verifikasi';
-                        $percen = '20';
+                        $percen = '30';
                     }elseif($legal->level_acc == 1){
                         $status = 'Telah Diverifikasi, Menunggu legalisir';
-                        $percen = '40';
-                    }elseif($legal->level_acc == 3){
-                        $status = 'Telah Dilegalisir, Tinggal Cetak';
-                        $percen = '60';
-                    }elseif($legal->level_acc == 4){
-                        $status = 'Telah Dicetak, Menunggu Diambil';
-                        $percen = '80';
-                    }elseif($legal->level_acc == 5){
-                        $status = 'Telah Diambil, Pengajuan legalisir Selesai';
+                        $percen = '70';
+                    }elseif($legal->level_acc == 2){
+                        $status = 'Legalisir Selesai';
                         $percen = '100';
+
+                    // }elseif($legal->level_acc == 4){
+                    //     $status = 'Telah Dicetak, Menunggu Diambil';
+                    //     $percen = '80';
+                    // }elseif($legal->level_acc == 5){
+                    //     $status = 'Telah Diambil, Pengajuan legalisir Selesai';
+                    //     $percen = '100';
+
                     }else {
                     $status = 'Ditolak';
                     $percen = '0';

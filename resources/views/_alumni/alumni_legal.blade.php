@@ -71,7 +71,7 @@
                     $status = 'Menunggu Verifikasi';
                     $percen = '30';
                 }elseif($legal->level_acc == 1){
-                    $status = 'Telah Diverifikasi, Menunggu legalisir';
+                    $status = 'Telah Diverifikasi';
                     $percen = '60';
                 }elseif($legal->level_acc == 2){
                     $status = 'Selesai Dilegalisir';

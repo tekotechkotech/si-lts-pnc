@@ -6,9 +6,31 @@
   <title>SI-LTS PNC | LOGIN</title>
   @include('template.css')
 
+  <style>
+    body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+  </style>
 </head>
 
 <body class="hold-transition login-page">
+  {{-- <div class="d-flex flex-column justify-content-center w-100 h-100">
+    <div class="d-flex flex-column justify-content-center align-items-center"> --}}
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
@@ -57,7 +79,7 @@
           
           <!-- /.col -->
           <div class="col text-center"><hr>
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Log In</button><br>
+            <button type="submit" name="submit" class="btn btn-primary btn-block ini">Log In</button><br>
             <a href="" class="text center"><span> Butuh Bantuan? </span></a>
           </div>
           <!-- /.col -->
@@ -72,5 +94,7 @@
 <!-- /.login-box -->
 @include('template.js')
 
+{{-- </div>
+</div> --}}
 </body>
 </html>

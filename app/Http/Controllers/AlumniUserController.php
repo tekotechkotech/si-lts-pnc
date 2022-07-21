@@ -40,8 +40,12 @@ class AlumniUserController extends Controller
 
         $legal = DB::table('legals')
         ->join('alumnis', 'legals.alumni_id', '=', 'alumnis.alumni_id')
-        ->where('alumnis.alumni_id', $all->id)
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('users.id', $all->id)
+        ->latest('legals.created_at')
         ->first();
+
+        
 
         return view('_alumni.alumni', compact('all', 'tracer', 'legal', 'cek'));
     }

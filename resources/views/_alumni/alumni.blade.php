@@ -74,7 +74,7 @@
 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="small-box bg-info " style="background-image: linear-gradient(150deg&blue& cyan);">
+        <div class="small-box bg-info gr" style="background-image: linear-gradient(150deg, blue, cyan);">
           <div class="inner p-4">
             <h3 class="text-wrap">
               @if ($tracer == null)
@@ -113,21 +113,46 @@
           </a>
         </div>
       </div>
+              @php
+                  
+                  if($legal->level_acc == 0){
+                                      $status = 'Menunggu Verifikasi';
+                                      $percen = '30';
+                                  }elseif($legal->level_acc == 1){
+                                      $status = 'Telah Diverifikasi';
+                                      $percen = '70';
+                                  }elseif($legal->level_acc == 2){
+                                      $status = 'Legalisir Selesai';
+                                      $percen = '100';
+              
+                                  // }elseif($legal->level_acc == 4){
+                                  //     $status = 'Telah Dicetak, Menunggu Diambil';
+                                  //     $percen = '80';
+                                  // }elseif($legal->level_acc == 5){
+                                  //     $status = 'Telah Diambil, Pengajuan legalisir Selesai';
+                                  //     $percen = '100';
+              
+                                  }else {
+                                  $status = 'Ditolak';
+                                  $percen = '0';
+                                  }
+                                  
+              @endphp
       <div class="col-lg-4 col-md-4 col-sm-12">
         
             {{-- @foreach ($legal as $l) --}}
             <div class="info-box bg-info">
               <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-
               <div class="info-box-content">
-                <span class="info-box-text">legalisir Ijazah</span>
-                <span class="info-box-number">Menunggu Verifikasi</span>
+                <span class="info-box-text">{{ $legal->jenis_berkas }}</span>
+                <span class="info-box-number">{{ $status }}</span>
 
                 <div class="progress">
-                  <div class="progress-bar" style="width: 70%"></div>
+                  <div class="progress-bar" style="width: {{ $percen }}%"></div>
                 </div>
                 <span class="progress-description">
-                  30-Januari-2022
+                  {{ Carbon\Carbon::parse($legal->created_at)->isoFormat('dddd, D MMMM Y') }}
+
                 </span>
               </div>
               <!-- /.info-box-content -->

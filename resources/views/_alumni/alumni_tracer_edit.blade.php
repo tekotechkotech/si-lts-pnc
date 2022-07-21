@@ -262,8 +262,17 @@
                     </span>
                   @enderror
                 </div>
+                <div class="row">
+                  <div class="col">
+                    <a href="/alumni/tracer" class="btn btn-secondary btn-block">Kembali</a>
 
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Simpan</button>
+                  </div>
+                  <div class="col">
+                    <button type="submit" name="submit" class="btn btn-primary btn-block">Simpan</button>
+
+                  </div>
+                </div>
+
               </div>
             </div>
             

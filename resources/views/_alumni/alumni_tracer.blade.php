@@ -80,10 +80,10 @@
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-end">
-              <a href="/alumni/tracer/{{ $tracer->tracer_id }}/show" class="btn btn-light text-success mx-1">
+              {{-- <a href="/alumni/tracer/{{ $tracer->tracer_id }}/show" class="btn btn-light text-success mx-1">
                 <i class="fa fa-file-text" aria-hidden="true"></i>
                 <span>Detail</span>
-              </a>
+              </a> --}}
               <a href="/alumni/tracer/{{ $tracer->tracer_id }}/edit" class="btn btn-light text-success mx-1">
                 <i class="fas fa-edit"></i>
                 <span>Edit</span>
