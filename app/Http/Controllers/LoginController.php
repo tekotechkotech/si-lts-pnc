@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -12,7 +13,12 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login');
+        $sa = DB::table('users')
+        ->join('admins', 'users.id', '=', 'admins.user_id')
+        ->where('jabatan', 'Wakil Direktur 1')->first();
+        // dd($wa);
+
+        return view('login', compact('sa'));
     }
 
     public function login_action(Request $request)
@@ -29,7 +35,13 @@ class LoginController extends Controller
 
 
             if (Auth::user()->role == "alumni") {
-                return redirect(route('alumni.dashboard'));
+                if (Auth::user()->status==1) {
+                    return redirect(route('alumni.dashboard'));
+                }else {
+                    return back()->withErrors([
+                        'password' => 'Akun NonAktif',
+                    ]);
+                }
             }elseif (Auth::user()->role == "admin") {
                 return redirect(route('admin.dashboard'));
             } else {
@@ -42,7 +54,7 @@ class LoginController extends Controller
         
         // dd("anda tidak punya akses");
         return back()->withErrors([
-            'password' => 'Wrong Username or Password',
+            'password' => 'Username atau Password salah',
         ]);
     }
     

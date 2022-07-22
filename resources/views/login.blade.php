@@ -34,7 +34,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center"> --}}
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline card-primary" style="border-radius: 5%;">
     <div class="card-header text-center">
       <a href="../../index2.html" class="h1"><b>SI-LTS</b>PNC</a>
     </div>
@@ -56,32 +56,34 @@
     </div>
 
 <!-- SHOW HIDE PASSWORD -->
-<script>
-    function myFunction() {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        $('#eye i').addClass( "fa-eye-slash" );
-        $('#eye i').removeClass( "fa-eye" );
-        } else {
-            x.type = "password";
-        $('#eye i').removeClass( "fa-eye-slash" );
-        $('#eye i').addClass( "fa-eye" );
-        }
-        
-    }
-</script>
-  @error('password')
-    <div class="alert alert-danger text-center">
-        {{ $message }}
-    </div>
-  @enderror
+
+      <script>
+          function myFunction() {
+              var x = document.getElementById("password");
+              if (x.type === "password") {
+                  x.type = "text";
+              $('#eye i').addClass( "fa-eye-slash" );
+              $('#eye i').removeClass( "fa-eye" );
+              } else {
+                  x.type = "password";
+              $('#eye i').removeClass( "fa-eye-slash" );
+              $('#eye i').addClass( "fa-eye" );
+              }
+              
+          }
+      </script>
+        @error('password')
+          <div class="alert alert-danger text-center">
+              {{ $message }}
+          </div>
+        @enderror
       <div class="row">
           
           <!-- /.col -->
           <div class="col text-center"><hr>
             <button type="submit" name="submit" class="btn btn-primary btn-block ini">Log In</button><br>
-            <a href="" class="text center"><span> Butuh Bantuan? </span></a>
+            
+            <a href="https://wa.me/62{{ $sa->no_hp }}" class="text center"><span> Butuh Bantuan? </span></a>
           </div>
           <!-- /.col -->
         </div>
@@ -91,7 +93,8 @@
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
-</div>
+  </div>
+  <p class="text-center text-light pt-2">2022&copy;SI-LTS PNC | TA By FAIZ</p>
 <!-- /.login-box -->
 @include('template.js')
 

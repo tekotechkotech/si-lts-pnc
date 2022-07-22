@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('prodi')->nullable();
             $table->string('ipk')->nullable();
             $table->string('tahun_lulus')->nullable();
-            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
