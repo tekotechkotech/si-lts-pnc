@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class TracerController extends Controller
 {
     public function index()
@@ -116,7 +118,8 @@ class TracerController extends Controller
             'id_wilayah_perusahaan' => $request->desa]);
         }
 
-        return redirect()->route('alumni.tracer.index')->with('success', 'Data berhasil ditambahkan');
+        Alert::success('Berhasil', 'Data Berhasil Ditambahkan');
+        return redirect()->route('alumni.tracer.index');
     }
 
     public function show($id)
@@ -135,6 +138,7 @@ class TracerController extends Controller
         ->where('tracer_id', $id)
         ->first();
 // dd($tracer);
+
         return view('_alumni.alumni_tracer_edit', compact('provi', 'tracer'));
 
         // return view('_alumni.alumni_tracer_edit');
@@ -224,8 +228,9 @@ class TracerController extends Controller
             update(['desa_perusahaan' => $desa->nama_wilayah,
             'id_wilayah_perusahaan' => $request->desa]);
         }
-
-        return redirect()->route('alumni.tracer.index')->with('success', 'Data berhasil ditambahkan');
+// dd("jadi");
+        Alert::success('Berhasil', 'Data Berhasil Diubah');
+        return redirect()->route('alumni.tracer.index');
         // return redirect()->back();
     }
 
@@ -233,7 +238,8 @@ class TracerController extends Controller
     {
         Tracer::where('tracer_id', $id)->delete();
 
-        return redirect()->back();
+        Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        return redirect()->route('alumni.tracer.index');
 
         // return redirect()->route('alumni.tracer.index')->with('success', 'Data berhasil dihapus');
     }

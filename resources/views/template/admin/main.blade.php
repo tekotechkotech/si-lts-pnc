@@ -14,6 +14,8 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
+  
+  @include('sweetalert::alert')
   <!-- Navbar -->
   @include('template.admin.nav')
   <!-- /.navbar -->

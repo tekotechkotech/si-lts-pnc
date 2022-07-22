@@ -1,17 +1,18 @@
 @extends('template.alumni.main')
 
+
 @section('tittle','Alumni')
 @section('tracer','active')
 
 
 @section('css')
+
 <style>
   .gr{
     background-image: linear-gradient(blue, cyan);
   }
   </style>    
 @endsection
-
 @section('header-content')
 <div class="content-header">
   <div class="container">

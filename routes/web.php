@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboard', [AdminUserController::class, 'index'])->name('dashboard');
         
+        Route::get('tracer-study-export', [AdminUserController::class, 'tracer_export'])->name('data-tracer.export');
         Route::get('tracer-study', [AdminUserController::class, 'tracer'])->name('data-tracer');
         Route::get('tracer-study/{id}', [AdminUserController::class, 'detail_tracer'])->name('data-tracer.detail');
         

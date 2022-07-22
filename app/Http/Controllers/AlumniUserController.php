@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AlumniUserController extends Controller
 {
@@ -116,7 +117,8 @@ class AlumniUserController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp,
         ]);
-            
+        
+        Alert::success('Berhasil', 'Data diri berhasil diubah');
         return redirect()->route('alumni.profil');
     }
 
@@ -170,7 +172,8 @@ class AlumniUserController extends Controller
             'rw' => $request->RW,
             'jalan' => $request->Jalan,
         ]);
-            
+        
+        Alert::success('Berhasil', 'Data alamat berhasil diubah');
         return redirect()->route('alumni.profil');
     }
 
@@ -186,6 +189,7 @@ class AlumniUserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        Alert::success('Berhasil', 'Password berhasil diubah');
         return redirect()->route('alumni.profil');
     }
 
@@ -209,8 +213,8 @@ class AlumniUserController extends Controller
 		]);
         }
 
-        return redirect('/');
-        
+        Alert::success('Berhasil', 'Foto berhasil diubah');
+        return redirect()->route('alumni.profil');
     }
 
 

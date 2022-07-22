@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminUserController extends Controller
 {
@@ -185,7 +186,8 @@ class AdminUserController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp,
         ]);
-            
+        
+        Alert::success('Berhasil', 'Data Diri Berhasil Diubah');
         return redirect()->route('admin.profil');
     }
 
@@ -245,7 +247,7 @@ class AdminUserController extends Controller
             'jalan' => $request->Jalan,
         ]);
             
-
+        Alert::success('Berhasil', 'Data Alamat Berhasil Diubah');
         return redirect()->route('admin.profil');
     }
 
@@ -261,6 +263,7 @@ class AdminUserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        Alert::success('Berhasil', 'Data Password Berhasil Diubah');
         return redirect()->route('admin.profil');
     }
 
@@ -284,8 +287,8 @@ class AdminUserController extends Controller
 		]);
         }
 
-        return redirect('/');
-        
+        Alert::success('Berhasil', 'Foto Berhasil Diubah');
+        return redirect()->route('admin.profil');
     }
 
 
@@ -303,6 +306,17 @@ class AdminUserController extends Controller
             ->get();
 
         return view('_admin.profil_alamat', compact('all', 'provi'));
+    }
+
+    public function tracer_export()
+    {
+        $tracer = DB::table('tracers')
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        // ->where('tracers.user_id', Auth::user()->id)
+        ->get();
+// dd($tracer);
+        return view('_admin.tracer_export', compact('tracer'));
     }
 
 }

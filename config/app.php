@@ -181,10 +181,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        
         /*
-         * Package Service Providers...
-         */
+        * Package Service Providers...
+        */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
         Barryvdh\DomPDF\ServiceProvider::class,
 
         Milon\Barcode\BarcodeServiceProvider::class,
@@ -212,6 +214,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
 

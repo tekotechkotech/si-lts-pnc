@@ -24,9 +24,8 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-        
+        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+
         <li class="nav-item">
           <a href="/" class="nav-link   @yield('dashboard')">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -59,7 +58,7 @@
           <a href="{{ route('admin.data-tracer') }}" class="nav-link   @yield('tracer')">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
-              Data Tracer Study
+              Data Tracer Study 
             </p>
           </a>
         </li>
@@ -118,7 +117,7 @@
             @endif
           </ul>
         </li>
-        @endif
+@endif
 
         <li class="nav-header">AKUN</li>
 

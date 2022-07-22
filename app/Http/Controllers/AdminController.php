@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdminController extends Controller
 {
@@ -60,7 +62,7 @@ class AdminController extends Controller
         ]);
         }
 // dd($user);
-
+        Alert::success('Berhasil', 'Data Admin Berhasil Ditambahkan');
     return redirect()->route('admin.data-admin.index');
     }
 
@@ -108,7 +110,7 @@ class AdminController extends Controller
         Admin::where('user_id', $u->user_id)->update([
             'jabatan' => $request->jabatan,
         ]);
-
+        Alert::success('Berhasil','Data berhasil diubah');
         return redirect()->route('admin.data-admin.index');
     }
 
@@ -126,6 +128,7 @@ class AdminController extends Controller
         // destroy($u->admin_id);
         User::where('id', $u->id)->delete();
 
+        Alert::success('Berhasil', 'Data Admin Berhasil Dihapus');
         return redirect()->back();
     }
 }

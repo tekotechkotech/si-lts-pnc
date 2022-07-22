@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use PDF;
 
@@ -144,7 +145,7 @@ class ProsesLegalController extends Controller
         ->update([
             'level_acc' => '1'
         ]);
-
+        Alert::success('Berhasil', 'Legalisir Berhasil Di Verifikasi');
         return redirect('/admin/legalisir/verifikasi');
     }
     
@@ -183,7 +184,7 @@ class ProsesLegalController extends Controller
         //     'level_acc' => '2',
         // ]);
 
-
+        Alert::success('Berhasil', 'Legalisir Berhasil Di-ACC');
         return redirect('admin/legalisir/legalisir');
     }
     

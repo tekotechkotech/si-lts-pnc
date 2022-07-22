@@ -6,6 +6,7 @@ use App\Models\Legal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LegalController extends Controller
 {
@@ -78,7 +79,7 @@ class LegalController extends Controller
                 'keterangan' => $request->keterangan,
             ]);
         }
-
+        Alert::success('Berhasil', 'Pengajuan Legalisir berhasil ditambahkan');
         return redirect()->route('alumni.legalisirs.index');
     }
 
@@ -109,7 +110,7 @@ class LegalController extends Controller
         // Legal::where('legal_id', $id)->destroy();
         Legal::where('legal_id', $id)->delete();
 
-        // dd('Data legalisir berhasil dihapus');
+        Alert::success('Berhasil', 'Pengajuan Legalisir berhasil dihapus');
         return redirect()->back();
     }
 }

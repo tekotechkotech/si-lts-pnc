@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumni;
+use App\Models\Legal;
+use App\Models\Tracer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AlumniController extends Controller
 {
@@ -74,7 +77,7 @@ class AlumniController extends Controller
                 'nim' => $request->nim,
         ]);
         }
-
+        Alert::success('Berhasil', 'Data berhasil ditambahkan');
         return redirect()->route('admin.data-alumni.index');
     }
 
@@ -137,7 +140,7 @@ class AlumniController extends Controller
         Alumni::where('user_id', $id)->update([
             'prodi' => $request->prodi,
         ]);
-
+        Alert::success('Berhasil', 'Data berhasil diubah');
         return redirect()->route('data-alumni.index');
     }
 
@@ -149,16 +152,29 @@ class AlumniController extends Controller
      */
     public function destroy($id)
     {
-        // $u = DB::table('alumni')
-        // ->join('users', 'alumni.user_id', '=', 'users.id')
-        // ->where('role', 'admin')
-        // ->where('alumni.user_id', $id)
-        // ->first();
+        $u = DB::table('alumnis')
+        ->join('users', 'alumnis.user_id', '=', 'users.id')
+        ->where('alumnis.user_id', $id)
+        ->first();
+
+        $a = Legal::where('alumni_id', $u->alumni_id)->get();
+        $b = Tracer::where('alumni_id', $u->alumni_id)->get();
+        
+        if ($a!=null) {
+            Alert::error('Gagal', 'Data tidak dapat dihapus karena Alumni tersebut memiliki pengajuan legalisir');
+            return redirect()->route('admin.data-alumni.index');
+        }
+
+        if ($b!=null) {
+            Alert::error('Gagal', 'Data tidak dapat dihapus karena Alumni tersebut memiliki data Tracer Study');
+            return redirect()->route('admin.data-alumni.index');
+        }
 
 
-        // Alumni::destroy($u->id);
+        Alumni::where('alumni_id',$u->alumni_id)->delete();
         User::destroy($id);
-
+        
+        Alert::success('Berhasil', 'Data berhasil dihapus');
         return redirect()->back();
     }
 }

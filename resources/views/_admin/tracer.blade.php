@@ -10,12 +10,13 @@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm-6 d-flex">
                 <h1>Tracer Study</h1>
+                    <a href="/admin/tracer-study-export" class="btn btn-success btn-sm ml-2">Export Excel</a>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item "><a href="/">Home</a></li>
                     <li class="breadcrumb-item active">Tracer Study</li>
                 </ol>
             </div>
