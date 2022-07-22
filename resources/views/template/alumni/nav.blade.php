@@ -18,14 +18,18 @@
             <a href="{{ route('alumni.dashboard') }}" class="nav-link  @yield('home')">Home</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')" @if ($tracer == null)
+            <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')" 
+            {{-- @if ($tracer == null)
             data-toggle="modal" data-target="#Alert"
-        @endif>Tracer Study</a>
+        @endif --}}
+        >Tracer Study</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('alumni.legalisirs.index') }}" class="nav-link @yield('legal')" @if ($tracer == null)
+            <a href="{{ route('alumni.legalisirs.index') }}" class="nav-link @yield('legal')" 
+            {{-- @if ($tracer == null)
             data-toggle="modal" data-target="#Alert"
-        @endif>legalisir</a>
+        @endif --}}
+        >legalisir</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.profil') }}" class="nav-link @yield('profil')">Pengaturan Profil</a>
@@ -67,7 +71,7 @@
           </button>
         </div>
         <div class="modal-body">
-          
+{{--           
           @if ($cek == "belum")
               <center>
                 <b>Belum bisa menambahkan Tracer Study dan Melakukan Pengajuan Legalisir</b>
@@ -79,7 +83,7 @@
               <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
             </center>
   
-          @endif
+          @endif --}}
   
           {{-- @if ($tracer == null)
               <b>Belum bisa Melakukan Pengajuan Legalisir</b>
