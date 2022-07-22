@@ -21,12 +21,21 @@ class AdminUserController extends Controller
         $alumni = DB::table('alumnis')->count();
         $tracer = DB::table('tracers')->count();
         $legal = DB::table('legals')->count();
-        $prolegal = DB::table('legals')
-        ->where('level_acc','!=',2)
-        ->count();
-        $acclegal = DB::table('legals')
-        ->where('level_acc',2)
-        ->count();
+        
+        if ($legal == null) {
+            $prolegal = 0;
+            $acclegal = 0;
+        }else{
+
+            $prolegal = DB::table('legals')
+            ->where('level_acc','!=',2)
+            ->count();
+            $acclegal = DB::table('legals')
+            ->where('level_acc',2)
+            ->count();
+        }
+
+
 
         $tahun = DB::table('tracers')->select(DB::raw('tahun_masuk as tahun'))
         ->groupby('tahun_masuk')

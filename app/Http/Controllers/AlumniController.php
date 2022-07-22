@@ -24,8 +24,9 @@ class AlumniController extends Controller
         
         $u = DB::table('users')
         ->join('alumnis', 'users.id', '=', 'alumnis.user_id')
-        ->where('role', 'alumni')->get();
-
+        ->where('role', 'alumni')
+        ->get();
+       
         return view('_admin.alumni', compact('u'));
     }
 
@@ -180,17 +181,21 @@ class AlumniController extends Controller
 
     public function aktif($id)
     {
-        Alumni::where('alumni_id',$id)
+        User::where('id',$id)
         ->update([
             'status' => "1",
         ]);
+        Alert::success('Berhasil', 'Akun Berhasil di Nonaktifkan');
+        return redirect()->route('admin.data-alumni.index');
     }
 
     public function nonaktif($id)
     {
-        Alumni::where('alumni_id',$id)
+        User::where('id',$id)
         ->update([
             'status' => "0",
         ]);
+        Alert::success('Berhasil', 'Akun Berhasil di Nonaktifkan');
+        return redirect()->route('admin.data-alumni.index');
     }
 }

@@ -37,28 +37,39 @@
                         <th>Username</th>
                         <th>Prodi</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th></th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($u as $u)
+                    @foreach ($u as $u)@php
+                        if($u->status == 1){
+                            $status = "Aktif";
+                            $bg = "success";
+                        }else{
+                            $status = "NonAktif";
+                            $bg = "danger";
+                        }
+                    @endphp
+                        
                     <tr>
                         <td>{{ $u->nim }}</td>
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->username }}</td>
                         <td>{{ $u->prodi }}</td>
                         <td>{{ $u->email }}</td>
+                        <td><label class="badge badge-{{ $bg }}">{{ $status }}</label></td>
                         <td><div class="d-flex justify-content-center">
 
                             <a href="/admin/data-alumni/{{ $u->id }}/detail" class="btn btn-sm btn-primary m-1" >Detail</a>
 
                             @if (Auth::user()->admin->jabatan == 'Super Admin')
                             <a href="/admin/data-alumni/{{ $u->id }}/edit" class="btn btn-sm btn-success m-1" >Edit</a>
-                            @if ($u->status=="aktif")
-                            <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#NonAktif{{ $u->alumni_id }}" >NonAktifkan</a>
-                            @elseif ($u->status=="nonaktif")
-                            <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#Aktif{{ $u->alumni_id }}" >Aktifkan</a>
+                            @if ($u->status=="1")
+                            <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#NonAktif{{ $u->id }}" >NonAktifkan</a>
+                            @elseif ($u->status=="0")
+                            <a  class="btn btn-sm btn-success m-1" data-toggle="modal" data-target="#Aktif{{ $u->id }}" >Aktifkan</a>
                             @endif
 
                             <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus{{ $u->alumni_id }}" >Hapus</a>
@@ -118,7 +129,7 @@
         {{-- MODAL END --}}
 
     <!-- ModalAktif -->
-    <div class="modal fade" id="Aktif{{ $u->alumni_id }}" tabindex="-1" aria-labelledby="AktifLabel" aria-hidden="true">
+    <div class="modal fade" id="Aktif{{ $u->id }}" tabindex="-1" aria-labelledby="AktifLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
             <div class="modal-header">
@@ -152,10 +163,10 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 
-                <form action="/admin/data-alumni/{{ $u->alumni_id }}/aktif" method="post">
+                <form action="/admin/data-alumni/{{ $u->id }}/aktif" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="submit" class="btn  btn-danger m-1" >Aktifkan</button>
+                    <button type="submit" class="btn  btn-success m-1" >Aktifkan</button>
                 </form>
 
             </div>
@@ -167,7 +178,7 @@
 
 
     <!-- ModalNonAktif -->
-    <div class="modal fade" id="NonAktif{{ $u->alumni_id }}" tabindex="-1" aria-labelledby="NonAktifLabel" aria-hidden="true">
+    <div class="modal fade" id="NonAktif{{ $u->id }}" tabindex="-1" aria-labelledby="NonAktifLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
             <div class="modal-header">
@@ -201,7 +212,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 
-                <form action="/admin/data-alumni/{{ $u->alumni_id }}/nonaktif" method="post">
+                <form action="/admin/data-alumni/{{ $u->id }}/nonaktif" method="post">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn  btn-warning m-1" >NonAktifkan</button>
@@ -240,6 +251,7 @@
         $(document).ready(function() {
         var table = $('#example').DataTable({
             lengthChange: false,
+            order: [[6, 'desc']],
             responsive: true,
             buttons: [ 
                 {extend: 'excel', text:'Export Excel', className: 'btn btn-success'}, 'colvis',

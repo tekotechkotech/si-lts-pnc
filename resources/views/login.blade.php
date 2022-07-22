@@ -34,7 +34,9 @@
     <div class="d-flex flex-column justify-content-center align-items-center"> --}}
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary" style="border-radius: 5%;">
+  <div class="card card-outline card-primary" 
+  style="border-radius: 3%;"
+  >
     <div class="card-header text-center">
       <a href="../../index2.html" class="h1"><b>SI-LTS</b>PNC</a>
     </div>
@@ -82,8 +84,9 @@
           <!-- /.col -->
           <div class="col text-center"><hr>
             <button type="submit" name="submit" class="btn btn-primary btn-block ini">Log In</button><br>
-            
-            <a href="https://wa.me/62{{ $sa->no_hp }}" class="text center"><span> Butuh Bantuan? </span></a>
+            @if ($sa!=null)
+            <a hr ef="https://wa.me/62{{ $sa->no_hp }}" class="text center"><span> Butuh Bantuan? </span></a>
+            @endif
           </div>
           <!-- /.col -->
         </div>

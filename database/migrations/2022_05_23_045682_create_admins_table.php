@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreignUuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->string('nip_npak');
-            $table->string('jabatan');
-            $table->string('ttd')->nullable();
+            $table->string('nip_npak',32);
+            $table->string('jabatan',20);
+            $table->string('ttd',50)->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,33 @@
         <span class="brand-text font-weight-bold">SI-LTS PNC</span>
       </a>
 
+      @php
+          
+        $all = DB::table('users')
+        ->join('alumnis', 'users.id', '=', 'alumnis.user_id')
+        ->where('users.id', Auth::user()->id)
+        ->first();
+
+        if ($all->email == "" ||
+        $all->tempat_lahir == "" ||
+        $all->tanggal_lahir == "" ||
+        $all->no_hp == "" || 
+            $all->desa == "" || 
+            $all->rt == "" ||
+            $all->rw == "" ||
+            $all->jalan == "") {
+            $cek="belum";
+        }else {
+            $cek="sudah";
+        }
+        
+        $tracer = DB::table('tracers')
+        ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
+        ->where('alumnis.nim', $all->nim)
+        // ->max('id')
+        ->first();
+
+      @endphp
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,16 +46,16 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')" 
-            {{-- @if ($tracer == null)
+            @if ($tracer == null)
             data-toggle="modal" data-target="#Alert"
-        @endif --}}
+        @endif
         >Tracer Study</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.legalisirs.index') }}" class="nav-link @yield('legal')" 
-            {{-- @if ($tracer == null)
+            @if ($tracer == null)
             data-toggle="modal" data-target="#Alert"
-        @endif --}}
+        @endif
         >legalisir</a>
           </li>
           <li class="nav-item">
@@ -71,7 +98,7 @@
           </button>
         </div>
         <div class="modal-body">
-{{--           
+          
           @if ($cek == "belum")
               <center>
                 <b>Belum bisa menambahkan Tracer Study dan Melakukan Pengajuan Legalisir</b>
@@ -85,10 +112,10 @@
   
           @endif --}}
   
-          {{-- @if ($tracer == null)
+          @if ($tracer == null)
               <b>Belum bisa Melakukan Pengajuan Legalisir</b>
               <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
-          @endif --}}
+          @endif
           
         </div>
         <div class="modal-footer">

@@ -19,11 +19,10 @@ return new class extends Migration
 
             $table->foreignUuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->string('nim')->nullable()->unique();
-            $table->string('prodi')->nullable();
-            $table->string('ipk')->nullable();
-            $table->string('tahun_lulus')->nullable();
+            $table->char('nim', 9)->nullable()->unique();
+            $table->string('prodi',30)->nullable();
+            $table->string('ipk',5)->nullable();
+            $table->char('tahun_lulus', 4)->nullable();
             $table->timestamps();
         });
     }

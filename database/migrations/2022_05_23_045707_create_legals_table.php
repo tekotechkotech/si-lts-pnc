@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('legals', function (Blueprint $table) {
-            $table->string('legal_id')->primary();
+            $table->string('legal_id',36)->primary();
 
             $table->foreignUuid('alumni_id');
             $table->foreign('alumni_id')->references('alumni_id')->on('alumnis');
 
-            $table->string('upload_berkas')->nullable();
-            $table->string('jenis_berkas');
-            $table->string('level_acc')->default('0');
-            $table->string('file_legal')->nullable();
-            $table->date('berlaku_sampai')->nullable();
+            $table->string('upload_berkas',10)->nullable();
+            $table->string('jenis_berkas',15)->nullable();
+            $table->string('level_berkas',1)->default('0');
+            $table->string('file_legal',100)->nullable();
+            $table->date('berlaku_sampai',10)->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });
