@@ -18,10 +18,14 @@
             <a href="{{ route('alumni.dashboard') }}" class="nav-link  @yield('home')">Home</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')">Tracer Study</a>
+            <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')" @if ($tracer == null)
+            data-toggle="modal" data-target="#Alert"
+        @endif>Tracer Study</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('alumni.legalisirs.index') }}" class="nav-link @yield('legal')">legalisir</a>
+            <a href="{{ route('alumni.legalisirs.index') }}" class="nav-link @yield('legal')" @if ($tracer == null)
+            data-toggle="modal" data-target="#Alert"
+        @endif>legalisir</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.profil') }}" class="nav-link @yield('profil')">Pengaturan Profil</a>
@@ -52,4 +56,43 @@
 
   </nav>
   <!-- /.navbar -->
+
+  <div class="modal fade" id="Alert" tabindex="-1" aria-labelledby="AlertLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AlertLabel">PERHATIAN</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          @if ($cek == "belum")
+              <center>
+                <b>Belum bisa menambahkan Tracer Study dan Melakukan Pengajuan Legalisir</b>
+                <p>Untuk bisa mengisi Tracer Study dan pengajuan legalisir, anda harus melengkapi data diri terlebih dahulu</p>
+              </center>
+              @elseif ($tracer == null)
+              <center>
+              <b>Belum bisa Melakukan Pengajuan Legalisir</b>
+              <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
+            </center>
+  
+          @endif
+  
+          {{-- @if ($tracer == null)
+              <b>Belum bisa Melakukan Pengajuan Legalisir</b>
+              <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
+          @endif --}}
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- MODAL END --}}
   

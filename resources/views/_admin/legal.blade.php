@@ -89,10 +89,27 @@
                         <td>{{ $level }}</td>
                         @endif
                         <td>
-                            <a href="/admin/legalisir/{{ $legal->legal_id }}/{{ $apa }}/detail" class="btn btn-sm btn-primary" >Detail</a>
-                            {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalDetail{{ $legal->legal_id }}">
-                                Detail
-                            </button> --}}
+                            <div class="row pt-2">
+                                <div class="col">
+                                    <a href="/admin/legalisir/{{ $legal->legal_id }}/{{ $apa }}/detail" class="btn btn-sm btn-primary" >Detail</a>
+                                </div>
+                            @if ($apa!="legal")
+                                    @if ($apa == "verifikasi")
+                                    <div class="col">
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-success btn-block" >Verifikasi</a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak">Tolak</a>
+                                    </div>
+                                        @elseif ($apa == "legalisir")
+                                    <div class="col">
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-success btn-block" >Legalisir</a>
+                                    </div>
+                                    @else
+                                    @endif
+                                </div>
+                            @endif
+                            
                         </td>
                     </tr>
 

@@ -1,12 +1,12 @@
 @extends('template.alumni.main')
 
-@section('tittle'&'Alumni')
+@section('tittle','Dashboard Alumni')
 
 
 @section('css')
 <style>
   .gr{
-    background-image: linear-gradient(blue& cyan);
+    background-image: linear-gradient(blue, cyan);
   }
   </style>    
 @endsection
@@ -114,29 +114,22 @@
         </div>
       </div>
               @php
-                  
-                  if($legal->level_acc == 0){
-                                      $status = 'Menunggu Verifikasi';
-                                      $percen = '30';
-                                  }elseif($legal->level_acc == 1){
-                                      $status = 'Telah Diverifikasi';
-                                      $percen = '70';
-                                  }elseif($legal->level_acc == 2){
-                                      $status = 'Legalisir Selesai';
-                                      $percen = '100';
-              
-                                  // }elseif($legal->level_acc == 4){
-                                  //     $status = 'Telah Dicetak, Menunggu Diambil';
-                                  //     $percen = '80';
-                                  // }elseif($legal->level_acc == 5){
-                                  //     $status = 'Telah Diambil, Pengajuan legalisir Selesai';
-                                  //     $percen = '100';
-              
-                                  }else {
-                                  $status = 'Ditolak';
-                                  $percen = '0';
-                                  }
-                                  
+                  if ($legal==null) {
+                      $status = 'Melakukan pengajuan legalisir';
+                      $percen = '100';
+                  }elseif($legal->level_acc == 0){
+                      $status = 'Menunggu Verifikasi';
+                      $percen = '30';
+                  }elseif($legal->level_acc == 1){
+                      $status = 'Telah Diverifikasi';
+                      $percen = '70';
+                  }elseif($legal->level_acc == 2){
+                      $status = 'Legalisir Selesai';
+                      $percen = '100';
+                  }else {
+                  $status = 'Ditolak';
+                  $percen = '0';
+                  }
               @endphp
       <div class="col-lg-4 col-md-4 col-sm-12">
         
@@ -144,14 +137,28 @@
             <div class="info-box bg-info">
               <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
               <div class="info-box-content">
+                @if ($legal==null)
+                <span class="info-box-text">Belum Pernah</span>
+                @else
                 <span class="info-box-text">{{ $legal->jenis_berkas }}</span>
+                @endif
+
                 <span class="info-box-number">{{ $status }}</span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: {{ $percen }}%"></div>
                 </div>
                 <span class="progress-description">
+                  
+                  
+                  @if ($legal==null)
+                  {{ Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
+                  @else
                   {{ Carbon\Carbon::parse($legal->created_at)->isoFormat('dddd, D MMMM Y') }}
+                  @endif
+
+                  
+                  
 
                 </span>
               </div>
@@ -164,9 +171,6 @@
                 data-toggle="modal" data-target="#Alert"
             @endif
             >legalisir</a>
-          
-
-
       </div>
     </div>
 <br>
@@ -174,50 +178,7 @@
 </div>
 <!-- /.content -->
 
-{{-- MODAL START--}}
-<!-- Button trigger modal -->
-{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Alert">
-  Launch demo modal
-</button> --}}
 
-<div class="modal fade" id="Alert" tabindex="-1" aria-labelledby="AlertLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="AlertLabel">PERHATIAN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        @if ($cek == "belum")
-            <center>
-              <b>Belum bisa menambahkan Tracer Study dan Melakukan Pengajuan Legalisir</b>
-              <p>Untuk bisa mengisi Tracer Study dan pengajuan legalisir, anda harus melengkapi data diri terlebih dahulu</p>
-            </center>
-            @elseif ($tracer == null)
-            <center>
-            <b>Belum bisa Melakukan Pengajuan Legalisir</b>
-            <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
-          </center>
-
-        @endif
-
-        {{-- @if ($tracer == null)
-            <b>Belum bisa Melakukan Pengajuan Legalisir</b>
-            <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
-        @endif --}}
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-{{-- MODAL END --}}
 @endsection
 
 @section('js')

@@ -83,19 +83,21 @@
                         <textarea name="keterangan" id="keterangan" class="form-control" rows="3" disabled>{{ $legal->keterangan }}</textarea>
                     </div>
 
-                    @if ($apa!="legal")
-                            <div class="row pt-2">
-                                <div class="col">
-                                        @if ($apa == "verifikasi")
+                            @if ($apa!="legal")
+                                <div class="row pt-2">
+                                    @if ($apa == "verifikasi")
+                                    <div class="col">
                                         <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-success btn-block" >Verifikasi</a>
-                                        @elseif ($apa == "legalisir")
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-success btn-block" >Legalisir</a>
-                                        @else
-                                        @endif
                                     </div>
                                     <div class="col">
                                         <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak">Tolak</a>
                                     </div>
+                                        @elseif ($apa == "legalisir")
+                                    <div class="col">
+                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-success btn-block" >Legalisir</a>
+                                    </div>
+                                    @else
+                                    @endif
                                 </div>
                             @endif
                 </div>

@@ -1,6 +1,6 @@
 @extends('template.admin.main')
 
-@section('tittle','Blank Page')
+@section('tittle','Dashboard')
 @section('dashboard','active')
 
 @section('css')

@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/pnc-logo.png') }}">
   <title>SI-LTS PNC | LOGIN</title>
   @include('template.css')
 
   <style>
     body {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background: linear-gradient(-45deg, #00ff95, #060470, #79b6cc, #0059ff);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;

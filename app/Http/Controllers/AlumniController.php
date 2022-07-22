@@ -129,7 +129,7 @@ class AlumniController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'password' => 'required|string|max:255',
+            'password' => 'nullable|string|max:20',
         ]);
 // dd($request);
 
@@ -176,5 +176,21 @@ class AlumniController extends Controller
         
         Alert::success('Berhasil', 'Data berhasil dihapus');
         return redirect()->back();
+    }
+
+    public function aktif($id)
+    {
+        Alumni::where('alumni_id',$id)
+        ->update([
+            'status' => "1",
+        ]);
+    }
+
+    public function nonaktif($id)
+    {
+        Alumni::where('alumni_id',$id)
+        ->update([
+            'status' => "0",
+        ]);
     }
 }

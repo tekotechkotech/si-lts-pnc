@@ -131,6 +131,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('data-alumni/{data_alumni}/edit', [AlumniController::class, 'edit'])->name('data-alumni.edit');
         Route::put('data-alumni/{data_alumni}', [AlumniController::class, 'update'])->name('data-alumni.update');
         Route::delete('data-alumni/{data_alumni}', [AlumniController::class, 'destroy'])->name('data-alumni.destroy');
+        Route::put('data-alumni/{data_alumni}/aktif', [AlumniController::class, 'aktif'])->name('data-alumni.aktif');
+        Route::put('data-alumni/{data_alumni}/nonaktif', [AlumniController::class, 'nonaktif'])->name('data-alumni.nonaktif');
         
         // lihat pengajuan legalisirs
         Route::get('legalisir/{apa}',[ProsesLegalController::class, 'index'])->name('data-legal');
