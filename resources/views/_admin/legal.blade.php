@@ -91,7 +91,7 @@
                         <td>
                             <div class="row pt-2">
                                 <div class="col">
-                                    <a href="/admin/legalisir/{{ $legal->legal_id }}/{{ $apa }}/detail" class="btn btn-sm btn-primary" >Detail</a>
+                                    <a href="/admin/legalisir/{{ $legal->legal_id }}/{{ $apa }}/detail" class="btn btn-primary  btn-block" >Detail</a>
                                 </div>
                             @if ($apa!="legal")
                                     @if ($apa == "verifikasi")
@@ -99,7 +99,7 @@
                                         <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-success btn-block" >Verifikasi</a>
                                     </div>
                                     <div class="col">
-                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak">Tolak</a>
+                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak{{ $legal->legal_id }}">Tolak</a>
                                     </div>
                                         @elseif ($apa == "legalisir")
                                     <div class="col">
@@ -107,73 +107,43 @@
                                     </div>
                                     @else
                                     @endif
+                                    @endif
                                 </div>
-                            @endif
                             
                         </td>
                     </tr>
 
                     
                     
-                    <!-- Modal -->
-                    <div class="modal fade" id="ModalDetail{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Detail legalisir</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <img src="{{ asset('assets/berkas/'.$legal->upload_berkas) }}">
-                                        <div class="form-group ">
-                                            <label>Nama Alumni Pengaju legalisir</label>
-                                            <input type="text" class="form-control" value="{{ $legal->name }}" disabled><div class="form-group ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="nim">NIM</label>
-                                            <input type="text" class="form-control" value="{{ $legal->nim }}" disabled><div class="form-group ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="jenis">Jenis legalisir</label>
-                                            <input type="text" class="form-control" value="{{ $legal->jenis_berkas }}" disabled><div class="form-group ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="jenis">Proses legalisir</label>
-                                            <input type="text" class="form-control" value="{{ $level }}" disabled>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control" disabled rows="3">{{ $legal->keterangan }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {{-- </div>
-                        <div class="modal"> --}}
-                            <a href="{{ asset('assets/berkas/'.$legal->upload_berkas) }}" class="btn btn-primary btn-sm btn-block" target="_blank">Lihat Berkas</a>
-                            @if ($apa!="legal")
-                            <div class="row pt-2">
-                                <div class="col">
-                                        @if ($apa == "verifikasi")
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-sm btn-success btn-block" >Verifikasi</a>
-                                        @elseif ($apa == "legalisir")
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-sm btn-success btn-block" >legalisir</a>
-                                        @else
-                                        @endif
-                                    </div>
-                                    <div class="col">
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/tolak" class="btn btn-sm btn-danger btn-block" >Tolak</a>
-                                    </div>
-                                </div>
-                            @endif
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                    
+<!-- Modal -->
+<div class="modal fade" id="Tolak{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="TolakLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TolakLabel">Yakin Tolak Pengajuan Legalisir?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <form method="post">
+              @csrf
+              @method('PUT')
+              <div class="form-group">
+                  <label for="keterangan">Keterangan</label>
+                  <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                  <button formaction="/admin/legalisir/{{ $legal->legal_id }}/tolak" type="submit" class="btn btn-danger btn-block">Tolak</button>
+              </div>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </div>
 
                     @endforeach
                 </tbody>

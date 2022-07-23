@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignUuid('alumni_id');
             $table->foreign('alumni_id')->references('alumni_id')->on('alumnis');
 
-            $table->string('upload_berkas',10)->nullable();
-            $table->string('jenis_berkas',15)->nullable();
+            $table->string('upload_berkas',100)->nullable();
+            $table->string('jenis_berkas',30)->nullable();
             $table->string('level_berkas',1)->default('0');
             $table->string('file_legal',100)->nullable();
             $table->date('berlaku_sampai',10)->nullable();

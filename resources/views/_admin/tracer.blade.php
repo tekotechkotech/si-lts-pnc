@@ -61,7 +61,7 @@
                         <td>{{ $tracer->gaji_awal }}</td>
                         <td>{{ $tracer->gaji_sekarang }}</td>
                         <td>
-                            <a href="/admin/tracer-study/{{ $tracer->tracer_id }}" class="btn btn-sm btn-primary" >Detail</a>
+                            <a href="/admin/tracer-study/{{ $tracer->tracer_id }}" class="btn btn-sm btn-primary btn-block">Detail</a>
                         </td>
                     </tr>
                     @endforeach

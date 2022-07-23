@@ -65,7 +65,6 @@
         </div>
         @else 
           @foreach ($legal as $legal)
-          
             @php
                 if($legal->level_acc == 0){
                     $status = 'Menunggu Verifikasi';
