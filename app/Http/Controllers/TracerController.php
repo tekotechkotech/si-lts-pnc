@@ -19,9 +19,9 @@ class TracerController extends Controller
         ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
         ->join('users', 'alumnis.user_id', '=', 'users.id')
         ->where('users.id', Auth::user()->id)
-        ->get();
+        ->first();
 
-        // dd($tracer);
+        dd($tracer);
 
         return view('_alumni.alumni_tracer', compact('tracer'));
     }

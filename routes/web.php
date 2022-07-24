@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniUserController;
 use App\Http\Controllers\CekQRController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProsesLegalController;
@@ -24,6 +25,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/emailblade', function () {
+    return view('email.resetPassword');
+});
+
+Route::get('/cekemail',[EmailController::class, 'cek'])->name('cekemail');
+
+
+
 // wilayah
 Route::controller(WilayahController::class)->group(function () {
     Route::post('/getkabupaten',  'getkabupaten')->name('getkabupaten');
@@ -37,6 +46,13 @@ Route::get('login',[LoginController::class, 'index'])->name('login');
 Route::post('login',[LoginController::class, 'login_action'])->name('login.action');
 Route::get('logout',[LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
+// PASSWORD RESET
+Route::get('/lupaPassword',[LoginController::class, 'lupa'])->name('login.lupa');//form awal
+Route::post('/lupaPassword',[LoginController::class, 'lupaKirimEmail'])->name('login.email');//kirim email
+Route::get('/resetPassword/{id}',[LoginController::class, 'formPassword'])->name('login.reset');//klik dari email -> ke form isi password
+Route::put('/resetPasswordAction',[LoginController::class, 'resetPasswordAction'])->name('login.reset.action');//proses ganti password
+
+
 // CEK QR CODE
 Route::get('/legalisir//{id}',[CekQRController::class, 'cek'])->name('cek_qrcode');
 // 62c8337938318
@@ -45,54 +61,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// ALUMNI
-    // Route::get('/alumni', function () {
-    //     return view('alumni');
-    // });
-
-    // //PROFIL
-    // Route::get('/alumni-profil', function () {
-    //     return view('alumni_profil');
-    // });
-
-    // Route::get('/alumni-profil-datadiri', function () {
-    //     return view('alumni_profil_datadiri');
-    // });
-
-    // Route::get('/alumni-profil-alamat', function () {
-    //     return view('alumni_profil_alamat');
-    // });
-
-    // Route::get('/alumni-profil-password', function () {
-    //     return view('alumni_profil_password');
-    // });
-
-    // //TRACER
-    // Route::get('/alumni-tracer', function () {
-    //     return view('alumni_tracer');
-    // });
-
-    // Route::get('/alumni-tracer-tambah', function () {
-    //     return view('alumni_tracer_tambah');
-    // });
-
-    // Route::get('/alumni-tracer-edit', function () {
-    //     return view('alumni_tracer_edit');
-    // });
-
-    // //legalisir
-    // Route::get('/alumni-legalisir', function () {
-    //     return view('alumni_legal');
-    // });
-
-    // Route::get('/alumni-legal-tambah', function () {
-    //     return view('alumni_legal_tambah');
-    // });
-
-    // Route::get('/alumni-legal-edit', function () {
-    //     return view('alumni_legal_edit');
-    // });
-// alumni
 
 // MIDDLEWARE LOGIN
 Route::middleware(['auth'])->group(function () {
@@ -143,12 +111,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('legalisir/{id}/verifikasi',[ProsesLegalController::class, 'verifikasi'])->name('verifikasi');
         // level acc 2
         Route::get('legalisir/{id}/legalisirs',[ProsesLegalController::class, 'legalisir'])->name('legalisir');
-
-            // level acc 3
-            // Route::get('legalisir/{id}/print',[ProsesLegalController::class, 'cetak'])->name('cetak');
-            // level acc 4
-            // Route::get('legalisir/{id}/ambil',[ProsesLegalController::class, 'ambil'])->name('ambil');
-        
         // level acc 3
         Route::put('legalisir/{id}/tolak',[ProsesLegalController::class, 'tolak'])->name('tolak');
 

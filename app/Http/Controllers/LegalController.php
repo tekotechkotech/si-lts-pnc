@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LegalMail;
 use App\Models\Legal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LegalController extends Controller
@@ -79,6 +81,16 @@ class LegalController extends Controller
                 'keterangan' => $request->keterangan,
             ]);
         }
+
+        $baak = DB::table('users')
+        ->join('admins', 'users.id', '=', 'admins.user_id')
+        ->where('admins.jabatan', "Ketua BAAK")
+        ->first();
+
+        $isi
+
+
+        Mail::to($baak->email)->send(new LegalMail($isi));
         Alert::success('Berhasil', 'Pengajuan Legalisir berhasil ditambahkan');
         return redirect()->route('alumni.legalisirs.index');
     }

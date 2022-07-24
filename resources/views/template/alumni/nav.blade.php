@@ -46,7 +46,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('alumni.tracer.index') }}" class="nav-link @yield('tracer')" 
-            @if ($tracer == null)
+            @if ($cek == "belum")
             data-toggle="modal" data-target="#Alert"
         @endif
         >Tracer Study</a>
@@ -109,13 +109,8 @@
               <b>Belum bisa Melakukan Pengajuan Legalisir</b>
               <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
             </center>
+            @endif 
   
-          @endif --}}
-  
-          @if ($tracer == null)
-              <b>Belum bisa Melakukan Pengajuan Legalisir</b>
-              <p>Untuk bisa melakukan pengajuan legalisir, anda harus mengisi data tracer study terlebih dahulu</p>
-          @endif
           
         </div>
         <div class="modal-footer">

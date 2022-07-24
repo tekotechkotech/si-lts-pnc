@@ -30,8 +30,6 @@ class AlumniUserController extends Controller
             $cek="sudah";
         }
         
-// dd($cek);
-        // dd($all);
 
         $tracer = DB::table('tracers')
         ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
