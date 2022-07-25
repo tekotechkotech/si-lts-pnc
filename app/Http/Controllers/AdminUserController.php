@@ -26,16 +26,13 @@ class AdminUserController extends Controller
             $prolegal = 0;
             $acclegal = 0;
         }else{
-
-            $prolegal = DB::table('legals')
-            ->where('level_acc','!=',2)
+            $prolegal = Legal::
+            where('level_acc','<',2)
             ->count();
             $acclegal = DB::table('legals')
             ->where('level_acc',2)
             ->count();
         }
-
-
 
         $tahun = DB::table('tracers')->select(DB::raw('tahun_masuk as tahun'))
         ->groupby('tahun_masuk')

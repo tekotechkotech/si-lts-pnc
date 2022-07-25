@@ -87,9 +87,13 @@ class LegalController extends Controller
         ->where('admins.jabatan', "Ketua BAAK")
         ->first();
 
-        $isi
+        $isi=[
+            'nama' => Auth::user()->name,
+            'nim' => $request->nim,
+            'action' => "Melakukan pengajuan ". $request->jenis,
+        ];
 
-
+        dd($isi);
         Mail::to($baak->email)->send(new LegalMail($isi));
         Alert::success('Berhasil', 'Pengajuan Legalisir berhasil ditambahkan');
         return redirect()->route('alumni.legalisirs.index');

@@ -88,7 +88,7 @@
                             <option>{{ $u->prodi }}</option>
                             <option>Super Alumni</option>
                             <option>Wakil Direktur 1</option>
-                            <option>Kepala BAAK</option>
+                            <option>Ketua BAAK</option>
                             {{-- <option>Pegawai BAAK</option> --}}
                         </select>
                     </div>

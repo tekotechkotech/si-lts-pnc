@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('upload_berkas',100)->nullable();
             $table->string('jenis_berkas',30)->nullable();
-            $table->string('level_berkas',1)->default('0');
+            $table->integer('level_acc',1)->default('0');
             $table->string('file_legal',100)->nullable();
             $table->date('berlaku_sampai',10)->nullable();
             $table->string('keterangan')->nullable();

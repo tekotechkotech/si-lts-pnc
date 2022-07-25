@@ -41,7 +41,7 @@
       style="border-radius: 3%;"
       >
         <div class="card-header text-center">
-          <a href="../../index2.html" class="h1"><b>SI-LTS</b>PNC</a>
+          <a href="/" class="h1"><b>SI-LTS</b>PNC</a>
         </div>
         <div class="card-body">
           <p class="login-box-msg">Login Untuk masuk ke sistem</p>

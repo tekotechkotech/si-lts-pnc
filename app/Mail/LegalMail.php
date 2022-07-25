@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 class LegalMail extends Mailable
 {
+    public $isi;
     use Queueable, SerializesModels;
 
     /**
@@ -16,9 +17,9 @@ class LegalMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($isi)
     {
-        //
+        $this->isi = $isi;
     }
 
     /**
@@ -28,6 +29,6 @@ class LegalMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('Notifikasi Pengajuan Legalisir')->view('email.legalMail',$this->isi);
     }
 }

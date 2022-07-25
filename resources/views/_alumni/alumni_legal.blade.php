@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12">
-        @empty($legal)
+        @if($legal->count() == null)
         <div class="info-box bg-secondary d-flex align-items-center">
           <div class="info-box-content">
               <span class="info-box-text">Pengajuan legalisir kosong</span>
@@ -128,7 +128,7 @@
               </div>
             </div>
           @endforeach
-        @endempty
+        @endif
           
       </div>
     </div>
