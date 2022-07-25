@@ -61,7 +61,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 // MIDDLEWARE LOGIN
 Route::middleware(['auth'])->group(function () {
     
@@ -81,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('alamat', [AdminUserController::class, 'proses_profil_alamat'])->name('alamat');
         Route::put('password', [AdminUserController::class, 'proses_profil_password'])->name('password');
         Route::put('foto', [AdminUserController::class, 'proses_profil_foto'])->name('foto');
+        Route::put('ttd', [AdminUserController::class, 'proses_profil_ttd'])->name('ttd');
 
         // Route::resource('data-admin', AdminController::class);
         Route::get('data-admin', [AdminController::class, 'index'])->name('data-admin.index');

@@ -297,6 +297,32 @@ class AdminUserController extends Controller
         return redirect()->route('admin.profil');
     }
 
+    public function proses_profil_ttd(Request $request)
+    {
+        // dd($request->all());
+        $id = Auth::user()->id;
+        $request->validate([
+            'fotos' => 'nullable | image | mimes:jpeg,png,jpg | max:2048',
+        ]);
+
+        if ($request->file('fotos')) {
+            $fotos = $validated['fotos'] = $request->file('fotos');
+		    $nama_fotos = "ttd_". Auth::user()->name . "_" . ".jpg";
+            // isi dengan nama folder tempat kemana file diupload
+            $tempat ="assets/profile";
+            $fotos->move($tempat,$nama_fotos);
+
+		User::join('admins', 'admins.user_id', '=', 'users.id')->
+        where('users.id', Auth::user()->id)->
+        update([
+			'admins.ttd' => $nama_fotos,
+		]);
+        }
+
+        Alert::success('Berhasil', 'ttd Berhasil Diubah');
+        return redirect()->route('admin.profil');
+    }
+
 
     
     public function profil_alamat()

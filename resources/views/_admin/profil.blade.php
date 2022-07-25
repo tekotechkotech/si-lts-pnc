@@ -71,20 +71,20 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class=""
-                       src="{{ asset('') }}assets/img/{{ $all->ttd }}"
+                       src="{{ asset('') }}assets/profile/{{ $all->ttd }}"
                        style="width: 100px;
                         height: 100px;
                         object-fit: cover;"
                         >
                 </div>
                 <br>
-                <form action="{{ route('admin.foto') }}" method="post" enctype="multipart/form-data" >
+                <form action="{{ route('admin.ttd') }}" method="post" enctype="multipart/form-data" >
                   @csrf
                   @method('PUT')
                     <input type="hidden" name="username" value="{{ $all->username }}">
-                    <label for="foto" class="btn btn-primary btn-block"><b>Ganti Foto Profil</b></label>
-                    <input type="file" accept="image/*" onchange="form.submit()" name="foto" id="foto" hidden>
-                    @error('foto')
+                    <label for="fotos" class="btn btn-primary btn-block"><b>Ganti Tanda Tangan</b></label>
+                    <input type="file" accept="image/*" onchange="form.submit()" name="fotos" id="fotos" hidden>
+                    @error('fotos')
                       <div class="alert alert-danger"><center>{{ $message }}</center></div>
                     @enderror
                 </form>
