@@ -61,10 +61,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 // MIDDLEWARE LOGIN
 Route::middleware(['auth'])->group(function () {
     

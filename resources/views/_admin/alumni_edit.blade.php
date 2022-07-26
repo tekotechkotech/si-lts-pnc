@@ -86,9 +86,12 @@
                         <label for="prodi">Program Study</label>
                         <select class="form-control" id="prodi" name="prodi">
                             <option>{{ $u->prodi }}</option>
-                            <option>Super Alumni</option>
-                            <option>Wakil Direktur 1</option>
-                            <option>Ketua BAAK</option>
+                            <option>D3 TI</option>
+                            <option>D3 TE</option>
+                            <option>D3 TM</option>
+                            <option>D3 TL</option>
+                            <option>D4 TPPL</option>
+                            <option>D4 PPA</option>
                             {{-- <option>Pegawai BAAK</option> --}}
                         </select>
                     </div>

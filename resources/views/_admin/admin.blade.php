@@ -52,24 +52,77 @@
                         <td>
                             <div class="d-flex justify-content-center">
 
-                                <a href="/admin/data-admin/{{ $u->id }}/detail" class="btn btn-sm btn-primary m-1" >Detail</a>
+                                <a href="/admin/data-admin/{{ $u->id }}/detail" class="btn btn-block btn-sm btn-primary m-1" >Detail</a>
                                 @if (Auth::user()->admin->jabatan == 'Super Admin')
-                                <a href="/admin/data-admin/{{ $u->id }}/edit" class="btn btn-sm btn-success m-1">Edit</a>
-                                <form action="/admin/data-admin/{{ $u->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger m-1">Hapus</button>
-                                </form>
+                                <a href="/admin/data-admin/{{ $u->id }}/edit" class="btn btn-block btn-sm btn-success m-1">Edit</a>
+                                {{-- <form action="/admin/data-admin/{{ $u->id }}" method="post"> --}}
+                                    {{-- @csrf --}}
+                                    {{-- @method('DELETE') --}}
+                                    {{-- <button type="submit" class="btn btn-block btn-sm btn-danger m-1">Hapus</button> --}}
+                                {{-- </form> --}}
+                                <a  class="btn btn-block btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus{{ $u->admin_id }}" >Hapus</a>
                                 @endif
                             </div>
                         </td>
                     </tr>
+
+                    
+    <!-- ModalHapus -->
+    <div class="modal fade" id="Hapus{{ $u->admin_id }}" tabindex="-1" aria-labelledby="HapusLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="HapusLabel">Hapus Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <center><h5>Yakin akan menghapus akun ini?</h5></center>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="nim">NIM</label>
+                            <input type="text" disabled class="form-control @error('nim') is-invalid @enderror" id="nim" name="nim" placeholder="NIM" value="{{ old('nim', $u->nip_npak) }}">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" disabled class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama" value="{{ old('name', $u->name) }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" disabled class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="Username" value="{{ old('username', $u->username) }}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                
+                <form action="/admin/data-alumni/{{ $u->user_id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn  btn-danger m-1" >Hapus</button>
+                </form>
+
+            </div>
+            </div>
+        </div>
+        </div>
+
+        {{-- MODAL END --}}
                     @endforeach
                 </tbody>
             </table>
         {{-- </div> --}}
     </div>
 </section>
+
+
+
 <!-- /.content -->
 @endsection @section('js')
 

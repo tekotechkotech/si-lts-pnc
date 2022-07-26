@@ -88,7 +88,7 @@
                 <button type="submit" name="submit" class="btn btn-primary btn-block ini">Log In</button><br>
                 <a href="/lupaPassword" class="text center"><span> Lupa Password </span></a>
                 @if ($sa!=null)
-                <p> | </p><a href="https://wa.me/62{{ $sa->no_hp }}" class="text center"><span> Butuh Bantuan? </span></a>
+                 <a href="">|</a>  <a href="https://wa.me/62{{ $sa->no_hp }}" class="text center"><span> Butuh Bantuan? </span></a>
                 @endif
               </div>
               <!-- /.col -->

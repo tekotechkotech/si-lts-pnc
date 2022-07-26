@@ -34,7 +34,7 @@ class AlumniUserController extends Controller
         $tracer = DB::table('tracers')
         ->join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
         ->where('alumnis.nim', $all->nim)
-        // ->max('id')
+        ->orderBy('tracers.tahun_masuk', 'DESC')
         ->first();
 
         $legal = DB::table('legals')

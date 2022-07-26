@@ -142,7 +142,7 @@ class AlumniController extends Controller
             'prodi' => $request->prodi,
         ]);
         Alert::success('Berhasil', 'Data berhasil diubah');
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('admin.data-alumni.index');
     }
 
     /**
@@ -161,12 +161,12 @@ class AlumniController extends Controller
         $a = Legal::where('alumni_id', $u->alumni_id)->get();
         $b = Tracer::where('alumni_id', $u->alumni_id)->get();
         
-        if ($a!=null) {
+        if ($a->count() !=null) {
             Alert::error('Gagal', 'Data tidak dapat dihapus karena Alumni tersebut memiliki pengajuan legalisir');
             return redirect()->route('admin.data-alumni.index');
         }
 
-        if ($b!=null) {
+        if ($b->count()  !=null) {
             Alert::error('Gagal', 'Data tidak dapat dihapus karena Alumni tersebut memiliki data Tracer Study');
             return redirect()->route('admin.data-alumni.index');
         }

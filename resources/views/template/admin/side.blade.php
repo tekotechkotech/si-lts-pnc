@@ -84,7 +84,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            @if (Auth::user()->admin->jabatan == 'Kepala BAAK')
+            @if (Auth::user()->admin->jabatan == 'Ketua BAAK')
             <li class="nav-item">
               <a href="/admin/legalisir/verifikasi" class="nav-link   @yield('verifikasi')">
                 <i class="far fa-circle nav-icon"></i>

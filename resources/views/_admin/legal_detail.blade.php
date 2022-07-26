@@ -82,19 +82,27 @@
                         <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" rows="3" disabled>{{ $legal->keterangan }}</textarea>
                     </div>
-
+                    
                             @if ($apa!="legal")
                                 <div class="row pt-2">
                                     @if ($apa == "verifikasi")
                                     <div class="col">
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-success btn-block" >Verifikasi</a>
+                                        <a href="/admin/legalisir/verifikasi" class="btn btn-secondary btn-block" >Kembali</a>
                                     </div>
                                     <div class="col">
-                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak">Tolak</a>
+                                        {{-- <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" class="btn btn-success btn-block" >Verifikasi</a> --}}
+                                        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#Verifikasi{{ $legal->legal_id }}">Verifikasi</a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#Tolak{{ $legal->legal_id }}">Tolak</a>
                                     </div>
                                         @elseif ($apa == "legalisir")
+                                        <div class="col">
+                                            <a href="/admin/legalisir/legalisir" class="btn btn-secondary btn-block" >Kembali</a>
+                                        </div>
                                     <div class="col">
-                                        <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-success btn-block" >Legalisir</a>
+                                        {{-- <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" class="btn btn-success btn-block" >Legalisir</a> --}}
+                                        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#Legalisir{{ $legal->legal_id }}">Legalisir</a>
                                     </div>
                                     @else
                                     @endif
@@ -110,17 +118,17 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="Tolak" tabindex="-1" aria-labelledby="TolakLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="TolakLabel">Yakin Tolak Pengajuan Legalisir?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+<!-- Modal Tolak -->
+<div class="modal fade" id="Tolak{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="TolakLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TolakLabel">Yakin Tolak Pengajuan Legalisir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="modal-body">
         
         <form method="post">
             @csrf
@@ -133,10 +141,52 @@
                 <button formaction="/admin/legalisir/{{ $legal->legal_id }}/tolak" type="submit" class="btn btn-danger btn-block">Tolak</button>
             </div>
         </form>
-
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- Modal Verifikasi -->
+<div class="modal fade" id="Verifikasi{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="VerifikasiLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="VerifikasiLabel">Yakin Verifikasi Pengajuan Legalisir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <a href="/admin/legalisir/{{ $legal->legal_id }}/verifikasi" type="submit" class="btn btn-success btn-block">Verifikasi</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Legalisir -->
+<div class="modal fade" id="Legalisir{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="LegalisirLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="LegalisirLabel">Yakin ACC Pengajuan Legalisir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="modal-body">
+        
+            <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <a href="/admin/legalisir/{{ $legal->legal_id }}/legalisirs" type="submit" class="btn btn-danger btn-block">Acc Legalisir</a>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection @section('js')
 

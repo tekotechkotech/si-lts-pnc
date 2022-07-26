@@ -19,6 +19,7 @@ class TracerController extends Controller
         join('alumnis', 'tracers.alumni_id', '=', 'alumnis.alumni_id')
         ->join('users', 'alumnis.user_id', '=', 'users.id')
         ->where('users.id', Auth::user()->id)
+        ->orderBy('tracers.tahun_masuk', 'DESC')
         ->get();
 
         return view('_alumni.alumni_tracer', compact('tracer'));
@@ -53,6 +54,7 @@ class TracerController extends Controller
             'gaji_awal' => 'required',
             'gaji_sekarang' => 'required',
 
+            
             'kursus' => 'required',
             'saran' => 'required',
         ]);
@@ -75,6 +77,10 @@ class TracerController extends Controller
             'jabatan' => $request->jabatan,
             'gaji_awal' => $request->gaji_awal,
             'gaji_sekarang' => $request->gaji_sekarang,
+
+            'relevansi' => $request->relevansi,
+            'kurses_setelah_lulus' => $request->kursus,
+            'saran_untuk_kampus' => $request->saran,
 
             'alumni_id' => $alu->alumni_id,
         ]);

@@ -64,7 +64,7 @@
                 @enderror
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                {{-- <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
@@ -75,13 +75,8 @@
                         @enderror
                     </div>
                     
-                </div>
-                <div class="col text-center">
-                    <label for="" class="">
-                        | or |
-                        </label> 
-                </div>
-                <div class="col-md-5 col-sm-12">
+                </div> --}}
+                <div class="col-md-12 col-sm-12">
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
                         <select class="form-control" id="jabatan" name="jabatan">

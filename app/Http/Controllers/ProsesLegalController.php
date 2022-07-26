@@ -168,21 +168,19 @@ class ProsesLegalController extends Controller
             $pdf = PDF::loadView('template.legallisirTranskrip', compact('legal'));
             $pdf->setPaper('A4', 'potrait');
 
-            
-
             $path = public_path('assets/legal');
             $fileName =   $legal->name.'-'.$legal->nim.'-'.uniqid().'.pdf' ;
             $pdf->save($path . '/' . $fileName);
         }
             $date = date('Y-m-d', strtotime('+2 month'));
 
-            return $pdf->download('invoice.pdf');
-        // Legal::where('legal_id', $id)
-        // ->update([
-        //     'file_legal'=> $fileName,
-        //     'berlaku_sampai'=> $date,
-        //     'level_acc' => '2',
-        // ]);
+            // return $pdf->download('invoice.pdf');
+        Legal::where('legal_id', $id)
+        ->update([
+            'file_legal'=> $fileName,
+            'berlaku_sampai'=> $date,
+            'level_acc' => '2',
+        ]);
 
         Alert::success('Berhasil', 'Legalisir Berhasil Di-ACC');
         return redirect('admin/legalisir/legalisir');

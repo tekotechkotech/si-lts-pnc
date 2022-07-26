@@ -62,17 +62,16 @@
                         <td><label class="badge badge-{{ $bg }}">{{ $status }}</label></td>
                         <td><div class="d-flex justify-content-center">
 
-                            <a href="/admin/data-alumni/{{ $u->id }}/detail" class="btn btn-sm btn-primary m-1" >Detail</a>
+                            <a href="/admin/data-alumni/{{ $u->id }}/detail" class="btn btn-block btn-sm btn-primary m-1" >Detail</a>
 
                             @if (Auth::user()->admin->jabatan == 'Super Admin')
-                            <a href="/admin/data-alumni/{{ $u->id }}/edit" class="btn btn-sm btn-success m-1" >Edit</a>
+                            <a href="/admin/data-alumni/{{ $u->id }}/edit" class="btn btn-block btn-sm btn-success m-1" >Edit</a>
                             @if ($u->status=="1")
-                            <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#NonAktif{{ $u->id }}" >NonAktifkan</a>
+                            <a  class="btn btn-block btn-sm btn-danger m-1" data-toggle="modal" data-target="#NonAktif{{ $u->id }}" >NonAktifkan</a>
                             @elseif ($u->status=="0")
-                            <a  class="btn btn-sm btn-success m-1" data-toggle="modal" data-target="#Aktif{{ $u->id }}" >Aktifkan</a>
+                            <a  class="btn btn-block btn-sm btn-success m-1" data-toggle="modal" data-target="#Aktif{{ $u->id }}" >Aktifkan</a>
                             @endif
-
-                            <a  class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus{{ $u->alumni_id }}" >Hapus</a>
+                            <a  class="btn btn-block btn-sm btn-danger m-1" data-toggle="modal" data-target="#Hapus{{ $u->alumni_id }}" >Hapus</a>
                             @endif
 
                         </div>

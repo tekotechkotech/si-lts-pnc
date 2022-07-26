@@ -131,12 +131,19 @@
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <div class="card-body">
+        <h6 class="text-center" >Grafik Tracer Study Berdasarkan Jenis Kelamin</h6>
         <div class="chart">
           <div class="chartjs-size-monitor">
             <div class="chartjs-size-monitor-expand">
-              <div class=""></div></div>
-              <div class="chartjs-size-monitor-shrink">
-                <div class=""></div></div></div>
+              <div class="">
+              </div>
+            </div>
+            <div class="chartjs-size-monitor-shrink">
+              <div class="">
+              </div>
+            </div>
+          </div>
+
           {{-- <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 355px;" width="710" height="500" class="chartjs-render-monitor"></canvas> --}}
           <canvas id="tracer"></canvas>
         </div>
@@ -146,6 +153,7 @@
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <div class="card-body">
+        <h6 class="text-center" >Grafik Tracer Study Berdasarkan Relevansi Perkuliahan</h6>
         <div class="chart">
           <div class="chartjs-size-monitor">
             <div class="chartjs-size-monitor-expand">
@@ -161,6 +169,7 @@
   <div class="col-md-4 col-sm-12">
     <div class="card">
       <div class="card-body">
+        <h6 class="text-center" >Grafik Tracer Study Berdasarkan Gaji Alumni Sekarang</h6>
         <div class="chart">
           <div class="chartjs-size-monitor">
             <div class="chartjs-size-monitor-expand">
