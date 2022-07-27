@@ -35,11 +35,11 @@
                                 <span class="text-danger">TIDAK AKTIF</span>
                                 @endif
                                 <hr>
-                                <strong>Masa Aktif Legalisir</strong><br>
+                                {{-- <strong>Masa Aktif Legalisir</strong><br>
                                 <span>
                                     {{ \Carbon\Carbon::parse($legal->berlaku_sampai)->diffForHumans() }}
                                 </span>
-                                <hr>
+                                <hr> --}}
                                 <strong>Tgl. Legalisir</strong><br>
                                 <span>
                                     {{ Carbon\Carbon::parse($legal->updated_at)->format('d-M-Y') }}

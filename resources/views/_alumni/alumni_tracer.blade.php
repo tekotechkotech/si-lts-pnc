@@ -89,19 +89,66 @@
                 <i class="fas fa-edit"></i>
                 <span>Edit</span>
               </a>
-                <form action="/alumni/tracer/{{ $tracer->tracer_id }}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-light text-danger mx-1">
-                    <i class="fas fa-trash-alt"></i>
-                    <span>Hapus</span>
-                  </button>
-                </form>
+                
+                <a  class="btn btn-light text-danger mx-1" data-toggle="modal" data-target="#Hapus{{ $tracer->tracer_id }}" ><i class="fas fa-trash-alt"></i> Hapus</a>
 
                 </a>
             </div>
           </div>
         </div>
+
+        
+    <!-- ModalHapus -->
+    <div class="modal fade" id="Hapus{{ $tracer->tracer_id }}" tabindex="-1" aria-labelledby="HapusLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="HapusLabel">Hapus Data</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <center><h5>Yakin akan menghapus data tracer study ini?</h5></center>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="nim">NIM</label>
+                          <input type="text" disabled class="form-control @error('nim') is-invalid @enderror" id="nim" name="nim" placeholder="NIM" value="{{ old('nim', $tracer->nim) }}">
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="name">Nama</label>
+                          <input type="text" disabled class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama" value="{{ old('name', $tracer->name) }}">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="username">Nama Perusahaan</label>
+                  <input type="text" disabled class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="Username" value="{{ old('username', $tracer->nama_perusahaan) }}">
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+              <form action="/alumni/tracer/{{ $tracer->tracer_id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn  btn-danger mx-1">
+                  <i class="fas fa-trash-alt"></i>
+                  <span>Hapus</span>
+                </button>
+              </form>
+
+          </div>
+          </div>
+      </div>
+      </div>
+
+      {{-- MODAL END --}}
+
 @endforeach
 @endif
         

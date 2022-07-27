@@ -117,16 +117,66 @@
                   </a>
                 @endif
 
-                <form action="/alumni/legalisirs/{{ $legal->legal_id }}" method="post">
+                {{-- <form action="/alumni/legalisirs/{{ $legal->legal_id }}" method="post">
                 @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-light text-danger m-2">
+                @method('DELETE') --}}
+                <a type="submit" class="btn btn-light text-danger m-2" data-toggle="modal" data-target="#Hapus{{ $legal->legal_id }}">
                   <i class="fas fa-trash"></i>
                   <br>
                   <span>Hapus</span>
-                </form>
+                </a>
+                {{-- </form> --}}
               </div>
             </div>
+            <!-- ModalHapus -->
+    <div class="modal fade" id="Hapus{{ $legal->legal_id }}" tabindex="-1" aria-labelledby="HapusLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="HapusLabel">Hapus Data</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <center><h5>Yakin akan menghapus data legalisir ini?</h5></center>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="nim">NIM</label>
+                          <input type="text" disabled class="form-control @error('nim') is-invalid @enderror" id="nim" name="nim" placeholder="NIM" value="{{ old('nim', $legal->nim) }}">
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label for="name">Nama</label>
+                          <input type="text" disabled class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama" value="{{ old('name', $legal->name) }}">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="username">jenis Berkas</label>
+                  <input type="text" disabled class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="Username" value="{{ old('username', $legal->jenis_berkas) }}">
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+              <form action="/alumni/legal/{{ $legal->legal_id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn  btn-danger mx-1">
+                  <i class="fas fa-trash-alt"></i>
+                  <span>Hapus</span>
+                </button>
+              </form>
+
+          </div>
+          </div>
+      </div>
+      </div>
+
           @endforeach
         @endif
           
