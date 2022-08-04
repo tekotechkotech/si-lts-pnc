@@ -25,12 +25,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// CEK
 Route::get('/emailblade', function () {
     return view('email.resetPassword');
 });
 
-Route::get('/cekemail',[EmailController::class, 'cek'])->name('cekemail');
+Route::get('/legalmail', function () {
+    return view('email.legalPengajuan');
+});
 
+Route::get('/cekemail',[EmailController::class, 'cek'])->name('cekemail');
+// CEK
 
 
 // wilayah
@@ -151,9 +156,6 @@ Route::middleware(['auth'])->group(function () {
         //route data legalisirs resource(index, create, store, edit, update, destroy)
         Route::resource('legalisirs', LegalController::class);
 
-        // Route::get('/wkw', function () {
-        //     return view('_alumni.dashboard');
-        // });
 
     });
 });

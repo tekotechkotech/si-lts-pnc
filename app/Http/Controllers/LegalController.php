@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\LegalMail;
 use App\Models\Legal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -82,16 +83,26 @@ class LegalController extends Controller
             ]);
         }
 
-        // $baak = DB::table('users')
-        // ->join('admins', 'users.id', '=', 'admins.user_id')
-        // ->where('admins.jabatan', "Ketua BAAK")
-        // ->first();
+        $user = User::join('alumnis', 'users.id', '=', 'alumnis.user_id')
+        ->where('users.id', Auth::user()->id)
+        ->first();
+        //MAIL
+        // GET DATA WD1
+        $baak = DB::table('users')
+        ->join('admins', 'users.id', '=', 'admins.user_id')
+        ->where('admins.jabatan', 'Ketua BAAK')
+        ->first();
 
-        // $isi=[
-        //     'nama' => Auth::user()->name,
-        //     'nim' => $request->nim,
-        //     'action' => "Melakukan pengajuan ". $request->jenis,
-        // ];
+        // ISI EMAIL
+        $isi = [
+            'keterangan'=>'Pemberitahuan, Pengajuan Legalisir baru menunggu Verifikasi oleh Ketua BAAK',
+            'nama'=>$user->name,
+            'nim'=>$user->nim,
+            'status'=>'Menunggu Verifikasi Ketua BAAK',
+        ];
+
+        // KIRIM EMAIL KE WADIR 1
+        Mail::to($baak->email)->send(new LegalMail($isi));
 
         Alert::success('Berhasil', 'Pengajuan Legalisir berhasil ditambahkan');
         return redirect()->route('alumni.legalisirs.index');

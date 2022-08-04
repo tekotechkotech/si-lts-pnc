@@ -131,7 +131,9 @@
                     </tr>
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Best regards,<br> {{ $isi['sa'] }}
+                            <p style="margin: 0;">Best regards,<br>
+                                SI-LTS Development Team</p>
+                                {{-- {{ $isi['sa'] }} --}}
                             </p>
                         </td>
                     </tr>
@@ -144,7 +146,6 @@
                     <tr>
                         <td bgcolor="#E9ECEF" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">SI-LTS PNC</h2>
-                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #007BFF;">Sistem Informasi Legalisir Online dan Tracer Study Politeknik negeri Cilacap</a></p>
                         </td>
                     </tr>
                 </table>

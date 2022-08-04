@@ -29,6 +29,7 @@ class LegalMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Notifikasi Pengajuan Legalisir')->view('email.legalMail',$this->isi);
+    // dd($this->isi
+        return $this->subject('Notifikasi Pengajuan Legalisir')->view('email.legalPengajuan',$this->isi);
     }
 }

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Admin;
+use App\Mail\LegalMail;
 use App\Models\Legal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use PDF;
@@ -140,11 +143,38 @@ class ProsesLegalController extends Controller
 
 
     public function verifikasi($id)
-    {
-        Legal::where('legal_id', $id)
-        ->update([
+    {       
+
+        $user = User::join('alumnis', 'users.id', '=', 'alumnis.user_id')
+        ->join('legals', 'alumnis.alumni_id', '=', 'legals.alumni_id')
+        ->where('legal_id', $id);
+        
+        // GET DATA USER PENGAJU
+        $getuser = $user->first();
+        
+        
+        //VERIFIKASI 
+        $user->update([
             'level_acc' => '1'
         ]);
+
+        // GET DATA WD1
+        $wd1 = DB::table('users')
+        ->join('admins', 'users.id', '=', 'admins.user_id')
+        ->where('admins.jabatan', 'Wakil Direktur 1')
+        ->first();
+
+        // ISI EMAIL
+        $isi = [
+            'keterangan'=>'Pemberitahuan, Pengajuan Legalisir baru telah diverifikasi menunggu ACC Legalisir oleh Wakil Direktur 1',
+            'nama'=>$getuser->name,
+            'nim'=>$getuser->nim,
+            'status'=>'Menunggu ACC Legalisir Wakil Direktur 1',
+        ];
+
+        // KIRIM EMAIL KE WADIR 1
+        Mail::to($wd1->email)->send(new LegalMail($isi));
+
         Alert::success('Berhasil', 'Legalisir Berhasil Di Verifikasi');
         return redirect('/admin/legalisir/verifikasi');
     }
@@ -186,8 +216,6 @@ class ProsesLegalController extends Controller
         return redirect('admin/legalisir/legalisir');
     }
     
-    
-
     public function tolak(Request $request,$id)
     {
         $request->validate([
